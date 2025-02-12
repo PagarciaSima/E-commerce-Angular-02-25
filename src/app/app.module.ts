@@ -9,6 +9,12 @@ import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/login/login.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { RegisterComponent } from './components/register/register.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
+
 
 @NgModule({
   declarations: [
@@ -18,11 +24,17 @@ import { ForbiddenComponent } from './components/forbidden/forbidden.component';
     UserComponent,
     LoginComponent,
     HeaderComponent,
-    ForbiddenComponent
+    ForbiddenComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule,
+    ToastrModule.forRoot(), 
+    BrowserAnimationsModule
+
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,22 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    height: 100vh;
+}
+
+.container {
+    height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Para centrar el contenido */
+    flex-grow: 0;
+    flex-shrink: 0;
+    width: 100%; /* O un valor fijo si prefieres un ancho específico */
+}
+
+.card {
+    width: 100%;
+}
+
+.form-control:focus {
+    border-color: #198754 !important;
+    box-shadow: 0 0 0 .25rem rgba(7, 184, 78, 0.25) !important;
+}

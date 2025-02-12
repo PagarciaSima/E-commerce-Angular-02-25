@@ -1,22 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ToastrService } from 'ngx-toastr';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent implements OnInit{
+export class RegisterComponent implements OnInit{
 
   userPassword: string = '';
   userName: string = '';
   
-  constructor(
-    private userService: UserService,
-    private toastrService: ToastrService
-  ) {
+  constructor( private userService: UserService) {
 
   }
 
@@ -27,7 +23,6 @@ export class LoginComponent implements OnInit{
     this.userService.login(loginForm.value).subscribe({
       next: (response) => {
         console.log(response);
-        this.toastrService.success('You have loged in successfully', 'Success')
       }, error: (error) => {
         console.log(error);
 
