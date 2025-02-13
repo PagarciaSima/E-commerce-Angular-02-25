@@ -31,13 +31,15 @@ export class AuthInterceptor implements HttpInterceptor {
         return next.handle(clonedRequest).pipe(
             catchError((err: HttpErrorResponse) => {
                 console.log(err.status);
+                console.error("HTTP Error:", err);
                 if (err.status === 401) {
                     // Redirigir al login si el token no es válido o no está presente
                     this.router.navigate(['/login']);
                 } else if (err.status === 403) {
                     this.router.navigate(['/forbidden']);
                 }
-                return throwError(() => new Error("Something went wrong"));            })
+                return throwError(() => new Error("Something went wrong"));
+            })
         );
     }
 

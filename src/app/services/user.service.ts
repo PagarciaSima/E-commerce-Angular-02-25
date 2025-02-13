@@ -11,7 +11,7 @@ import { UserAuthService } from './user-auth.service';
 })
 export class UserService {
 
-  apiURL: string = environment.apiURLAuthenticate;
+  apiURL: string = environment.apiURL;
 
   constructor(
     private httpClient: HttpClient,
@@ -19,12 +19,19 @@ export class UserService {
   ) { }
 
   public login(loginData: LoginRequest): Observable<LoginResponse> {
-    return this.httpClient.post<LoginResponse>(this.apiURL, loginData, {headers: new HttpHeaders( {'No-Auth': 'True'} )});
+    return this.httpClient.post<LoginResponse>(`${this.apiURL}/authenticate`, loginData, {headers: new HttpHeaders( {'No-Auth': 'True'} )});
   }
 
   public roleMatch(allowedRoles: string[]): boolean {
     const userRoles: string[] = this.userAuthService.getRoles() || [];
     return userRoles.length > 0 && userRoles.every(role => allowedRoles.includes(role));
   }
+
+  public forUser(): Observable<string> {
+    return this.httpClient.get(`${this.apiURL}/forUser`, { responseType: 'text' });
+  }
   
+  public forAdmin(): Observable<string> {
+    return this.httpClient.get(`${this.apiURL}/forAdmin`, { responseType: 'text' });
+  }
 }

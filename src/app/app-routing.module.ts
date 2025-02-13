@@ -5,11 +5,12 @@ import { AdminComponent } from './components/admin/admin.component';
 import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/login/login.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
+import { authGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
-  { path: 'admin', component: AdminComponent },
-  { path: 'user', component: UserComponent },
+  { path: 'admin', component: AdminComponent, canActivate: [authGuard], data: {roles: ['AdminRole']} },
+  { path: 'user', component: UserComponent, canActivate: [authGuard], data: {roles: ['UserRole']} },
   { path: 'login', component: LoginComponent },
   { path: 'forbidden', component: ForbiddenComponent }
 ];
