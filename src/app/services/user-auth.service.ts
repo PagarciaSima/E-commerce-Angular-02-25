@@ -12,8 +12,11 @@ export class UserAuthService {
     localStorage.setItem("roles", JSON.stringify(roles));
   }
 
-  public getRoles(): [] {
-    return JSON.parse(localStorage.getItem("roles") || "");
+  public getRoles(): string[] {
+    const roles = localStorage.getItem("roles");
+    return roles 
+      ? JSON.parse(roles).map((role: { roleName: string, roleDescription: string }) => role.roleName) 
+      : [];
   }
 
   public setToken(jwtToken: string) {
@@ -21,14 +24,18 @@ export class UserAuthService {
   }
 
   public getToken(): string {
-    return localStorage.getItem("jwtToken") || "";
-  }
+    let token = localStorage.getItem("jwtToken") || "";
+    return token.replace("Bearer ", "");  
+  } 
 
   public clear() {
     localStorage.clear();
   }
 
-  public isLoggedIn() {
-    return this.getRoles() && this.getToken();
+  public isLoggedIn(): boolean {
+    const roles = localStorage.getItem("roles");
+    const token = localStorage.getItem("jwtToken");
+  
+    return roles !== null && roles !== "" && token !== null && token !== "";
   }
 }

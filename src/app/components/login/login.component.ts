@@ -35,7 +35,7 @@ export class LoginComponent implements OnInit{
         this.userAuthService.setToken(response.jwtToken);
 
         const roleName = response.user.role[0].roleName;
-        
+
         if ('AdminRole' === roleName) {
           this.router.navigate(['/admin'])
         } else if ('UserRole' === roleName) {
@@ -45,7 +45,6 @@ export class LoginComponent implements OnInit{
         this.toastrService.success('You have logged in successfully', 'Success');
       },
       error: (error) => {
-  
         if (error.status === 401) {
           this.toastrService.error('Invalid credentials. Please try again.', 'Error');
         } else if (error.status === 500) {
