@@ -20,3 +20,13 @@ body {
     border-color: #198754 !important;
     box-shadow: 0 0 0 .25rem rgba(7, 184, 78, 0.25) !important;
 }
+
+app-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    max-height: 80px;
+}
