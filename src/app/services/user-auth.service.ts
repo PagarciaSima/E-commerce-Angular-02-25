@@ -38,4 +38,14 @@ export class UserAuthService {
   
     return roles !== null && roles !== "" && token !== null && token !== "";
   }
+
+  public isAdmin(): boolean {
+    const roles: string [] = this.getRoles();
+    return roles.includes('AdminRole'); 
+  }
+
+  public isUser(): boolean {
+    const roles: string [] = this.getRoles();
+    return roles.includes('UserRole'); 
+  }
 }

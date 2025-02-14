@@ -2,6 +2,11 @@ body {
     height: 100vh;
 }
 
+html, body {
+    font-size: 16px I !important;
+}
+
+
 .container {
     height: 80vh;
     display: flex;
@@ -29,4 +34,14 @@ app-footer {
     text-align: center;
     padding: 10px;
     max-height: 80px;
+}
+
+.success-bg {
+  background-color: #198754 !important;
+  color: white !important;
+}
+
+.custom-btn-secondary {
+    background-color: #d3d4d5 !important;
+    color: black !important;
 }

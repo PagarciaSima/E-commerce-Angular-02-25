@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="card mt-5 px-5 py-3 text-success shadow bg-white rounded">
+        <div class="text-center">
+            <h2><i class="fa-solid fa-plus me-2 my-3"></i>New Product</h2>
+        </div>
+        <form class="row" #productForm="ngForm" (ngSubmit)="addProduct()">
+            <div class="col-12 col-md-6 pe-md-5">
+                <!-- Product Name -->
+                <div class="mb-3">
+                    <label for="productName" class="form-label">Product Name</label>
+                    <input type="text" class="form-control" id="productName" name="productName" 
+                        [(ngModel)]="product.productName" #productName="ngModel"
+                        required minlength="3" maxlength="100">
+                    <div class="alert alert-danger mt-2 py-2" *ngIf="productName.invalid && productName.touched">
+                        <small *ngIf="productName.errors?.['required']">Product name is required</small>
+                        <small *ngIf="productName.errors?.['minlength']">Minimum 3 characters required</small>
+                        <small *ngIf="productName.errors?.['maxlength']">Maximum 100 characters allowed</small>
+                    </div>
+                </div>
+
+                <!-- Product Description -->
+                <div class="mb-3">
+                    <label for="productDescription" class="form-label">Product Description</label>
+                    <textarea type="text" class="form-control" id="productDescription" name="productDescription" 
+                        [(ngModel)]="product.productDescription" #productDescription="ngModel"
+                        maxlength="500" rows="5">
+                    </textarea>
+                    <div class="alert alert-danger mt-2 py-2" *ngIf="productDescription.invalid && productDescription.touched">
+                        <small *ngIf="productDescription.errors?.['maxlength']">Maximum 500 characters allowed</small>
+                    </div>
+                </div>
+
+                <!-- Product Actual Price -->
+                <div class="mb-3">
+                    <label for="productActualPrice" class="form-label">Product Actual Price</label>
+                    <input type="number" class="form-control" id="productActualPrice" name="productActualPrice" 
+                        [(ngModel)]="product.productActualPrice" #productActualPrice="ngModel"
+                        required min="1" step="1">
+                    <div class="alert alert-danger mt-2 py-2" *ngIf="productActualPrice.invalid && productActualPrice.touched">
+                        <small *ngIf="productActualPrice.errors?.['required']">Actual price is required</small>
+                        <small *ngIf="productActualPrice.errors?.['min']">Price must be greater than zero</small>
+                    </div>
+                </div>
+
+                <!-- Product Discounted Price -->
+                <div class="mb-3">
+                    <label for="productDiscountedPrice" class="form-label">Product Discounted Price</label>
+                    <input type="number" class="form-control" id="productDiscountedPrice" name="productDiscountedPrice" 
+                        [(ngModel)]="product.productDiscountedPrice" #productDiscountedPrice="ngModel"
+                        required min="1" step="1">
+                    <div class="alert alert-danger mt-2 py-2" *ngIf="productDiscountedPrice.invalid && productDiscountedPrice.touched">
+                        <small *ngIf="productDiscountedPrice.errors?.['required']">Discounted price is required</small>
+                        <small *ngIf="productDiscountedPrice.errors?.['min']">Price must be greater than zero</small>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <button type="submit" class="btn btn-success me-2" [disabled]="productForm.invalid">
+                    <i class="fa-solid fa-floppy-disk me-2"></i>Save
+                </button>
+                <button type="button" class="btn btn-secondary" (click)="clearForm(productForm)">
+                    <i class="fa-solid fa-eraser me-2"></i>Clear
+                </button>
+            </div>
+
+            <div class="col-12 col-md-6 mt-3 mt-md-0">
+                Image area
+            </div>
+        </form>
+    </div>
+</div>

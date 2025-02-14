@@ -3,6 +3,7 @@ import { catchError, Observable, throwError } from "rxjs";
 import { UserAuthService } from "../services/user-auth.service";
 import { Router } from "@angular/router";
 import { Injectable } from "@angular/core";
+import { ToastrService } from "ngx-toastr";
 
 @Injectable({
     providedIn: 'root', 
@@ -11,7 +12,8 @@ export class AuthInterceptor implements HttpInterceptor {
 
     constructor(
         private userAuthService: UserAuthService,
-        private router: Router
+        private router: Router,
+        private toasrService: ToastrService
     ) { }
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -33,9 +35,11 @@ export class AuthInterceptor implements HttpInterceptor {
                 console.log(err.status);
                 console.error("HTTP Error:", err);
                 if (err.status === 401) {
-                    // Redirigir al login si el token no es válido o no está presente
+                    this.toasrService.error("Tu sesión ha expirado. Inicia sesión nuevamente.", "Sesión Expirada");
                     this.router.navigate(['/login']);
-                } else if (err.status === 403) {
+                }              
+                
+                else if (err.status === 403) {
                     this.router.navigate(['/forbidden']);
                 }
                 return throwError(() => new Error("Something went wrong"));

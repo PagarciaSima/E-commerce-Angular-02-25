@@ -27,11 +27,4 @@ export class UserService {
     return userRoles.length > 0 && userRoles.every(role => allowedRoles.includes(role));
   }
 
-  public forUser(): Observable<string> {
-    return this.httpClient.get(`${this.apiURL}/forUser`, { responseType: 'text' });
-  }
-  
-  public forAdmin(): Observable<string> {
-    return this.httpClient.get(`${this.apiURL}/forAdmin`, { responseType: 'text' });
-  }
 }

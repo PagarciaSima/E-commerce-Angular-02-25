@@ -13,7 +13,7 @@ export class HeaderComponent implements OnInit{
   constructor(
     private userAuthService: UserAuthService,
     private router: Router, 
-    private userService: UserService
+    private userService: UserService,
   ) {
 
   }
@@ -30,9 +30,11 @@ export class HeaderComponent implements OnInit{
     this.router.navigate(['/home']);
   }
 
-  public roleMatch(role: string []): boolean {
-    return this.userService.roleMatch(role);
+  public isAdmin(): boolean {
+    return this.userAuthService.isAdmin();
   }
 
-
+  public isUser(): boolean {
+    return this.userAuthService.isUser();
+  }
 }

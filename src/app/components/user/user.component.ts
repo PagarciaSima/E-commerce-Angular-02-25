@@ -8,8 +8,6 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserComponent implements OnInit{
 
-  public message: string = '';
-
   constructor(
     private userService: UserService
   ) {
@@ -17,18 +15,7 @@ export class UserComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.forUser();
   }
 
-  forUser() {
-    this.userService.forUser().subscribe({
-      next: (data) => {
-        console.log(data)
-        this.message = data;
-      }, error: (error) => {
-        console.log(error)
-      }
-    })
-  }
 
 }

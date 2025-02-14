@@ -8,21 +8,16 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/home"><i class="fa-solid fa-house me-2"></i>Home</a>
+          <li *ngIf="isLoggedIn()" class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/"><i class="fa-solid fa-house me-2"></i>Home</a>
           </li>
 
-          <li *ngIf="roleMatch(['AdminRole'])" class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/admin">
-              <i class="fa-solid fa-user-tie me-2"></i>Admin Dashboard
+          <li *ngIf="isAdmin()" class="nav-item">
+            <a class="nav-link active" aria-current="page" routerLink="/addNewProduct">
+              <i class="fa-solid fa-plus me-2"></i>Add New Product
             </a>
           </li>
 
-          <li *ngIf="roleMatch(['UserRole'])" class="nav-item">
-            <a class="nav-link active" aria-current="page" routerLink="/user">
-              <i class="fa-solid fa-user me-2"></i>User Dashboard
-            </a>
-          </li>
 
         </ul>
 
