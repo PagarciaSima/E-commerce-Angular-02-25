@@ -11,6 +11,8 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class AddNewProductComponent {
 
+  selectedFiles: File[] = [];
+
   product: Product = {
     productName: '',
     productDescription: '',
@@ -30,9 +32,28 @@ export class AddNewProductComponent {
       next: () => {
         this.toastrService.success('Product created successfully', 'Success');
       }, error: (err) => {
+        console.log(err)
         this.toastrService.error('Error occurred while creating product: ' + err.error, 'Error');
       }
     })
+  }
+
+  onFileSelected(event: Event) {
+    const input = event.target as HTMLInputElement;
+    if (!input.files) return;
+  
+    const files = Array.from(input.files);
+  
+    if (this.selectedFiles.length + files.length > 3) {
+      this.toastrService.warning('You can only upload up to 3 images.', 'Warning');
+      return;
+    }
+  
+    this.selectedFiles.push(...files);
+  }
+
+  removeFile(index: number) {
+    this.selectedFiles.splice(index, 1);
   }
 
   clearForm(productForm: NgForm) {
@@ -44,4 +65,6 @@ export class AddNewProductComponent {
       productDiscountedPrice: 0
     };
   }
+
+
 }

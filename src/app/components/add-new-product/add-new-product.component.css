@@ -1,0 +1,12 @@
+.truncate-text {
+    max-width: 300px; /* Ajusta según el diseño */
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.list-group-item {
+    width: fit-content;
+}

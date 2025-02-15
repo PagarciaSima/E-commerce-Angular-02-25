@@ -7,10 +7,11 @@
             <div class="col-12 col-md-6 pe-md-5">
                 <!-- Product Name -->
                 <div class="mb-3">
-                    <label for="productName" class="form-label">Product Name</label>
+                    <label for="productName" class="form-label required">Product Name</label>
                     <input type="text" class="form-control" id="productName" name="productName" 
                         [(ngModel)]="product.productName" #productName="ngModel"
-                        required minlength="3" maxlength="100">
+                        required minlength="3" maxlength="100"
+                    >
                     <div class="alert alert-danger mt-2 py-2" *ngIf="productName.invalid && productName.touched">
                         <small *ngIf="productName.errors?.['required']">Product name is required</small>
                         <small *ngIf="productName.errors?.['minlength']">Minimum 3 characters required</small>
@@ -23,19 +24,21 @@
                     <label for="productDescription" class="form-label">Product Description</label>
                     <textarea type="text" class="form-control" id="productDescription" name="productDescription" 
                         [(ngModel)]="product.productDescription" #productDescription="ngModel"
-                        maxlength="500" rows="5">
+                        maxlength="500" rows="5"
+                    >
                     </textarea>
                     <div class="alert alert-danger mt-2 py-2" *ngIf="productDescription.invalid && productDescription.touched">
                         <small *ngIf="productDescription.errors?.['maxlength']">Maximum 500 characters allowed</small>
                     </div>
                 </div>
 
-                <!-- Product Actual Price -->
-                <div class="mb-3">
-                    <label for="productActualPrice" class="form-label">Product Actual Price</label>
+                 <!-- Product Actual Price -->
+                 <div class="mb-3">
+                    <label for="productActualPrice" class="required form-label">Product Actual Price</label>
                     <input type="number" class="form-control" id="productActualPrice" name="productActualPrice" 
                         [(ngModel)]="product.productActualPrice" #productActualPrice="ngModel"
-                        required min="1" step="1">
+                        required min="1" step="1"
+                    >
                     <div class="alert alert-danger mt-2 py-2" *ngIf="productActualPrice.invalid && productActualPrice.touched">
                         <small *ngIf="productActualPrice.errors?.['required']">Actual price is required</small>
                         <small *ngIf="productActualPrice.errors?.['min']">Price must be greater than zero</small>
@@ -44,10 +47,11 @@
 
                 <!-- Product Discounted Price -->
                 <div class="mb-3">
-                    <label for="productDiscountedPrice" class="form-label">Product Discounted Price</label>
+                    <label for="productDiscountedPrice" class="required form-label">Product Discounted Price</label>
                     <input type="number" class="form-control" id="productDiscountedPrice" name="productDiscountedPrice" 
                         [(ngModel)]="product.productDiscountedPrice" #productDiscountedPrice="ngModel"
-                        required min="1" step="1">
+                        required min="1" step="1"
+                    >
                     <div class="alert alert-danger mt-2 py-2" *ngIf="productDiscountedPrice.invalid && productDiscountedPrice.touched">
                         <small *ngIf="productDiscountedPrice.errors?.['required']">Discounted price is required</small>
                         <small *ngIf="productDiscountedPrice.errors?.['min']">Price must be greater than zero</small>
@@ -63,8 +67,21 @@
                 </button>
             </div>
 
+            <!-- File Upload Section -->
             <div class="col-12 col-md-6 mt-3 mt-md-0">
-                Image area
+                <input type="file" multiple #fileInput (change)="onFileSelected($event)" hidden accept="image/*">
+                <button class="mt-sm-0 mt-md-4 btn btn-success" type="button" (click)="fileInput.click()">
+                    <i class="fa-solid fa-image me-2"></i>Select Images
+                </button>
+                
+                <ul class="list-group mt-3" *ngIf="selectedFiles.length > 0">
+                    <li class="list-group-item shadow mt-1" *ngFor="let file of selectedFiles; let i = index">
+                        <span class="truncate-text" [title]="file.name">{{ file.name }}</span>
+                        <button class="ms-2 btn btn-danger btn-sm" (click)="removeFile(i)">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+                    </li>
+                </ul>
             </div>
         </form>
     </div>

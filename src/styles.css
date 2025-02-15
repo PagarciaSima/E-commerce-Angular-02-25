@@ -45,3 +45,9 @@ app-footer {
     background-color: #d3d4d5 !important;
     color: black !important;
 }
+
+.required::after {
+    content: " *";
+    color: red;
+    font-weight: bold;
+}
