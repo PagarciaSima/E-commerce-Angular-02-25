@@ -3,7 +3,7 @@
         <div class="text-center">
             <h2><i class="fa-solid fa-plus me-2 my-3"></i>New Product</h2>
         </div>
-        <form class="row" #productForm="ngForm" (ngSubmit)="addProduct()">
+        <form class="row" #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
             <div class="col-12 col-md-6 pe-md-5">
                 <!-- Product Name -->
                 <div class="mb-3">
@@ -75,10 +75,12 @@
                 </button>
                 
                 <ul class="list-group mt-3" *ngIf="selectedFiles.length > 0">
-                    <li class="list-group-item shadow mt-1" *ngFor="let file of selectedFiles; let i = index">
+                    <li class="list-group-item mt-1 d-flex align-items-center justify-content-between"
+                         *ngFor="let file of selectedFiles; let i = index"
+                    >
                         <span class="truncate-text" [title]="file.name">{{ file.name }}</span>
-                        <button class="ms-2 btn btn-danger btn-sm" (click)="removeFile(i)">
-                            <i class="fa-solid fa-xmark"></i>
+                        <button class="ms-3 btn btn-danger btn-sm" (click)="removeFile(i)">
+                            <i class="fa-solid fa-xmark fa-xs"></i>
                         </button>
                     </li>
                 </ul>

@@ -27,16 +27,17 @@ export class AddNewProductComponent {
 
   }
 
-  addProduct() {
-    this.productService.addProduct(this.product).subscribe({
+  addProduct(productForm: NgForm) {
+    this.productService.addProduct(this.product, this.selectedFiles).subscribe({
       next: () => {
         this.toastrService.success('Product created successfully', 'Success');
-      }, error: (err) => {
-        console.log(err)
-        this.toastrService.error('Error occurred while creating product: ' + err.error, 'Error');
+        this.clearForm(productForm);
+        this.selectedFiles = [];
       }
-    })
+
+    });
   }
+  
 
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;

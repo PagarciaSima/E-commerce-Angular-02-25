@@ -32,8 +32,7 @@ export class AuthInterceptor implements HttpInterceptor {
         // Continuar con la solicitud clonada
         return next.handle(clonedRequest).pipe(
             catchError((err: HttpErrorResponse) => {
-                console.log(err.status);
-                console.error("HTTP Error:", err);
+
                 if (err.status === 401) {
                     this.toasrService.error("Tu sesión ha expirado. Inicia sesión nuevamente.", "Sesión Expirada");
                     this.router.navigate(['/login']);
@@ -42,6 +41,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 else if (err.status === 403) {
                     this.router.navigate(['/forbidden']);
                 }
+
                 return throwError(() => new Error("Something went wrong"));
             })
         );
