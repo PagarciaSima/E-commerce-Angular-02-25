@@ -17,9 +17,7 @@ import { RouterModule } from '@angular/router';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './components/footer/footer.component';
-import { MaterialAngularModule } from './material-angular/material-angular.module';
 import { AddNewProductComponent } from './components/add-new-product/add-new-product.component';
-import { ValidationInterceptor } from './auth/validation.interceptor';
 
 
 @NgModule({
@@ -43,11 +41,10 @@ import { ValidationInterceptor } from './auth/validation.interceptor';
     ToastrModule.forRoot(), 
     BrowserAnimationsModule,
     RouterModule,
-    MaterialAngularModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ValidationInterceptor, multi: true }
+
 
   ],
   bootstrap: [AppComponent]

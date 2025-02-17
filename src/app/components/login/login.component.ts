@@ -8,7 +8,8 @@ import { UserService } from 'src/app/services/user.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
+  providers: []
 })
 export class LoginComponent implements OnInit{
 
@@ -45,6 +46,7 @@ export class LoginComponent implements OnInit{
         this.toastrService.success('You have logged in successfully', 'Success');
       },
       error: (error) => {
+        console.log(error)
         if (error.status === 401) {
           this.toastrService.error('Invalid credentials. Please try again.', 'Error');
         } else if (error.status === 500) {

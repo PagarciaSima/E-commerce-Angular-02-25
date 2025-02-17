@@ -41,6 +41,11 @@ export class AuthInterceptor implements HttpInterceptor {
                 else if (err.status === 403) {
                     this.router.navigate(['/forbidden']);
                 }
+                    
+                else if (err.status === 400) {
+                    // Dejar que ValidationInterceptor maneje este error
+                    return throwError(() => err); 
+                }
 
                 return throwError(() => new Error("Something went wrong"));
             })
