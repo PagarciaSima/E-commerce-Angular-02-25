@@ -29,7 +29,21 @@ export class ShowProductDetailsComponent implements OnInit{
       }, error: (error) => {
         console.error('Error retrieving products:', error); 
         const errorMessage = error?.error?.message || 'An unexpected error occurred.';
-        this.toastrService.error(`Error while retrieving product list: ${errorMessage}`, 'Error');      }
+        this.toastrService.error(`Error while retrieving product list: ${errorMessage}`, 'Error');
+      }
+    })
+  }
+
+  public delete(productId: number) {
+    this.productService.deleteProduct(productId).subscribe({
+      next: () => {
+        this.toastrService.success(`Product deleted successfully`, 'Success');
+        this.getAllProducts();
+      }, error: (error) => {
+        console.log('Error, could not delete the product:', error); 
+        const errorMessage = error?.error?.message || 'An unexpected error occurred.';
+        this.toastrService.error(`Error while deleting the product: ${errorMessage}`, 'Error');
+      }
     })
   }
 }

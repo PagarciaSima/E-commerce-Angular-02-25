@@ -13,6 +13,9 @@
             <th><i class="fa-solid fa-align-justify me-2"></i>Description</th>
             <th><i class="fa-solid fa-money-check-dollar me-2"></i>Discounted price</th>
             <th><i class="fa-solid fa-money-check-dollar me-2"></i>Actual price</th>
+            <th><i class="fa-solid fa-pen me-2"></i>Edit</th>
+            <th><i class="fa-solid fa-trash me-2"></i>Delete</th>
+
           </tr>
         </thead>
         <tbody>
@@ -22,6 +25,8 @@
             <td>{{ product.productDescription }}</td>
             <td>{{ product.productDiscountedPrice | currency:'EUR' }}</td>
             <td>{{ product.productActualPrice | currency:'EUR' }}</td>
+            <td><a href="#"><i class="fa-solid fa-pen me-2 text-success cursor-pointer"></i></a></td>
+            <td><a (click)="delete(product.productId!)"><i class="fa-solid fa-trash me-2 text-danger cursor-pointer"></i></a></td>
 
           </tr>
         </tbody>

@@ -32,4 +32,8 @@ export class ProductService {
   public getAllProducts(): Observable<Product[]> {
     return this.httpClient.get<Product[]>(`${this.apiURL}/products`);
   }
+
+  deleteProduct(productId: number): Observable<string> {
+    return this.httpClient.delete<string>(`${this.apiURL}/product/${productId}`);
+  }
 }
