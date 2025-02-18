@@ -1,5 +1,5 @@
-<div class="container">
-    <div class="card mt-5 px-5 py-3 text-success shadow bg-white rounded">
+<div class="container-fluid px-5 d-flex align-items-center">
+    <div class="content mt-5 px-5 py-3 text-success bg-white rounded">
         <div class="text-center">
             <h2><i class="fa-solid fa-plus me-2 my-3"></i>New Product</h2>
         </div>
@@ -73,19 +73,22 @@
                 
                  <!-- Área de arrastrar y soltar -->
                 <div 
-                    class="mt-sm-0 mt-md-4 d-flex justify-content-center align-items-center border p-4 text-center"
+                    class="mt-sm-0 mt-md-4 d-flex justify-content-center align-items-center p-4 text-center"
                     (dragover)="onDragOver($event)" 
                     (drop)="onDrop($event)" 
                     (click)="fileInput.click()" 
-                    style="cursor: pointer; border-style: dashed; min-height: 160px;">
+                    style="cursor: pointer; border-style: dashed; min-height: 160px;"
+                >
                     <i class="fa-solid fa-image me-2"></i>
-                    <span>Drag and drop images here or click to select</span>
+                    <span>Drag and drop images here or <a><u>click</u></a> to select</span>
                 </div>
                 
                 <!-- Image preview -->
                 <div *ngIf="imagePreviews.length > 0" #imagePreviewSection class="mt-3">
                     <div class="mt-5 row d-flex">
-                        <div *ngFor="let preview of imagePreviews; let i = index" style="width: 150px" class="card p-2 mx-2 col-4 col-md-3 col-lg-2 d-flex flex-column align-items-center position-relative">
+                        <div *ngFor="let preview of imagePreviews; let i = index" style="width: 150px" 
+                            class="card p-2 mx-2 col-4 col-md-3 col-lg-2 d-flex flex-column align-items-center position-relative"
+                        >
                             <img [src]="preview" class="shadow-sm" alt="Image Preview" 
                                 style="height: 100px; object-fit: cover;"
                             >

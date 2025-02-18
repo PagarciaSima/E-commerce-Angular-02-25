@@ -1,0 +1,36 @@
+<div class="container-fluid px-5">
+    <div class="content mt-5 px-5 py-3 text-success bg-white rounded">
+    <div class="text-center">
+        <h2><i class="fa-solid fa-table-list me-2 my-3"></i>Product List</h2>
+    </div>
+
+    <div *ngIf="products.length > 0; else noProducts">
+      <table class="table  table-striped table-hover">
+        <thead class="table-dark">
+          <tr>
+            <th><i class="fa-regular fa-credit-card me-2"></i>ID</th>
+            <th><i class="fa-solid fa-align-justify me-2"></i>Name</th>
+            <th><i class="fa-solid fa-align-justify me-2"></i>Description</th>
+            <th><i class="fa-solid fa-money-check-dollar me-2"></i>Discounted price</th>
+            <th><i class="fa-solid fa-money-check-dollar me-2"></i>Actual price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products; let i = index">
+            <td>{{ product.productId }}</td>
+            <td>{{ product.productName }}</td>
+            <td>{{ product.productDescription }}</td>
+            <td>{{ product.productDiscountedPrice | currency:'EUR' }}</td>
+            <td>{{ product.productActualPrice | currency:'EUR' }}</td>
+
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <ng-template #noProducts>
+      <p class="text-center text-danger">No products available.</p>
+    </ng-template>
+    </div>
+  </div>
+  

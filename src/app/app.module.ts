@@ -18,6 +18,7 @@ import { AuthInterceptor } from './auth/auth.interceptor';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FooterComponent } from './components/footer/footer.component';
 import { AddNewProductComponent } from './components/add-new-product/add-new-product.component';
+import { ShowProductDetailsComponent } from './components/show-product-details/show-product-details.component';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { AddNewProductComponent } from './components/add-new-product/add-new-pro
     ForbiddenComponent,
     RegisterComponent,
     FooterComponent,
-    AddNewProductComponent
+    AddNewProductComponent,
+    ShowProductDetailsComponent
   ],
   imports: [
     BrowserModule,

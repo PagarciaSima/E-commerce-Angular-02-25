@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-success">
+<nav *ngIf="isLoggedIn()" class="navbar navbar-expand-lg navbar-dark bg-success">
     <div class="container-fluid">
       <div class="me-5"><img src="assets/images/ecommerce.png" alt="home" width="45"/></div>
 
@@ -8,16 +8,21 @@
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
-          <li *ngIf="isLoggedIn()" class="nav-item">
+          <li class="nav-item ms-3">
             <a class="nav-link active" aria-current="page" routerLink="/"><i class="fa-solid fa-house me-2"></i>Home</a>
           </li>
 
-          <li *ngIf="isAdmin()" class="nav-item">
+          <li *ngIf="isAdmin()" class="nav-item ms-3">
             <a class="nav-link active" aria-current="page" routerLink="/addNewProduct">
               <i class="fa-solid fa-plus me-2"></i>Add New Product
             </a>
           </li>
 
+          <li *ngIf="isAdmin()" class="nav-item ms-3">
+            <a class="nav-link active" aria-current="page" routerLink="/showProductDetails">
+              <i class="fa-solid fa-table-list me-2"></i>Show products
+            </a>
+          </li>
 
         </ul>
 
