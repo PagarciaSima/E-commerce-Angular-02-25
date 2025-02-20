@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-show-product-details',
@@ -39,16 +40,28 @@ export class ShowProductDetailsComponent implements OnInit{
   }
 
   public delete(productId: number) {
-    this.productService.deleteProduct(productId).subscribe({
-      next: () => {
-        this.toastrService.success(`Product deleted successfully`, 'Success');
-        this.getAllProducts();
-      }, error: (error) => {
-        console.log('Error, could not delete the product:', error); 
-        const errorMessage = error?.error?.message || 'An unexpected error occurred.';
-        this.toastrService.error(`Error while deleting the product: ${errorMessage}`, 'Error');
+    Swal.fire({
+      title: 'Do you really want to delete this product?',
+      text: 'You will not be able to revert this operation',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#28a745', 
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.productService.deleteProduct(productId).subscribe({
+          next: () => {
+            this.toastrService.success(`Product deleted successfully`, 'Success');
+            this.getAllProducts();
+          }, error: (error) => {
+            console.log('Error, could not delete the product:', error);
+            const errorMessage = error?.error?.message || 'An unexpected error occurred.';
+            this.toastrService.error(`Error while deleting the product: ${errorMessage}`, 'Error');
+          }
+        });
       }
-    })
+    });
   }
 
   editProductDetails(productId: number) {
