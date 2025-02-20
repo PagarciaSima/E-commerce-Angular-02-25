@@ -1,10 +1,10 @@
-<div class="container-fluid px-5">
+<div class="container-fluid content px-5">
     <div class="content mt-5 px-5 py-3 text-success bg-white rounded">
     <div class="text-center">
         <h2><i class="fa-solid fa-table-list me-2 my-3"></i>Product List</h2>
     </div>
 
-    <div *ngIf="products.length > 0; else noProducts">
+    <div *ngIf="products.length > 0; else noProducts" class="d-flex justify-content-center">
       <table class="table  table-striped table-hover">
         <thead class="table-dark">
           <tr>
@@ -14,8 +14,7 @@
             <th><i class="fa-solid fa-money-check-dollar me-2"></i>Discounted price</th>
             <th><i class="fa-solid fa-money-check-dollar me-2"></i>Actual price</th>
             <th><i class="fa-solid fa-image me-2"></i>Images</th>
-            <th><i class="fa-solid fa-pen me-2"></i>Edit</th>
-            <th><i class="fa-solid fa-trash me-2"></i>Delete</th>
+            <th><i class="fa-solid fa-gear me-2"></i>Actions</th>
 
           </tr>
         </thead>
@@ -23,14 +22,16 @@
           <tr *ngFor="let product of products; let i = index">
             <td>{{ product.productId }}</td>
             <td>{{ product.productName }}</td>
-            <td>{{ product.productDescription }}</td>
+            <td>
+              {{ product.productDescription.length > 100 ? (product.productDescription | slice: 0:100) + '...' : product.productDescription }}
+            </td>
             <td>{{ product.productDiscountedPrice | currency:'EUR' }}</td>
             <td>{{ product.productActualPrice | currency:'EUR' }}</td>
             <td><a (click)="viewImages(product)"><i class="fa-solid fa-image me-2 text-success cursor-pointer"></i></a></td>
-            <td><a (click)="editProductDetails(product.productId!)"><i class="fa-solid fa-pen me-2 text-success cursor-pointer"></i></a></td>
-            <td><a (click)="delete(product.productId!)"><i class="fa-solid fa-trash me-2 text-danger cursor-pointer"></i></a></td>
-
-
+            <td>
+              <a (click)="editProductDetails(product.productId!)"><i class="fa-solid fa-pen me-2 text-success cursor-pointer"></i></a>
+              <a (click)="delete(product.productId!)"><i class="ms-2 fa-solid fa-trash me-2 text-danger cursor-pointer"></i></a>
+            </td>
           </tr>
         </tbody>
       </table>

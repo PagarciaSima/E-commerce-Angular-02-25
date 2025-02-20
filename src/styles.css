@@ -79,3 +79,6 @@ footer {
     z-index: 1050; /* Colocamos el modal por encima de la capa de fondo */
   }
   
+.content {
+    padding-bottom: 100px;
+}

@@ -1,5 +1,53 @@
-<div class="container-fluid px-5">
+<div class="container-fluid content px-5">
     <div class="content mt-5 px-5 py-3 text-success bg-white rounded">
-        <div class="text-center"><h2><i class="fa-solid fa-house text-secondary me-3"></i>Home Page</h2></div>
+        <div class="text-center mb-5">
+            <h2><i class="fa-solid fa-house text-secondary me-3"></i>Home Page</h2>
+        </div>
+        <div class="row">
+            <div *ngFor="let product of products" class="col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3 mb-4">
+                <div class="card p-2 d-flex flex-column">
+                    <img *ngIf="product.productImages && product.productImages.length > 0 ; else defaultImage" 
+                        [src]="'data:' + product.productImages[0].type + ';base64,' + product.productImages[0].picByte"
+                        class="card-img-top"
+                        [alt]="product.productName"
+                    >
+                    <ng-template #defaultImage>
+                        <img src="/assets/images/default.png" class="card-img-top" alt="Default Image">
+                    </ng-template>
+
+                    <div class="card-body mx-2 mx-xl-5 d-flex flex-column justify-content-between">
+                        <div>
+                            <strong>Product Name: </strong>{{ product.productName }}
+                        </div>
+                        <div>
+                            <strong>Product Description: </strong>
+                            <span [ngClass]="{'description-text': true}">
+                                {{ product.productDescription.length > 100 ? (product.productDescription | slice: 0:100) + '...' : product.productDescription }}
+                            </span>
+                        </div>
+                        <!-- Mostrar solo el precio actual si no hay descuento -->
+                        <div *ngIf="product.productDiscountedPrice == 0; else discountPrice">
+                            <strong>Product Price: </strong>
+                            <span>{{ product.productActualPrice | currency: 'EUR' }}</span>
+                        </div>
+
+                        <!-- Mostrar precio rebajado y el original tachado si hay descuento -->
+                        <ng-template #discountPrice>
+                            <div *ngIf="product.productDiscountedPrice">
+                                <strong>Product Price: </strong>
+                                <span class="badge rounded-pill bg-success me-2">{{ product.productDiscountedPrice | currency: 'EUR' }}</span>
+                                <span class="text-decoration-line-through">{{ product.productActualPrice | currency: 'EUR' }}</span>
+                            </div>
+                        </ng-template>
+
+                        <div class="d-flex justify-content-center mt-3" style="margin-top: auto;">
+                            <button class="btn btn-success" style="margin-bottom: 10px;">
+                                <i class="fa-solid fa-info me-2"></i>View details
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

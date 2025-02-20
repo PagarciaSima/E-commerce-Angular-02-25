@@ -8,22 +8,18 @@ export const authGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   const userService = inject(UserService);
 
+  const roles = route.data["roles"] ?? [];
+
+  // Si la ruta no define roles, cualquier usuario autenticado puede acceder
+  if (roles.length === 0) {
+    return true;
+  }
+  
   if (!userAuthService.getToken()) {
-    return router.createUrlTree(['/login']); 
-  }
-else {
-    const roles = route.data["roles"] ?? []; 
-
-    if (roles.length === 0)
-      return router.createUrlTree(['/forbidden']); 
-    else {
-      const match = userService.roleMatch(roles);
-      if (match) {
-        return true;
-      } 
-        return router.createUrlTree(['/forbidden']); 
-      
-    }
+    return router.createUrlTree(['/login']);
   }
 
+  // Verificamos si el usuario tiene alguno de los roles requeridos
+  const match = userService.roleMatch(roles);
+  return match ? true : router.createUrlTree(['/forbidden']);
 };

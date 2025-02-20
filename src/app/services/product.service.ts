@@ -17,11 +17,11 @@ export class ProductService {
 
   addProduct(formData: FormData): Observable<Product> {
     // Enviar el FormData al backend
-    return this.httpClient.post<Product>(`${this.apiURL}/product`, formData);
+    return this.httpClient.post<Product>(`${this.apiURL}/products/product`, formData);
   }
   
   updateProduct(productId: number, formData: FormData): Observable<any> {
-    return this.httpClient.put<any>(`${this.apiURL}/product/${productId}`, formData);
+    return this.httpClient.put<any>(`${this.apiURL}/products/product/${productId}`, formData);
   }
 
   public getAllProducts(): Observable<Product[]> {
@@ -29,15 +29,15 @@ export class ProductService {
   }
 
   deleteProduct(productId: number): Observable<string> {
-    return this.httpClient.delete<string>(`${this.apiURL}/product/${productId}`);
+    return this.httpClient.delete<string>(`${this.apiURL}/products/product/${productId}`);
   }
 
   getProductById(productId: number): Observable<Product> {
-    return this.httpClient.get<Product>(`${this.apiURL}/product/${productId}`);
+    return this.httpClient.get<Product>(`${this.apiURL}/products/product/${productId}`);
   }
 
   public getProductImages(productId: number): Observable<{ name: string, base64: string }[]> {
-    const url = `${this.apiURL}/product/${productId}/images`;
+    const url = `${this.apiURL}/products/product/${productId}/images`;
     return this.httpClient.get<{ name: string, base64: string }[]>(url);
   }
 

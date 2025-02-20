@@ -1,0 +1,9 @@
+table {
+    width: fit-content;
+}
+
+th, td {
+    padding-left: 20px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
