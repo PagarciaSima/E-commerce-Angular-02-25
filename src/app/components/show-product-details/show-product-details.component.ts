@@ -63,17 +63,9 @@ export class ShowProductDetailsComponent implements OnInit{
     }
   
     // Construir la URL completa de las imágenes
-    this.productService.getProductImages(product.productId!).subscribe({
-     /* next: (images: string[]) => {
-        this.selectedImages = images;
-        this.showImageModal = true;
-      },
-      error: (error) => {
-        console.error('Error retrieving images:', error);
-        const errorMessage = error?.error?.message || 'An unexpected error occurred.';
-        this.toastrService.error(`Error while retrieving images: ${errorMessage}`, 'Error');
-      }*/
-    });
+    this.selectedImages = product.productImages.map(img => `data:${img.type};base64,${img.picByte}`);
+  
+    this.showImageModal = true;
   }
   
 }
