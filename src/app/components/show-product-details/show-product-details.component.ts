@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product.service';
@@ -11,10 +12,13 @@ import { ProductService } from 'src/app/services/product.service';
 export class ShowProductDetailsComponent implements OnInit{
 
   public products: Product[] = [];
+  public showImageModal: boolean = false;
+  public selectedImages: string[] = [];
 
   constructor(
     private productService: ProductService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private router: Router
   ) {
 
   }
@@ -46,4 +50,30 @@ export class ShowProductDetailsComponent implements OnInit{
       }
     })
   }
+
+  editProductDetails(productId: number) {
+    this.router.navigate(['/editProduct', productId]);
+  }
+
+  public viewImages(product: Product) {
+    
+    if (!product.productImages || product.productImages.length === 0) {
+      this.toastrService.warning('No images available for this product', 'Warning');
+      return;
+    }
+  
+    // Construir la URL completa de las imágenes
+    this.productService.getProductImages(product.productId!).subscribe({
+     /* next: (images: string[]) => {
+        this.selectedImages = images;
+        this.showImageModal = true;
+      },
+      error: (error) => {
+        console.error('Error retrieving images:', error);
+        const errorMessage = error?.error?.message || 'An unexpected error occurred.';
+        this.toastrService.error(`Error while retrieving images: ${errorMessage}`, 'Error');
+      }*/
+    });
+  }
+  
 }

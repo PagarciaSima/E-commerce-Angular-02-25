@@ -2,8 +2,9 @@
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
   "version": "0.2.0",
   "configurations": [
+
     {
-      "name": "ng serve",
+      "name": "Launch Chrome",
       "type": "chrome",
       "request": "launch",
       "preLaunchTask": "npm: start",

@@ -13,6 +13,7 @@
             <th><i class="fa-solid fa-align-justify me-2"></i>Description</th>
             <th><i class="fa-solid fa-money-check-dollar me-2"></i>Discounted price</th>
             <th><i class="fa-solid fa-money-check-dollar me-2"></i>Actual price</th>
+            <th><i class="fa-solid fa-image me-2"></i>Images</th>
             <th><i class="fa-solid fa-pen me-2"></i>Edit</th>
             <th><i class="fa-solid fa-trash me-2"></i>Delete</th>
 
@@ -25,8 +26,10 @@
             <td>{{ product.productDescription }}</td>
             <td>{{ product.productDiscountedPrice | currency:'EUR' }}</td>
             <td>{{ product.productActualPrice | currency:'EUR' }}</td>
-            <td><a href="#"><i class="fa-solid fa-pen me-2 text-success cursor-pointer"></i></a></td>
+            <td><a (click)="viewImages(product)"><i class="fa-solid fa-image me-2 text-success cursor-pointer"></i></a></td>
+            <td><a (click)="editProductDetails(product.productId!)"><i class="fa-solid fa-pen me-2 text-success cursor-pointer"></i></a></td>
             <td><a (click)="delete(product.productId!)"><i class="fa-solid fa-trash me-2 text-danger cursor-pointer"></i></a></td>
+
 
           </tr>
         </tbody>
@@ -37,5 +40,28 @@
       <p class="text-center text-danger">No products available.</p>
     </ng-template>
     </div>
+
+    <!-- Modal mask -->
+    <div class="modal-overlay" *ngIf="showImageModal"></div> 
+    <!-- Modal for displaying images -->
+    <div class="modal" tabindex="-1" [ngClass]="{ 'show': showImageModal }" style="display: block" *ngIf="showImageModal">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header d-flex justify-content-between align-items-center">
+            <h3 class="modal-title text-success mb-0 mx-auto">Product Images</h3>
+            <button class="btn btn-danger btn-sm" type="button" aria-label="Close" (click)="showImageModal = false"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="modal-body">
+            <div class="d-flex flex-wrap justify-content-center">
+                <div *ngFor="let img of selectedImages; let i = index" class="p-2">
+                <img [src]="img" alt="Product image {{ i + 1 }}" class="img-fluid" style="width: 200px; height: 200px; object-fit: cover;" />
+                </div>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+  
+
   </div>
   

@@ -10,12 +10,14 @@ import { AddNewProductComponent } from './components/add-new-product/add-new-pro
 import { ShowProductDetailsComponent } from './components/show-product-details/show-product-details.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
+  { path: '', component: HomeComponent, canActivate: [authGuard] },
   { path: 'admin', component: AdminComponent, canActivate: [authGuard], data: {roles: ['AdminRole']} },
   { path: 'user', component: UserComponent, canActivate: [authGuard], data: {roles: ['UserRole']} },
   { path: 'login', component: LoginComponent },
   { path: 'forbidden', component: ForbiddenComponent },
-  { path: 'addNewProduct', component: AddNewProductComponent, canActivate: [authGuard], data: {roles: ['AdminRole']} },
+  { path: 'addNewProduct', component: AddNewProductComponent, canActivate: [authGuard], data: { roles: ['AdminRole'] } },
+  { path: 'editProduct/:productId', component: AddNewProductComponent, canActivate: [authGuard], data: { roles: ['AdminRole'] } },
+
   { path: 'showProductDetails', component: ShowProductDetailsComponent }
 
 ];

@@ -62,3 +62,20 @@ footer {
 .cursor-pointer {
     cursor: pointer;
 }
+
+/* Capa de fondo oscurecida */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro con opacidad */
+    z-index: 1040; /* Colocar encima de otros elementos, pero debajo del modal */
+  }
+  
+  /* Aseguramos que el modal tiene prioridad y se muestre encima */
+  .modal {
+    z-index: 1050; /* Colocamos el modal por encima de la capa de fondo */
+  }
+  

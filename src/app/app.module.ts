@@ -43,6 +43,7 @@ import { ShowProductDetailsComponent } from './components/show-product-details/s
     ToastrModule.forRoot(), 
     BrowserAnimationsModule,
     RouterModule,
+    
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },

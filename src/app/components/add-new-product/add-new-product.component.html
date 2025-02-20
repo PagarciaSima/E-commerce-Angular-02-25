@@ -1,9 +1,12 @@
 <div class="container-fluid px-5 d-flex align-items-center">
     <div class="content mt-5 px-5 py-3 text-success bg-white rounded">
         <div class="text-center">
-            <h2><i class="fa-solid fa-plus me-2 my-3"></i>New Product</h2>
+            <h2 *ngIf="!isEditMode; else editModeTitle" ><i class="fa-solid fa-plus me-2 my-3"></i>New Product</h2>
+            <ng-template #editModeTitle>
+                <h2><i class="fa-solid fa-pencil me-2 my-3"></i>Edit Product</h2>
+            </ng-template>
         </div>
-        <form class="row" #productForm="ngForm" (ngSubmit)="addProduct(productForm)">
+        <form class="row" #productForm="ngForm" (ngSubmit)="addProduct(productForm)"  enctype="multipart/form-data">
             <div class="col-12 col-md-6 pe-md-5">
                 <!-- Product Name -->
                 <div class="mb-3">
@@ -89,12 +92,17 @@
                         <div *ngFor="let preview of imagePreviews; let i = index" style="width: 150px" 
                             class="card p-2 mx-2 col-4 col-md-3 col-lg-2 d-flex flex-column align-items-center position-relative"
                         >
-                            <img [src]="preview" class="shadow-sm" alt="Image Preview" 
+                        <img [src]="'data:image/jpeg;base64,' + preview.picByte"  alt="{{preview.name}}" class="shadow-sm"  
                                 style="height: 100px; object-fit: cover;"
                             >
-                            <small class="text-muted text-center mt-2">{{ selectedFiles[i].name }}</small>
+                            <!-- Si estamos en edición, mostramos las imágenes del backend (imagePreviews) -->
+                            <small *ngIf="isEditMode && preview" class="text-muted text-center mt-2">{{ preview.shortName }}</small>
 
-                            <button class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1" (click)="removeFile(i)">
+                            <!-- Si no estamos en edición, mostramos las imágenes seleccionadas para cargar (selectedFiles) -->
+                            <small *ngIf="!isEditMode && selectedFiles[i]" class="text-muted text-center mt-2">{{ selectedFiles[i].name }}</small>
+
+                       
+                            <button type="button" class="btn btn-danger btn-sm position-absolute top-0 end-0 m-1" (click)="removeFile(i)">
                                 <i class="fa-solid fa-xmark"></i>
                             </button>
                         </div>
