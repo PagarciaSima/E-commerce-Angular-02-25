@@ -6,8 +6,10 @@ import { UserComponent } from './components/user/user.component';
 import { LoginComponent } from './components/login/login.component';
 import { ForbiddenComponent } from './components/forbidden/forbidden.component';
 import { authGuard } from './auth/auth.guard';
-import { AddNewProductComponent } from './components/add-new-product/add-new-product.component';
+import { SaveProductComponent } from './components/save-product/save-product.component';
 import { ShowProductDetailsComponent } from './components/show-product-details/show-product-details.component';
+import { ProductViewDetailsComponent } from './components/product-view-details/product-view-details.component';
+import { productResolver } from './resolvers/product.resolver';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },
@@ -15,10 +17,17 @@ const routes: Routes = [
   { path: 'user', component: UserComponent, canActivate: [authGuard], data: {roles: ['UserRole']} },
   { path: 'login', component: LoginComponent },
   { path: 'forbidden', component: ForbiddenComponent },
-  { path: 'addNewProduct', component: AddNewProductComponent, canActivate: [authGuard], data: { roles: ['AdminRole'] } },
-  { path: 'editProduct/:productId', component: AddNewProductComponent, canActivate: [authGuard], data: { roles: ['AdminRole'] } },
+  { path: 'addNewProduct', component: SaveProductComponent, canActivate: [authGuard], data: { roles: ['AdminRole'] } },
+  { 
+    path: 'editProduct/:productId', 
+    component: SaveProductComponent, 
+    canActivate: [authGuard], 
+    data: { roles: ['AdminRole'] },
+    resolve: { product: productResolver }  
+  },
 
-  { path: 'showProductDetails', component: ShowProductDetailsComponent }
+  { path: 'showProductDetails', component: ShowProductDetailsComponent },
+  { path: 'productViewDetails', component: ProductViewDetailsComponent,  resolve: { product: productResolver }   }
 
 ];
 

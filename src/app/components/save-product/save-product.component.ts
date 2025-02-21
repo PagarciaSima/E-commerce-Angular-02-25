@@ -10,10 +10,10 @@ import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-add-new-product',
-  templateUrl: './add-new-product.component.html',
-  styleUrls: ['./add-new-product.component.css'],
+  templateUrl: './save-product.component.html',
+  styleUrls: ['./save-product.component.css'],
 })
-export class AddNewProductComponent implements OnInit {
+export class SaveProductComponent implements OnInit {
 
   @ViewChild('imagePreviewSection') imagePreviewSection!: ElementRef;
 
