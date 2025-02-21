@@ -1,9 +1,9 @@
 <div class="container-fluid content px-5 d-flex align-items-center">
     <div class="content mt-5 px-5 py-3 text-success bg-white rounded">
         <div class="text-center">
-            <h2 *ngIf="!isEditMode; else editModeTitle" ><i class="fa-solid fa-plus me-2 my-3"></i>New Product</h2>
+            <h2 *ngIf="!isEditMode; else editModeTitle" ><i class="fa-solid fa-plus me-2 my-3 text-secondary me-3"></i>New Product</h2>
             <ng-template #editModeTitle>
-                <h2><i class="fa-solid fa-pencil me-2 my-3"></i>Edit Product</h2>
+                <h2><i class="fa-solid fa-pencil me-2 my-3 text-secondary me-3"></i>Edit Product</h2>
             </ng-template>
         </div>
         <form class="row" #productForm="ngForm" (ngSubmit)="addProduct(productForm)"  enctype="multipart/form-data">

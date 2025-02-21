@@ -27,7 +27,7 @@ const routes: Routes = [
   },
 
   { path: 'showProductDetails', component: ShowProductDetailsComponent },
-  { path: 'productViewDetails', component: ProductViewDetailsComponent,  resolve: { product: productResolver }   }
+  { path: 'productViewDetails/:productId', component: ProductViewDetailsComponent,  resolve: { product: productResolver }   }
 
 ];
 

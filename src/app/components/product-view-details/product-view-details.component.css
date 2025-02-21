@@ -1,0 +1,43 @@
+
+.big-card {
+    height: 700px; /* Limita la altura máxima */
+    width: 100%; /* Asegura que el contenedor de la imagen ocupe todo el ancho */
+    overflow: hidden; /* Evita que la imagen se desborde fuera del contenedor */
+}
+
+.small-img {
+    height: 200px;
+    width: 100%;
+    padding: 20px;
+    border: 1px solid #dee2e6; /* Color similar al borde de Bootstrap */
+    border-radius: 0.25rem; /* Bordes redondeados */
+    background-color: #fff; /* Fondo blanco */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    transition: transform 0.2s, box-shadow 0.2s; /* Animación al pasar el ratón */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.selected-card {
+    transform: scale(1.1);
+    border: 2px solid #28a745; /* Borde verde */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+  }
+
+.card-img-top {
+    object-fit: contain; 
+    width: 100%; 
+    height: 100%; 
+}
+
+@media (min-width: 1px) and  (max-width: 768px) {
+
+    .big-card  {
+        height: 250px; /* Limita la altura máxima */
+ 
+    }
+    
+
+}
+

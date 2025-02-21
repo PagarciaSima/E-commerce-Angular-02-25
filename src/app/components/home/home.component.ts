@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product.service';
@@ -14,7 +15,8 @@ export class HomeComponent implements OnInit{
 
   constructor(
     private productService: ProductService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private router: Router
   ) {
     
   }
@@ -32,5 +34,10 @@ export class HomeComponent implements OnInit{
       }
     });
   }
+
+  showProductDetails(productId: number) {
+    this.router.navigate([`/productViewDetails/${productId}`]); 
+  }
+  
 
 }

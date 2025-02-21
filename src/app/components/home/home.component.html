@@ -26,14 +26,14 @@
                             </span>
                         </div>
                         <!-- Mostrar solo el precio actual si no hay descuento -->
-                        <div *ngIf="product.productDiscountedPrice == 0; else discountPrice">
+                        <div *ngIf="product.productDiscountedPrice == 0; else discountPrice" >
                             <strong>Product Price: </strong>
                             <span>{{ product.productActualPrice | currency: 'EUR' }}</span>
                         </div>
 
                         <!-- Mostrar precio rebajado y el original tachado si hay descuento -->
                         <ng-template #discountPrice>
-                            <div *ngIf="product.productDiscountedPrice">
+                            <div>
                                 <strong>Product Price: </strong>
                                 <span class="badge rounded-pill bg-success me-2">{{ product.productDiscountedPrice | currency: 'EUR' }}</span>
                                 <span class="text-decoration-line-through">{{ product.productActualPrice | currency: 'EUR' }}</span>
@@ -41,8 +41,8 @@
                         </ng-template>
 
                         <div class="d-flex justify-content-center mt-3" style="margin-top: auto;">
-                            <button class="btn btn-success" style="margin-bottom: 10px;" >
-                                <i class="fa-solid fa-info me-2"></i>View details
+                            <button class="btn btn-success" style="margin-bottom: 10px;" (click)="showProductDetails(product.productId!)">
+                                <i class="fa-solid fa-circle-info me-2"></i>View details
                             </button>
                         </div>
                     </div>
