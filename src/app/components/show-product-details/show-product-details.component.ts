@@ -2,7 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/interfaces/product';
+import { FileService } from 'src/app/services/file.service';
 import { ProductService } from 'src/app/services/product.service';
+import { saveAs } from 'file-saver'; // Importa file-saver
+
+
 import Swal from 'sweetalert2';
 
 @Component({
@@ -19,7 +23,8 @@ export class ShowProductDetailsComponent implements OnInit{
   constructor(
     private productService: ProductService,
     private toastrService: ToastrService,
-    private router: Router
+    private router: Router,
+    private fileService: FileService
   ) {
 
   }
@@ -81,4 +86,16 @@ export class ShowProductDetailsComponent implements OnInit{
     this.showImageModal = true;
   }
   
+  public generatePdf(): void {
+    this.fileService.getPdf().subscribe({
+      next: (data: Blob) => {
+        const blob = new Blob([data], { type: 'application/pdf' });
+        saveAs(blob, 'product-list.pdf'); // Descargar el archivo
+      },
+      error: (err) => {
+        console.error('Error generating PDF:', err);
+        this.toastrService.error('Error generating PDF', 'Error');
+      }
+    });
+  }
 }

@@ -4,7 +4,20 @@
         <h2><i class="fa-solid fa-table-list me-2 my-3 me-3 text-secondary"></i>Product List</h2>
     </div>
 
+    <div class="d-flex justify-content-center mb-3 mt-5">
+      <a (click)="generatePdf()" class="btn btn-success d-flex align-items-center me-2">
+        <i class="fa-solid fa-file-pdf fa-2x me-2" ></i><span>Generate PDF</span>
+      </a>
+      <a (click)="generatePdf()" class="btn btn-success d-flex align-items-center me-2">
+        <i class="fa-solid fa-file-csv fa-2x me-2"></i><span>Generate CSV</span>
+      </a>
+      <a (click)="generatePdf()" class="btn btn-success d-flex align-items-center">
+        <i class="fa-solid fa-file-excel fa-2x me-2"></i><span>Generate EXCEL</span>
+      </a>
+    </div>
+
     <div *ngIf="products.length > 0; else noProducts" class="d-flex justify-content-center">
+
       <table class="table  table-striped table-hover">
         <thead class="table-dark">
           <tr>
@@ -62,7 +75,5 @@
         </div>
         </div>
     </div>
-  
-
   </div>
   
