@@ -19,6 +19,12 @@ export class ShowProductDetailsComponent implements OnInit{
   public products: Product[] = [];
   public showImageModal: boolean = false;
   public selectedImages: string[] = [];
+  
+  currentPage: number = 0;  // Página actual
+  totalPages: number = 0;   // Total de páginas
+  totalElements: number = 0; // Total de elementos (productos)
+  pageSize: number = 10;     // Tamaño de página
+  pages: number[] = [];      // Array de números de página para el paginador
 
   constructor(
     private productService: ProductService,
@@ -29,20 +35,44 @@ export class ShowProductDetailsComponent implements OnInit{
 
   }
   ngOnInit(): void {
-    this.getAllProducts();
+    this.getAllProductsPaginated(this.currentPage, this.pageSize);
   }
 
-  public getAllProducts() {
-    this.productService.getAllProducts().subscribe({
-      next: (data) => {
-        this.products = data;
-      }, error: (error) => {
-        console.error('Error retrieving products:', error); 
-        const errorMessage = error?.error?.message || 'An unexpected error occurred.';
-        this.toastrService.error(`Error while retrieving product list: ${errorMessage}`, 'Error');
-      }
-    })
+
+   // Función para obtener los productos
+  getAllProductsPaginated(page: number, size: number): void {
+    this.productService.getAllProductsPaginated(page, size).subscribe(response => {
+      this.products = response.content;
+      this.totalPages = response.totalPages;
+      this.totalElements = response.totalElements;
+      this.pageSize = response.pageSize;
+
+      // Crear el array de páginas a mostrar
+      this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
+    });
   }
+
+  // Cambiar la página
+  changePage(page: number): void {
+    if (page >= 0 && page < this.totalPages) {
+      this.currentPage = page;
+      this.getAllProductsPaginated(page, this.pageSize);
+    }
+  }
+
+  getVisiblePages(): number[] {
+    const range = 2; // Número de páginas a mostrar antes y después de la página actual
+    const start = Math.max(0, this.currentPage - range);
+    const end = Math.min(this.totalPages - 1, this.currentPage + range);
+    
+    const visiblePages = [];
+    
+    for (let i = start; i <= end; i++) {
+      visiblePages.push(i);
+    }
+    
+    return visiblePages;
+  }  
 
   public delete(productId: number) {
     Swal.fire({
@@ -58,7 +88,7 @@ export class ShowProductDetailsComponent implements OnInit{
         this.productService.deleteProduct(productId).subscribe({
           next: () => {
             this.toastrService.success(`Product deleted successfully`, 'Success');
-            this.getAllProducts();
+            this.getAllProductsPaginated(this.currentPage, this.pageSize);
           }, error: (error) => {
             console.log('Error, could not delete the product:', error);
             const errorMessage = error?.error?.message || 'An unexpected error occurred.';
@@ -98,4 +128,40 @@ export class ShowProductDetailsComponent implements OnInit{
       }
     });
   }
+
+  // Función para descargar el CSV
+  public generateCsv(): void {
+    this.fileService.getCsv().subscribe({
+      next: (data) => {
+        const blob = new Blob([data], { type: 'text/csv' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'product_list.csv';
+        link.click();
+        URL.revokeObjectURL(link.href);
+      }, error: (err) => {
+        console.error('Error generating CSV:', err);
+        this.toastrService.error('Error generating CSV', 'Error');
+      }
+    });
+  }
+
+  // Function to download the Excel file
+  public generateExcel(): void {
+    this.fileService.getExcel().subscribe({
+      next: (data) => {
+        const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = 'product_list.xlsx';
+        link.click();
+        URL.revokeObjectURL(link.href);
+      }, 
+      error: (err) => {
+        console.error('Error generating Excel:', err);
+        this.toastrService.error('Error generating Excel', 'Error');
+      }
+    });
+  }
+
 }

@@ -38,9 +38,26 @@ footer {
     min-height: 100vh;
 }
 
-.form-control:focus {
+.form-control:focus, a:focus {
     border-color: #198754 !important;
     box-shadow: 0 0 0 .25rem rgba(7, 184, 78, 0.25) !important;
+}
+
+.active>.page-link, .page-link.active {
+    border-color: #198754 !important;
+}
+
+/* Estilos para el botón deshabilitado */
+.pagination .page-item.disabled .page-link {
+    background-color: #6c757d !important; /* Color de fondo gris */
+    color: white !important; /* Texto blanco para el estado deshabilitado */
+    pointer-events: none; /* Evita que se pueda hacer clic */
+}
+
+/* Estilo para la clase 'active' en la paginación */
+.pagination .page-item.active .page-link {
+    background-color: #28a745 !important; /* Un verde más fuerte para el fondo */
+    color: white !important; /* Asegura que el texto sea blanco */
 }
 
 .success-bg {

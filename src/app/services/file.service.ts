@@ -18,5 +18,15 @@ export class FileService {
     // Fetch the PDF as a Blob
     return this.httpClient.get<Blob>(`${this.apiURL}/products/pdf`, { responseType: 'blob' as 'json' });
   }
+
+  getCsv(): Observable<Blob> {
+    // Fetch the PDF as a Blob
+    return this.httpClient.get<Blob>(`${this.apiURL}/products/csv`, { responseType: 'blob' as 'json' });
+  }
+
+  getExcel(): Observable<Blob> {
+    // Fetch the PDF as a Blob
+    return this.httpClient.get<Blob>(`${this.apiURL}/products/excel`, { responseType: 'blob' as 'json' });
+  }
   
 }

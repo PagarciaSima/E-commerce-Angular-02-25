@@ -12,6 +12,11 @@ import { ProductService } from 'src/app/services/product.service';
 export class HomeComponent implements OnInit{
 
   products: Product[] = [];
+  currentPage: number = 0;  // Página actual
+  totalPages: number = 0;   // Total de páginas
+  totalElements: number = 0; // Total de elementos (productos)
+  pageSize: number = 8;     // Tamaño de página
+  pages: number[] = [];      // Array de números de página para el paginador
 
   constructor(
     private productService: ProductService,
@@ -22,18 +27,43 @@ export class HomeComponent implements OnInit{
   }
 
   ngOnInit(): void {
-    this.getAllProducts();
+    this.getAllProductsPaginated(this.currentPage, this.pageSize);
   }
 
-  getAllProducts() {
-    this.productService.getAllProducts().subscribe({
-      next: (products) => {
-        this.products = products;
-      }, error: () => {
-        this.toastrService.error("Error, could not retrieve product list", "Error")
-      }
+   // Función para obtener los productos
+   getAllProductsPaginated(page: number, size: number): void {
+    this.productService.getAllProductsPaginated(page, size).subscribe(response => {
+      this.products = response.content;
+      this.totalPages = response.totalPages;
+      this.totalElements = response.totalElements;
+      this.pageSize = response.pageSize;
+
+      // Crear el array de páginas a mostrar
+      this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
     });
   }
+
+  // Cambiar la página
+  changePage(page: number): void {
+    if (page >= 0 && page < this.totalPages) {
+      this.currentPage = page;
+      this.getAllProductsPaginated(page, this.pageSize);
+    }
+  }
+
+  getVisiblePages(): number[] {
+    const range = 2; // Número de páginas a mostrar antes y después de la página actual
+    const start = Math.max(0, this.currentPage - range);
+    const end = Math.min(this.totalPages - 1, this.currentPage + range);
+    
+    const visiblePages = [];
+    
+    for (let i = start; i <= end; i++) {
+      visiblePages.push(i);
+    }
+    
+    return visiblePages;
+  }  
 
   showProductDetails(productId: number) {
     this.router.navigate([`/productViewDetails/${productId}`]); 
