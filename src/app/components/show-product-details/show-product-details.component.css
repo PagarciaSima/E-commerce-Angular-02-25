@@ -1,9 +1,22 @@
-table {
-    width: fit-content;
+
+
+@media (max-width: 576px) {  
+    table {
+        width: 100% !important;
+    }
+}
+  
+@media (min-width: 576px) {
+
+
+    th, td {
+        padding-left: 20px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+    }
 }
 
-th, td {
-    padding-left: 20px;
-    padding-top: 15px;
-    padding-bottom: 15px;
+th > div {
+   min-width: max-content;
 }
+  
