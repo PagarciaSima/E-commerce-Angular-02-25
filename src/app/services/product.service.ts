@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.development';
 import { Product } from '../interfaces/product';
+import { OrderDetailsModel } from '../interfaces/order-details-model';
 
 @Injectable({
   providedIn: 'root'
@@ -49,7 +50,13 @@ export class ProductService {
     return this.httpClient.get<{ name: string, base64: string }[]>(url);
   }
 
+  public getProductDetails(isSingleProductCheckout: boolean, productId: number): Observable<Product[]> {
+    const url = `${this.apiURL}/products/getProductDetails?isSingleProductCheckout=${isSingleProductCheckout}&productId=${productId}`;
+    return this.httpClient.get<Product[]>(url);
+  }
 
-  
+  public placeOrder(orderDetails: OrderDetailsModel): Observable<void> {
+    return this.httpClient.post<void>(`${this.apiURL}/placeOrder`, orderDetails);
+  }
   
 }

@@ -1,5 +1,5 @@
 import { Component, HostListener, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Image } from 'src/app/interfaces/image';
 import { Product } from 'src/app/interfaces/product';
 
@@ -21,7 +21,8 @@ export class ProductViewDetailsComponent implements OnInit {
   }
 
   constructor(
-    private route: ActivatedRoute 
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -46,4 +47,14 @@ export class ProductViewDetailsComponent implements OnInit {
   selectImage(image: Image) {
     this.selectedImage = image; // Cambiar la imagen grande al hacer click
   }
+
+  buyProduct(productId: number) {
+    this.router.navigate(['/buyProduct'], {
+      queryParams: {
+        isSingleProductCheckout: true,
+        id: productId
+      }
+    });    
+  }
+  
 }

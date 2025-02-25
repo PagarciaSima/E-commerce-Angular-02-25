@@ -10,6 +10,8 @@ import { SaveProductComponent } from './components/save-product/save-product.com
 import { ShowProductDetailsComponent } from './components/show-product-details/show-product-details.component';
 import { ProductViewDetailsComponent } from './components/product-view-details/product-view-details.component';
 import { productResolver } from './resolvers/product.resolver';
+import { BuyProductComponent } from './components/buy-product/buy-product.component';
+import { buyProductResolver } from './resolvers/buy-product-resolver';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },
@@ -27,7 +29,15 @@ const routes: Routes = [
   },
 
   { path: 'showProductDetails', component: ShowProductDetailsComponent },
-  { path: 'productViewDetails/:productId', component: ProductViewDetailsComponent,  resolve: { product: productResolver }   }
+  { path: 'productViewDetails/:productId', component: ProductViewDetailsComponent,  resolve: { product: productResolver } },
+  {
+    path: 'buyProduct',  
+    component: BuyProductComponent,
+    canActivate: [authGuard], 
+    data: { roles: ['UserRole'] },
+    resolve: { productDetails: buyProductResolver }
+  }  
+  
 
 ];
 

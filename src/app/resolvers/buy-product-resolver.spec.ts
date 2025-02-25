@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { ResolveFn } from '@angular/router';
 
-import { productResolver } from './product.resolver';
+import { buyProductResolver } from './buy-product-resolver';
 import { Product } from '../interfaces/product';
 
-describe('productResolver', () => {
-  const executeResolver: ResolveFn<Product | null> = (...resolverParameters) => 
-      TestBed.runInInjectionContext(() => productResolver(...resolverParameters));
+describe('buyProductResolverResolver', () => {
+  const executeResolver: ResolveFn<Product[] | null>  = (...resolverParameters) => 
+      TestBed.runInInjectionContext(() => buyProductResolver(...resolverParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

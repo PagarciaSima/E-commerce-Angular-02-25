@@ -40,7 +40,7 @@ export class ShowProductDetailsComponent implements OnInit{
 
 
    // Función para obtener los productos
-  getAllProductsPaginated(page: number, size: number): void {
+   getAllProductsPaginated(page: number, size: number): void {
     this.productService.getAllProductsPaginated(page, size).subscribe(response => {
       this.products = response.content;
       this.totalPages = response.totalPages;
@@ -72,7 +72,8 @@ export class ShowProductDetailsComponent implements OnInit{
     }
     
     return visiblePages;
-  }  
+  }
+  
 
   public delete(productId: number) {
     Swal.fire({

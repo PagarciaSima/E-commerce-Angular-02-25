@@ -20,6 +20,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SaveProductComponent } from './components/save-product/save-product.component';
 import { ShowProductDetailsComponent } from './components/show-product-details/show-product-details.component';
 import { ProductViewDetailsComponent } from './components/product-view-details/product-view-details.component';
+import { BuyProductComponent } from './components/buy-product/buy-product.component';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { ProductViewDetailsComponent } from './components/product-view-details/p
     FooterComponent,
     SaveProductComponent,
     ShowProductDetailsComponent,
-    ProductViewDetailsComponent
+    ProductViewDetailsComponent,
+    BuyProductComponent
   ],
   imports: [
     BrowserModule,
