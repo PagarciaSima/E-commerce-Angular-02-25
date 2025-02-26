@@ -46,7 +46,6 @@ export class BuyProductComponent implements OnInit {
         }
       )
     );
-
   }
 
   placeOrder(orderForm: NgForm) {
@@ -59,4 +58,41 @@ export class BuyProductComponent implements OnInit {
       }
     });
   }
+
+  getQuantityForProduct(productId: number): number {
+    const filteredProduct = this.orderDetails.orderProductQuantityList.filter(
+      (productQuantity) => productQuantity.productId === productId
+    );
+    return filteredProduct[0].quantity;
+  }
+
+  getCalculatedTotal(productId: number, productPrice: number): number {
+    const filteredProduct = this.orderDetails.orderProductQuantityList.filter(
+      (productQuantity) => productQuantity.productId === productId
+    );
+    return filteredProduct[0].quantity * productPrice;
+  }
+
+  onQuantityChanged(quantity: number, productId: number) {
+    console.log(quantity)
+    this.orderDetails.orderProductQuantityList.filter(
+      (orderProduct) => orderProduct.productId === productId
+    )[0].quantity = quantity;
+  }
+
+  getCalculatedGrandTotal(): number {
+    let grandTotal = 0;
+  
+    this.orderDetails.orderProductQuantityList.forEach((productQuantity) => {
+      const product = this.productDetails.find(product => product.productId === productQuantity.productId);
+  
+      if (product) {
+        const price = product.productDiscountedPrice > 0 ? product.productDiscountedPrice : product.productActualPrice;
+        grandTotal += price * productQuantity.quantity; // Multiplicamos por la cantidad seleccionada
+      }
+    });
+  
+    return grandTotal;
+  }
+  
 }
