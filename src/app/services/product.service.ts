@@ -58,5 +58,15 @@ export class ProductService {
   public placeOrder(orderDetails: OrderDetailsModel): Observable<void> {
     return this.httpClient.post<void>(`${this.apiURL}/placeOrder`, orderDetails);
   }
+
+  // Método para buscar productos
+  public searchProducts(searchTerm: string, page: number, size: number): Observable<any> {
+    const params = new HttpParams()
+      .set('searchKey', searchTerm)  // Agregar el término de búsqueda
+      .set('page', page.toString())
+      .set('size', size.toString());
+    
+    return this.httpClient.get<any>(`${this.apiURL}/products`, { params });
+  }
   
 }

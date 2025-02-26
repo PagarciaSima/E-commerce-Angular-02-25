@@ -22,15 +22,23 @@
                 placeholder="Enter your password" 
                 [(ngModel)]="userPassword" 
                 required 
-                #userPasswordField="ngModel">
+                #userPasswordField="ngModel"
+                autocomplete="current-password" 
+            >
                 
             <div *ngIf="userPasswordField.invalid && userPasswordField.dirty" class="alert alert-danger">
                 Password is required.
             </div>
-        
+                 
             <button type="submit" class="btn btn-success mb-3" [disabled]="loginForm.invalid">
                 <i class="fa-solid fa-right-to-bracket me-2"></i>Login
             </button>
+
+            <div class="text-center">
+                <span>Don't have an account? 
+                    <a routerLink="/register" class="text-success">Sign up</a>
+                </span>
+            </div>
         </form>
         
         

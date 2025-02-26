@@ -32,10 +32,10 @@ export class LoginComponent implements OnInit{
   login(loginForm: NgForm) {
     this.userService.login(loginForm.value).subscribe({
       next: (response) => {
-        this.userAuthService.setRoles(response.user.role);
+        this.userAuthService.setRoles(response.user.role!);
         this.userAuthService.setToken(response.jwtToken);
 
-        const roleName = response.user.role[0].roleName;
+        const roleName = response.user.role![0].roleName;
 
         if ('AdminRole' === roleName) {
           this.router.navigate(['/admin'])

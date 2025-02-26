@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment.development';
 import { LoginRequest } from '../interfaces/login-request';
 import { LoginResponse } from '../interfaces/login-response';
 import { UserAuthService } from './user-auth.service';
+import { User } from '../interfaces/user';
 
 @Injectable({
   providedIn: 'root'
@@ -27,4 +28,7 @@ export class UserService {
     return userRoles.length > 0 && userRoles.every(role => allowedRoles.includes(role));
   }
 
+  public register(user: User): Observable<User> {
+    return this.httpClient.post<User>(`${this.apiURL}/user/register`, user, {headers: new HttpHeaders( {'No-Auth': 'True'} )});
+  }
 }

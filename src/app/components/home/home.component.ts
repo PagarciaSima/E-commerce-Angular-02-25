@@ -17,10 +17,10 @@ export class HomeComponent implements OnInit{
   totalElements: number = 0; // Total de elementos (productos)
   pageSize: number = 8;     // Tamaño de página
   pages: number[] = [];      // Array de números de página para el paginador
+  searchKey: string = ''; 
 
   constructor(
     private productService: ProductService,
-    private toastrService: ToastrService,
     private router: Router
   ) {
     
@@ -67,6 +67,26 @@ export class HomeComponent implements OnInit{
 
   showProductDetails(productId: number) {
     this.router.navigate([`/productViewDetails/${productId}`]); 
+  }
+
+  searchProducts(): void {
+    console.log(this.searchKey)
+    if (this.searchKey.trim() === '') {
+      console.log("if")
+
+      this.getAllProductsPaginated(this.currentPage, this.pageSize);
+    } else {
+      this.productService.searchProducts(this.searchKey, this.currentPage, this.pageSize)
+        .subscribe(response => {
+          this.products = response.content;
+          this.totalPages = response.totalPages;
+          this.totalElements = response.totalElements;
+          this.pageSize = response.pageSize;
+
+          // Crear el array de páginas a mostrar
+          this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
+        });
+    }
   }
   
 

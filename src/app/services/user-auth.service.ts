@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Role } from '../interfaces/login-response';
+import { Role } from '../interfaces/role';
 
 @Injectable({
   providedIn: 'root'
