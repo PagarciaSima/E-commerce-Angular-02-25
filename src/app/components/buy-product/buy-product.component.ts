@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { OrderDetailsModel } from 'src/app/interfaces/order-details-model';
 import { Product } from 'src/app/interfaces/product';  // Importar el modelo de producto
@@ -26,7 +26,8 @@ export class BuyProductComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private productService: ProductService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private router: Router
   
   ) { }
 
@@ -53,6 +54,7 @@ export class BuyProductComponent implements OnInit {
     this.productService.placeOrder(this.orderDetails).subscribe({
       next: (data) => {
         orderForm.reset();
+        this.router.navigate(['/orderConfirm']);
       }, error: (err) => {
         this.toastrService.error('Error while creating the order', 'Error');
       }

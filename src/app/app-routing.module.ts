@@ -12,6 +12,7 @@ import { ProductViewDetailsComponent } from './components/product-view-details/p
 import { productResolver } from './resolvers/product.resolver';
 import { BuyProductComponent } from './components/buy-product/buy-product.component';
 import { buyProductResolver } from './resolvers/buy-product-resolver';
+import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },
@@ -36,8 +37,8 @@ const routes: Routes = [
     canActivate: [authGuard], 
     data: { roles: ['UserRole'] },
     resolve: { productDetails: buyProductResolver }
-  }  
-  
+  },
+  { path: 'orderConfirm', component: OrderConfirmationComponent,  canActivate: [authGuard], data: { roles: ['UserRole'] } },
 
 ];
 

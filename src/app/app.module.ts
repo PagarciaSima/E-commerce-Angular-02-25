@@ -21,6 +21,7 @@ import { SaveProductComponent } from './components/save-product/save-product.com
 import { ShowProductDetailsComponent } from './components/show-product-details/show-product-details.component';
 import { ProductViewDetailsComponent } from './components/product-view-details/product-view-details.component';
 import { BuyProductComponent } from './components/buy-product/buy-product.component';
+import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { BuyProductComponent } from './components/buy-product/buy-product.compon
     SaveProductComponent,
     ShowProductDetailsComponent,
     ProductViewDetailsComponent,
-    BuyProductComponent
+    BuyProductComponent,
+    OrderConfirmationComponent
   ],
   imports: [
     BrowserModule,
