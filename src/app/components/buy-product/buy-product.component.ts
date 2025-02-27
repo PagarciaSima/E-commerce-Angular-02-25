@@ -50,7 +50,6 @@ export class BuyProductComponent implements OnInit {
   }
 
   placeOrder(orderForm: NgForm) {
-    console.log(this.orderDetails)
     this.productService.placeOrder(this.orderDetails).subscribe({
       next: (data) => {
         orderForm.reset();
@@ -76,7 +75,6 @@ export class BuyProductComponent implements OnInit {
   }
 
   onQuantityChanged(quantity: number, productId: number) {
-    console.log(quantity)
     this.orderDetails.orderProductQuantityList.filter(
       (orderProduct) => orderProduct.productId === productId
     )[0].quantity = quantity;

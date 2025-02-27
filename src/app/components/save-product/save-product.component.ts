@@ -206,9 +206,6 @@ export class SaveProductComponent implements OnInit {
     // Filtrar `selectedFiles` para eliminar solo el archivo correspondiente
     this.selectedFiles = this.selectedFiles.filter(file => file.name !== removedFileName);
     this.imagePreviews.splice(index, 1);
-  
-    console.log('selectedFiles:', this.selectedFiles);
-    console.log('imagePreviews:', this.imagePreviews);
   }
   
   

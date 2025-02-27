@@ -11,9 +11,6 @@ export const productResolver: ResolveFn<Product | null> = (route, state) => {
   const toastrService = inject(ToastrService);
   const productId = Number(route.paramMap.get('productId'));
 
-  // Traza para verificar el valor del productId
-  console.log('Resolviendo producto con ID:', productId);
-
   if (!productId) {
     toastrService.error('Product ID is missing in the route.', 'Error');
     console.error('Product ID is missing.');

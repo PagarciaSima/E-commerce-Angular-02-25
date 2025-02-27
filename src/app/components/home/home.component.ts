@@ -70,10 +70,7 @@ export class HomeComponent implements OnInit{
   }
 
   searchProducts(): void {
-    console.log(this.searchKey)
     if (this.searchKey.trim() === '') {
-      console.log("if")
-
       this.getAllProductsPaginated(this.currentPage, this.pageSize);
     } else {
       this.productService.searchProducts(this.searchKey, this.currentPage, this.pageSize)
@@ -88,6 +85,5 @@ export class HomeComponent implements OnInit{
         });
     }
   }
-  
 
 }

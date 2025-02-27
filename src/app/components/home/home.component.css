@@ -18,6 +18,20 @@
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-input {
-    width: 50%;
+@media (min-width: 0px) and (max-width: 768px) { /* A partir de pantallas medianas (md) */
+    .search {
+        width: 100%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) { /* A partir de pantallas medianas (md) */
+    .search {
+        width: 45%;
+    }
+}
+
+@media (min-width: 991px) { /* A partir de pantallas medianas (md) */
+    .search {
+        width: 24%;
+    }
 }
