@@ -8,6 +8,7 @@ import { saveAs } from 'file-saver'; // Importa file-saver
 
 
 import Swal from 'sweetalert2';
+import { finalize } from 'rxjs';
 
 @Component({
   selector: 'app-show-product-details',
@@ -26,6 +27,8 @@ export class ShowProductDetailsComponent implements OnInit{
   pageSize: number = 10;     // Tamaño de página
   pages: number[] = [];      // Array de números de página para el paginador
   searchKey: string = ''; 
+
+  public isGeneratingFile: boolean = false;
 
   constructor(
     private productService: ProductService,
@@ -118,7 +121,14 @@ export class ShowProductDetailsComponent implements OnInit{
   }
   
   public generatePdf(): void {
-    this.fileService.getPdf().subscribe({
+    this.isGeneratingFile = true;
+    this.fileService.getPdf().pipe(
+      finalize(() => {
+        setTimeout(() => {
+          this.isGeneratingFile = false;
+        }, 1000);
+      })
+    ).subscribe({
       next: (data: Blob) => {
         const blob = new Blob([data], { type: 'application/pdf' });
         saveAs(blob, 'product-list.pdf'); // Descargar el archivo
@@ -132,7 +142,14 @@ export class ShowProductDetailsComponent implements OnInit{
 
   // Función para descargar el CSV
   public generateCsv(): void {
-    this.fileService.getCsv().subscribe({
+    this.isGeneratingFile = true;
+    this.fileService.getCsv().pipe(
+      finalize(() => {
+        setTimeout(() => {
+          this.isGeneratingFile = false;
+        }, 1000);
+      })
+    ).subscribe({
       next: (data) => {
         const blob = new Blob([data], { type: 'text/csv' });
         const link = document.createElement('a');
@@ -149,7 +166,14 @@ export class ShowProductDetailsComponent implements OnInit{
 
   // Function to download the Excel file
   public generateExcel(): void {
-    this.fileService.getExcel().subscribe({
+    this.isGeneratingFile = true;
+    this.fileService.getExcel().pipe(
+      finalize(() => {
+        setTimeout(() => {
+          this.isGeneratingFile = false;
+        }, 1000);
+      })
+    ).subscribe({
       next: (data) => {
         const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
         const link = document.createElement('a');

@@ -1,5 +1,5 @@
 <div class="container">
-    <div class="card mt-5 px-5 py-3 text-success shadow bg-white rounded">
+    <div class="card mt-5 px-5 py-3 text-success shadow bg-white rounded fade-in">
         <div class="text-center"><h2><i class="fa-solid fa-user text-secondary me-3"></i>Login</h2></div>
         <form class="mt-3" #loginForm="ngForm" (ngSubmit)="login(loginForm)" novalidate>
             <input class="form-control mb-3" 
@@ -9,9 +9,12 @@
                 placeholder="Enter your username" 
                 [(ngModel)]="userName" 
                 required 
-                #userNameField="ngModel">
+                #userNameField="ngModel"
+                  autocomplete="username"
+
+            >
                 
-            <div *ngIf="userNameField.invalid && userNameField.dirty" class="alert alert-danger">
+            <div *ngIf="userNameField.invalid && userNameField.dirty" class="alert alert-danger py-2 mt-2">
                 Username is required.
             </div>
         
@@ -26,7 +29,7 @@
                 autocomplete="current-password" 
             >
                 
-            <div *ngIf="userPasswordField.invalid && userPasswordField.dirty" class="alert alert-danger">
+            <div *ngIf="userPasswordField.invalid && userPasswordField.dirty" class="alert alert-danger py-2 mt-2">
                 Password is required.
             </div>
                  

@@ -2,6 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Image } from 'src/app/interfaces/image';
 import { Product } from 'src/app/interfaces/product';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product-view-details',
@@ -23,7 +24,8 @@ export class ProductViewDetailsComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private productService: ProductService
   ) {}
 
   ngOnInit(): void {
@@ -60,7 +62,13 @@ export class ProductViewDetailsComponent implements OnInit {
   }
 
   addToCart(productId: number) {
+    this.productService.addToCart(productId).subscribe({
+      next: (data) => {
+        console.log(data)
+      }, error: () => {
 
+      }
+    });
   }
   
 }

@@ -22,3 +22,9 @@ th > div {
     border-color: var(--bs-pagination-active-border-color);
 }
 
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: grey;
+    border: 1px solid #ffffff27
+}
