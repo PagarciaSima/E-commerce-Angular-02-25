@@ -5,12 +5,12 @@
     </div>
 
     <!-- Buscador -->
-    <div class="mb-4">
-      <div class="col-12 d-flex align-items-center">
+    <div class="mb-4 mt-4">
+      <div class="col-12 d-flex align-items-center justify-content-center">
           <input 
               type="text" 
-              class="form-control search" 
-              placeholder="Search products..." 
+              class="form-control search w-25" 
+              placeholder="Search products by product name ..." 
               [(ngModel)]="searchKey" 
               (ngModelChange)="searchProducts()"
               name="searchKey"

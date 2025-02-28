@@ -6,28 +6,30 @@
                 {{ product?.productName }}
             </h2>
         </div>
-        <div class="row">
-            <div class="col-lg-6 img-col ">
+        <div class="row d-flex justify-content-center">
+            <div class="col-lg-6 col-xl-5 img-col ">
                 <!-- Card principal para la imagen grande -->
                 <div class="row col-12 card mb-3 big-card p-md-5 d-none d-md-block"
                     [ngClass]="{ 'd-none d-md-block': product!.productImages!.length > 1 }"
                 >
                     <img [src]="'data:' + selectedImage.type + ';base64,' + selectedImage.picByte" 
                         class="card-img-top py-2 mx-md-auto" alt="Product Image"
+                        [ngClass]="{'fade-in': imageChanged}"
+                        (animationend)="imageChanged = false"
                     >
                 </div>
                 <!-- Cards pequeñas debajo -->
-                <div *ngIf="product!.productImages!.length > 1" class="row col-12 mt-4 px-md-5">
-                    <div *ngFor="let image of product?.productImages" class="col-md-6 col-lg-4">
-                        <div class="mt-2 mt-lg-0" (click)="selectImage(image)">
-                            <img [src]="'data:' + image.type + ';base64,' + image.picByte" alt="Product Image"
-                                [ngClass]="['small-img', selectedImage === image && isDesktop ? 'selected-card' : '']" 
-                            >
+                <div *ngIf="product!.productImages!.length > 1" class="row col-12 mt-4 gap-3">
+                    <div *ngFor="let image of product?.productImages" class="col-12 col-md-6 card sm-card"
+                         [ngClass]="{'selected-card': selectedImage === image}" (click)="selectImage(image)"
+                    >
+                        <div class="mt-2 mt-lg-0">
+                            <img [src]="'data:' + image.type + ';base64,' + image.picByte" alt="Product Image" class="small-img">
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 mt-5 mt-lg-0">
+            <div class="col-lg-6 col-xl-4 mt-5 mt-lg-0">
                 <div class="product-information mt-3 mt-sm-0">
                     <div>
                         <h3><strong>{{ product?.productName }}</strong></h3>
@@ -52,7 +54,10 @@
                     </ng-template>
 
                     <button class="btn btn-success mt-4" (click)="buyProduct(product?.productId!)">
-                        <i class="fa-solid fa-cart-shopping me-2"></i>Buy now
+                        <i class="fa-regular fa-credit-card me-2"></i>Buy now
+                    </button>
+                    <button class="btn btn-success mt-4 ms-2" (click)="addToCart(product?.productId!)">
+                        <i class="fa-solid fa-cart-shopping me-2"></i>Add to Cart
                     </button>
                 </div>
             </div>

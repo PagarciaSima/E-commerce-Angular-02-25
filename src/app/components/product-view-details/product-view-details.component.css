@@ -1,29 +1,15 @@
-
-.big-card {
-    height: 700px; /* Limita la altura máxima */
-    width: 100%; /* Asegura que el contenedor de la imagen ocupe todo el ancho */
-    overflow: hidden; /* Evita que la imagen se desborde fuera del contenedor */
+ 
+.sm-card {
+    min-height: 250px;
+    display: grid; /* Activa grid */
+    place-items: center; /* Centra tanto horizontal como verticalmente */
+    overflow: hidden; /* Evita que la imagen se desborde */
 }
 
 .small-img {
-    height: 200px;
-    width: 100%;
-    padding: 20px;
-    border: 1px solid #dee2e6; /* Color similar al borde de Bootstrap */
-    border-radius: 0.25rem; /* Bordes redondeados */
-    background-color: #fff; /* Fondo blanco */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
-    transition: transform 0.2s, box-shadow 0.2s; /* Animación al pasar el ratón */
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    max-height: 200px;
+    width: auto;
 }
-
-.selected-card {
-    transform: scale(1.1);
-    border: 2px solid #28a745; /* Borde verde */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-  }
 
 .card-img-top {
     object-fit: contain; 
@@ -31,13 +17,57 @@
     height: 100%; 
 }
 
-@media (min-width: 1px) and  (max-width: 768px) {
+.selected-card {
+    border: 3px solid #198754; /* Borde azul */
+    box-shadow: 0 0 10px rgba(3, 247, 23, 0.5); /* Sombra azul */
+    transition: all 0.3s ease; /* Transición suave */
+}
 
+.selected-card .small-img {
+    animation: bounce 0.5s ease; /* Aplica la animación de rebote */
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.big-card img {
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.big-card img.fade-in {
+    animation: fadeInScale 0.5s ease-in-out;
+}
+@media (min-width: 1px) and  (max-width: 768px) {
     .big-card  {
         height: 250px; /* Limita la altura máxima */
  
-    }
-    
+    }  
+}
 
+@media (min-width: 768px) {
+    
+    .big-card {
+        height: 700px; /* Limita la altura máxima */
+        width: 100%; /* Asegura que el contenedor de la imagen ocupe todo el ancho */
+        overflow: hidden; /* Evita que la imagen se desborde fuera del contenedor */
+    }
+    .sm-card {width: calc(50% - 0.5rem);}
 }
 

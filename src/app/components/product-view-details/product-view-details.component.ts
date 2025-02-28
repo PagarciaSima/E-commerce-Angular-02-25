@@ -19,6 +19,7 @@ export class ProductViewDetailsComponent implements OnInit {
     type: '',
     picByte: ''
   }
+  imageChanged: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -45,7 +46,8 @@ export class ProductViewDetailsComponent implements OnInit {
   }
 
   selectImage(image: Image) {
-    this.selectedImage = image; // Cambiar la imagen grande al hacer click
+    this.selectedImage = image;
+    this.imageChanged = true;
   }
 
   buyProduct(productId: number) {
@@ -55,6 +57,10 @@ export class ProductViewDetailsComponent implements OnInit {
         id: productId
       }
     });    
+  }
+
+  addToCart(productId: number) {
+
   }
   
 }
