@@ -1,0 +1,41 @@
+<div class="container-fluid content">
+    <div class="content mt-5 px-0 px-lg-5 py-3 text-success bg-white rounded fade-in">
+    <div class="text-center">
+        <h2><i class="fa-solid fa-cart-shopping me-2 my-3 me-3 text-secondary"></i>Cart</h2>      
+    </div>
+
+    <div *ngIf="cartDetails.length > 0; else emptyCart">
+        <div class="table-responsive">
+  
+          <table class="table  table-striped table-hover">
+            <thead class="table-dark">
+              <tr>
+                <th><div class="th"><span>Name</span></div></th>
+                <th><div class="th"><span>Description</span></div></th>
+                <th><div class="th">Price</div></th>
+                <th><div class="th">Discounted Price</div></th>
+              </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let cartItem of cartDetails; let i = index">
+                    <td>{{ cartItem.productEntity.productName }}</td>
+                    <td>{{ cartItem.productEntity.productDescription }}</td>
+                    <td>{{ cartItem.productEntity.productActualPrice | currency: 'EUR' }}</td>
+                    <td>
+                        <span *ngIf="cartItem.productEntity.productDiscountedPrice > 0; else noDiscount" 
+                              class="badge bg-success">
+                          {{ cartItem.productEntity.productDiscountedPrice | currency: 'EUR' }}
+                        </span>
+                        <ng-template #noDiscount>
+                          <span class="text-muted">This product has no discount</span>
+                        </ng-template>
+                    </td>
+            </tbody>
+          </table>
+        </div>
+    </div>
+    <!-- Empty cart message -->
+    <ng-template #emptyCart>
+        <p class="text-center alert alert-warning"><i class="fa-solid fa-triangle-exclamation me-2"></i>The cart is empty</p>
+      </ng-template>
+</div>

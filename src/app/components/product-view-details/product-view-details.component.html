@@ -53,10 +53,10 @@
                         </div>
                     </ng-template>
 
-                    <button class="btn btn-success mt-4" (click)="buyProduct(product?.productId!)">
+                    <button *ngIf="isUser()" class="btn btn-success mt-4" (click)="buyProduct(product?.productId!)">
                         <i class="fa-regular fa-credit-card me-2"></i>Buy now
                     </button>
-                    <button class="btn btn-success mt-4 ms-2" (click)="addToCart(product?.productId!)">
+                    <button *ngIf="isUser()" class="btn btn-success mt-4 ms-2" (click)="addToCart(product?.productId!)">
                         <i class="fa-solid fa-cart-shopping me-2"></i>Add to Cart
                     </button>
                 </div>

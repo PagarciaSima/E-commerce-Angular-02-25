@@ -1,8 +1,10 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Image } from 'src/app/interfaces/image';
 import { Product } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product.service';
+import { UserAuthService } from 'src/app/services/user-auth.service';
 
 @Component({
   selector: 'app-product-view-details',
@@ -25,7 +27,9 @@ export class ProductViewDetailsComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private productService: ProductService
+    private productService: ProductService,
+    private toastrService: ToastrService,
+    private userAuthService: UserAuthService
   ) {}
 
   ngOnInit(): void {
@@ -64,11 +68,15 @@ export class ProductViewDetailsComponent implements OnInit {
   addToCart(productId: number) {
     this.productService.addToCart(productId).subscribe({
       next: (data) => {
-        console.log(data)
+        this.toastrService.success("Product added to the cart", "Success");
       }, error: () => {
-
+        this.toastrService.error("Something went wrong. Could not add the product to the cart", "Error")
       }
     });
+  }
+
+  public isUser(): boolean {
+    return this.userAuthService.isUser();
   }
   
 }

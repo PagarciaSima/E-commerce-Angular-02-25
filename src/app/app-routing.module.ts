@@ -14,6 +14,7 @@ import { BuyProductComponent } from './components/buy-product/buy-product.compon
 import { buyProductResolver } from './resolvers/buy-product-resolver';
 import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 import { RegisterComponent } from './components/register/register.component';
+import { CartComponent } from './components/cart/cart.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },
@@ -35,6 +36,12 @@ const routes: Routes = [
   {
     path: 'buyProduct',  
     component: BuyProductComponent,
+    canActivate: [authGuard], 
+    data: { roles: ['UserRole'] },
+  },
+  {
+    path: 'cart',  
+    component: CartComponent,
     canActivate: [authGuard], 
     data: { roles: ['UserRole'] },
     resolve: { productDetails: buyProductResolver }

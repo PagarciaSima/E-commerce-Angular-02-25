@@ -12,6 +12,10 @@
             <a class="nav-link active" aria-current="page" routerLink="/"><i class="fa-solid fa-house me-2"></i>Home</a>
           </li>
 
+          <li *ngIf="isUser() && isLoggedIn()" class="nav-item ms-3">
+            <a class="nav-link active" aria-current="page" routerLink="/cart"><i class="fa-solid fa-cart-shopping me-2"></i>Cart</a>
+          </li>
+
           <li *ngIf="isAdmin()" class="nav-item ms-3">
             <a class="nav-link active" aria-current="page" routerLink="/addNewProduct">
               <i class="fa-solid fa-plus me-2"></i>Add New Product

@@ -63,7 +63,7 @@ export class ProductService {
   // Método para buscar productos
   public searchProducts(searchTerm: string, page: number, size: number): Observable<any> {
     const params = new HttpParams()
-      .set('searchKey', searchTerm)  // Agregar el término de búsqueda
+      .set('searchKey', searchTerm)  // Search term
       .set('page', page.toString())
       .set('size', size.toString());
     
@@ -71,8 +71,10 @@ export class ProductService {
   }
 
   public addToCart(productId: number): Observable<Cart> {
-    return this.httpClient.post<Cart>(`${this.apiURL}/addToCart/${productId}`, null);
+    return this.httpClient.post<Cart>(`${this.apiURL}/cart/addToCart/${productId}`, null);
   }
   
-  
+  public getCartDetails(): Observable<Cart[]> {
+    return this.httpClient.get<Cart[]>(`${this.apiURL}/cart/cartDetails`);
+  }
 }
