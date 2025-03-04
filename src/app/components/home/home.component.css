@@ -5,11 +5,9 @@
     height: 300px;     
 }
 
-
 .card {
     height: 650px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-
 }
 
 .card:hover, 

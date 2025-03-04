@@ -9,6 +9,10 @@
       (search)="searchCartDetails($event)">
     </app-search-bar>
 
+    <div class="d-flex flex-wrap justify-content-center mb-3 mt-5">
+      <button class="btn btn-success" (click)="checkout()"><i class="fa-regular fa-credit-card me-2"></i>Check out</button>
+    </div>
+
     <div *ngIf="cartDetails.length > 0; else emptyCart">
         <div class="table-responsive">
           <table class="table  table-striped table-hover">
@@ -31,7 +35,7 @@
                           {{ cartItem.productEntity.productDiscountedPrice | currency: 'EUR' }}
                         </span>
                         <ng-template #noDiscount>
-                          <span class="text-muted">This product has no discount</span>
+                          <span class="badge bg-warning text-dark">This product has no discount</span>
                         </ng-template>
                     </td>
             </tbody>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Cart } from 'src/app/interfaces/cart';
 import { ProductService } from 'src/app/services/product.service';
@@ -20,7 +21,8 @@ export class CartComponent implements OnInit{
 
   constructor(
     private toastrService: ToastrService,
-    private productService: ProductService
+    private productService: ProductService,
+    private router: Router
   ) {
     
   }
@@ -86,6 +88,16 @@ export class CartComponent implements OnInit{
         }
       });
     }
+  }
+
+  checkout() {
+    this.router.navigate(['/buyProduct'], {
+      queryParams: {
+        isSingleProductCheckout: false,
+        id: 0
+      }
+    });    
+
   }
   
 }

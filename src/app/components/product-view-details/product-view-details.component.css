@@ -54,15 +54,14 @@
 .big-card img.fade-in {
     animation: fadeInScale 0.5s ease-in-out;
 }
+
 @media (min-width: 1px) and  (max-width: 768px) {
     .big-card  {
         height: 250px; /* Limita la altura máxima */
- 
     }  
 }
 
-@media (min-width: 768px) {
-    
+@media (min-width: 768px) {   
     .big-card {
         height: 700px; /* Limita la altura máxima */
         width: 100%; /* Asegura que el contenedor de la imagen ocupe todo el ancho */

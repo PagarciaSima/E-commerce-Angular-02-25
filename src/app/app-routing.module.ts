@@ -38,13 +38,14 @@ const routes: Routes = [
     component: BuyProductComponent,
     canActivate: [authGuard], 
     data: { roles: ['UserRole'] },
+    resolve: { productDetails: buyProductResolver }  
+
   },
   {
     path: 'cart',  
     component: CartComponent,
     canActivate: [authGuard], 
     data: { roles: ['UserRole'] },
-    resolve: { productDetails: buyProductResolver }
   },
   { path: 'orderConfirm', component: OrderConfirmationComponent, canActivate: [authGuard], data: { roles: ['UserRole'] } },
   { path: 'register', component: RegisterComponent }

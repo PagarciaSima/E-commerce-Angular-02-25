@@ -35,7 +35,7 @@ export class BuyProductComponent implements OnInit {
     // Obtener los datos del resolver
     this.activatedRoute.data.subscribe((data) => {
       if (data['productDetails']) {
-        this.productDetails = data['productDetails']; 
+        this.productDetails = this.groupProducts(data['productDetails']);
       }
     });
 
@@ -48,6 +48,34 @@ export class BuyProductComponent implements OnInit {
       )
     );
   }
+
+  private groupProducts(products: Product[]): Product[] {
+    const productMap = new Map<number, Product>();
+    this.orderDetails.orderProductQuantityList = []; // Limpiamos la lista antes de agregar
+  
+    products.forEach(product => {
+      if (productMap.has(product.productId!)) {
+        // Si el producto ya existe, solo incrementamos la cantidad en orderProductQuantityList
+        const productQuantity = this.orderDetails.orderProductQuantityList.find(
+          (pq) => pq.productId === product.productId!
+        );
+        if (productQuantity) {
+          productQuantity.quantity++;
+        }
+      } else {
+        // Si el producto no existe, lo añadimos al mapa y creamos la cantidad en orderProductQuantityList
+        productMap.set(product.productId!, product);
+        this.orderDetails.orderProductQuantityList.push({
+          productId: product.productId!,
+          quantity: 1
+        });
+      }
+    });
+  
+    // Devolvemos la lista de productos únicos
+    return Array.from(productMap.values());
+  }
+  
 
   placeOrder(orderForm: NgForm) {
     this.productService.placeOrder(this.orderDetails).subscribe({
