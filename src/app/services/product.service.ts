@@ -77,4 +77,21 @@ export class ProductService {
   public getCartDetails(): Observable<Cart[]> {
     return this.httpClient.get<Cart[]>(`${this.apiURL}/cart/cartDetails`);
   }
+
+  public getCartDetailsPaginated(page: number, size: number): Observable<any> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+    
+    return this.httpClient.get<any>(`${this.apiURL}/cart/cartDetails/paginated`, { params });
+  }
+
+  public searchCartDetails(searchTerm: string, page: number, size: number): Observable<any> {
+    const params = new HttpParams()
+      .set('searchKey', searchTerm)  // Search term
+      .set('page', page.toString())
+      .set('size', size.toString());
+    
+    return this.httpClient.get<any>(`${this.apiURL}/cart/cartDetails/paginated`, { params });
+  }
 }

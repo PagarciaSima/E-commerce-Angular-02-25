@@ -5,19 +5,10 @@
         </div>
         <div class="row">
             <!-- Buscador -->
-            <div class="mb-4">
-                <div class="col-12 d-flex align-items-center">
-                    <input 
-                        type="text" 
-                        class="form-control search" 
-                        placeholder="Search products by product name ..." 
-                        [(ngModel)]="searchKey" 
-                        (ngModelChange)="searchProducts()"
-                        name="searchKey"
-                    >    
-                    <i class="fa-solid fa-magnifying-glass fa-lg ms-2"></i>            
-                </div>
-            </div>
+            <app-search-bar 
+                [placeholder]="'Search by product name...'" 
+                (search)="searchProducts($event)">
+            </app-search-bar>
   
             <div *ngFor="let product of products" class="col-12 col-md-6 col-lg-4 col-xl-4 col-xxl-3 mb-4">
                 <div class="card p-2 d-flex flex-column">
@@ -64,7 +55,7 @@
                 </div>
             </div>
 
-              <!-- Pagination -->
+            <!-- Pagination -->
             <div class="d-flex justify-content-center mt-4">
                 <nav aria-label="Page navigation">
                 <ul class="pagination">

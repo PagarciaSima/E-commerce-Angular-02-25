@@ -42,17 +42,19 @@ export class ShowProductDetailsComponent implements OnInit{
     this.getAllProductsPaginated(this.currentPage, this.pageSize);
   }
 
+  getAllProductsPaginated(page: number, size: number): void {
+    this.productService.getAllProductsPaginated(page, size).subscribe({
+      next: (response) => {
+        this.products = response.content;
+        this.totalPages = response.totalPages;
+        this.totalElements = response.totalElements;
+        this.pageSize = response.pageSize;
 
-   // Función para obtener los productos
-   getAllProductsPaginated(page: number, size: number): void {
-    this.productService.getAllProductsPaginated(page, size).subscribe(response => {
-      this.products = response.content;
-      this.totalPages = response.totalPages;
-      this.totalElements = response.totalElements;
-      this.pageSize = response.pageSize;
-
-      // Crear el array de páginas a mostrar
-      this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
+        // Crear el array de páginas a mostrar
+        this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
+      }, error: (err) => {
+        this.toastrService.error('Error, could not retrieve the product list  ' + err.error, 'Error')
+      }
     });
   }
 
@@ -108,15 +110,13 @@ export class ShowProductDetailsComponent implements OnInit{
   }
 
   public viewImages(product: Product) {
-    
     if (!product.productImages || product.productImages.length === 0) {
       this.toastrService.warning('No images available for this product', 'Warning');
       return;
     }
   
     // Construir la URL completa de las imágenes
-    this.selectedImages = product.productImages.map(img => `data:${img.type};base64,${img.picByte}`);
-  
+    this.selectedImages = product.productImages.map(img => `data:${img.type};base64,${img.picByte}`); 
     this.showImageModal = true;
   }
   
@@ -189,19 +189,24 @@ export class ShowProductDetailsComponent implements OnInit{
     });
   }
 
-  searchProducts(): void {
+  searchProducts(searchKey: string): void {
+    this.searchKey = searchKey;
     if (this.searchKey.trim() === '') {
       this.getAllProductsPaginated(this.currentPage, this.pageSize);
     } else {
       this.productService.searchProducts(this.searchKey, this.currentPage, this.pageSize)
-        .subscribe(response => {
-          this.products = response.content;
-          this.totalPages = response.totalPages;
-          this.totalElements = response.totalElements;
-          this.pageSize = response.pageSize;
+        .subscribe({
+          next: (response) => {
+            this.products = response.content;
+            this.totalPages = response.totalPages;
+            this.totalElements = response.totalElements;
+            this.pageSize = response.pageSize;
 
-          // Crear el array de páginas a mostrar
-          this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
+            // Crear el array de páginas a mostrar
+            this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
+          }, error: (err) => {
+            this.toastrService.error('An unexpected error occurred: ' + err.error, 'Error')
+          }
         });
     }
   }

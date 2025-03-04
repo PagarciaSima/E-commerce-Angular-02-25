@@ -5,19 +5,10 @@
     </div>
 
     <!-- Buscador -->
-    <div class="mb-4 mt-4">
-      <div class="col-12 d-flex align-items-center justify-content-center">
-          <input 
-              type="text" 
-              class="form-control search w-25" 
-              placeholder="Search products by product name ..." 
-              [(ngModel)]="searchKey" 
-              (ngModelChange)="searchProducts()"
-              name="searchKey"
-          >    
-          <i class="fa-solid fa-magnifying-glass fa-lg ms-2"></i>            
-      </div>
-    </div>
+    <app-search-bar 
+      [placeholder]="'Search by product name...'" 
+      (search)="searchProducts($event)">
+    </app-search-bar>
 
     <!-- Spinner de carga -->
     <div *ngIf="isGeneratingFile" class="text-center mb-3 mt-5">
@@ -112,7 +103,7 @@
     </div>
   
     <ng-template #noProducts>
-      <p class="text-center text-danger">No products available.</p>
+      <p class="text-center alert alert-warning"><i class="fa-solid fa-triangle-exclamation me-2"></i>No products available.</p>
     </ng-template>
     </div>
 

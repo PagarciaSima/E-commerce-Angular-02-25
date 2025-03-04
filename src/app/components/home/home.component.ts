@@ -12,16 +12,17 @@ import { ProductService } from 'src/app/services/product.service';
 export class HomeComponent implements OnInit{
 
   products: Product[] = [];
-  currentPage: number = 0;  // Página actual
-  totalPages: number = 0;   // Total de páginas
-  totalElements: number = 0; // Total de elementos (productos)
-  pageSize: number = 8;     // Tamaño de página
-  pages: number[] = [];      // Array de números de página para el paginador
+  currentPage: number = 0;  
+  totalPages: number = 0;   
+  totalElements: number = 0; 
+  pageSize: number = 8;     
+  pages: number[] = [];     
   searchKey: string = ''; 
 
   constructor(
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private toastrService: ToastrService
   ) {
     
   }
@@ -30,20 +31,22 @@ export class HomeComponent implements OnInit{
     this.getAllProductsPaginated(this.currentPage, this.pageSize);
   }
 
-   // Función para obtener los productos
-   getAllProductsPaginated(page: number, size: number): void {
-    this.productService.getAllProductsPaginated(page, size).subscribe(response => {
-      this.products = response.content;
-      this.totalPages = response.totalPages;
-      this.totalElements = response.totalElements;
-      this.pageSize = response.pageSize;
+  getAllProductsPaginated(page: number, size: number): void {
+    this.productService.getAllProductsPaginated(page, size).subscribe({
+      next: (response) => {
+        this.products = response.content;
+        this.totalPages = response.totalPages;
+        this.totalElements = response.totalElements;
+        this.pageSize = response.pageSize;
 
-      // Crear el array de páginas a mostrar
-      this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
+        // Crear el array de páginas a mostrar
+        this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
+      }, error: (err) => {
+        this.toastrService.error('Error, could not retrieve the product list  ' + err.error, 'Error')
+      }
     });
   }
 
-  // Cambiar la página
   changePage(page: number): void {
     if (page >= 0 && page < this.totalPages) {
       this.currentPage = page;
@@ -69,19 +72,24 @@ export class HomeComponent implements OnInit{
     this.router.navigate([`/productViewDetails/${productId}`]); 
   }
 
-  searchProducts(): void {
+  searchProducts(searchKey: string): void {
+    this.searchKey = searchKey;
     if (this.searchKey.trim() === '') {
       this.getAllProductsPaginated(this.currentPage, this.pageSize);
     } else {
       this.productService.searchProducts(this.searchKey, this.currentPage, this.pageSize)
-        .subscribe(response => {
-          this.products = response.content;
-          this.totalPages = response.totalPages;
-          this.totalElements = response.totalElements;
-          this.pageSize = response.pageSize;
-
-          // Crear el array de páginas a mostrar
-          this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
+        .subscribe({
+          next: (response) => {
+            this.products = response.content;
+            this.totalPages = response.totalPages;
+            this.totalElements = response.totalElements;
+            this.pageSize = response.pageSize;
+  
+            // Crear el array de páginas a mostrar
+            this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
+          }, error: (err) => {
+            this.toastrService.error('An unexpected error occurred: ' + err.error, 'Error')
+          }
         });
     }
   }

@@ -23,6 +23,7 @@ import { ProductViewDetailsComponent } from './components/product-view-details/p
 import { BuyProductComponent } from './components/buy-product/buy-product.component';
 import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 import { CartComponent } from './components/cart/cart.component';
+import { SearchBarComponent } from './components/shared/search-bar/search-bar.component';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import { CartComponent } from './components/cart/cart.component';
     ProductViewDetailsComponent,
     BuyProductComponent,
     OrderConfirmationComponent,
-    CartComponent
+    CartComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
