@@ -6,7 +6,7 @@
 }
 
 .card {
-    height: 650px;
+    height: 750px;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 

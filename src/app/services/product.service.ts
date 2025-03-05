@@ -94,4 +94,12 @@ export class ProductService {
     
     return this.httpClient.get<any>(`${this.apiURL}/cart/cartDetails/paginated`, { params });
   }
+
+  public clearCart(): Observable<void> {
+    return this.httpClient.delete<void>(`${this.apiURL}/cart/clearCart`);
+  }
+
+  public deleteCartById(cartId: number): Observable<void> {
+    return this.httpClient.delete<void>(`${this.apiURL}/cart/deleteCartItem/${cartId}`);
+  }
 }

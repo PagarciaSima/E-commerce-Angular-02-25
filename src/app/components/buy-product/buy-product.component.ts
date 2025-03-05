@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { switchMap } from 'rxjs';
 import { OrderDetailsModel } from 'src/app/interfaces/order-details-model';
 import { Product } from 'src/app/interfaces/product';  // Importar el modelo de producto
 import { ProductService } from 'src/app/services/product.service';
@@ -35,7 +36,7 @@ export class BuyProductComponent implements OnInit {
     // Obtener los datos del resolver
     this.activatedRoute.data.subscribe((data) => {
       if (data['productDetails']) {
-        this.productDetails = this.groupProducts(data['productDetails']);
+        this.productDetails = data['productDetails']; 
       }
     });
 
@@ -49,40 +50,22 @@ export class BuyProductComponent implements OnInit {
     );
   }
 
-  private groupProducts(products: Product[]): Product[] {
-    const productMap = new Map<number, Product>();
-    this.orderDetails.orderProductQuantityList = []; // Limpiamos la lista antes de agregar
-  
-    products.forEach(product => {
-      if (productMap.has(product.productId!)) {
-        // Si el producto ya existe, solo incrementamos la cantidad en orderProductQuantityList
-        const productQuantity = this.orderDetails.orderProductQuantityList.find(
-          (pq) => pq.productId === product.productId!
-        );
-        if (productQuantity) {
-          productQuantity.quantity++;
-        }
-      } else {
-        // Si el producto no existe, lo añadimos al mapa y creamos la cantidad en orderProductQuantityList
-        productMap.set(product.productId!, product);
-        this.orderDetails.orderProductQuantityList.push({
-          productId: product.productId!,
-          quantity: 1
-        });
-      }
-    });
-  
-    // Devolvemos la lista de productos únicos
-    return Array.from(productMap.values());
-  }
-  
-
   placeOrder(orderForm: NgForm) {
-    this.productService.placeOrder(this.orderDetails).subscribe({
-      next: (data) => {
+    this.productService.placeOrder(this.orderDetails).pipe(
+      switchMap(() => {
+        console.log('Order placed successfully, now clearing the cart.');
+        
+        // Vaciar el carrito después de crear el pedido
+        return this.productService.clearCart();
+      })
+    ).subscribe({
+      next: () => {
+        console.log('Cart cleared successfully.');
         orderForm.reset();
         this.router.navigate(['/orderConfirm']);
-      }, error: (err) => {
+      },
+      error: (err) => {
+        console.error('Error occurred:', err);
         this.toastrService.error('Error while creating the order', 'Error');
       }
     });

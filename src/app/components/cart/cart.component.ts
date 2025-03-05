@@ -97,7 +97,17 @@ export class CartComponent implements OnInit{
         id: 0
       }
     });    
+  }
 
+  delete(id: number) {
+    this.productService.deleteCartById(id).subscribe({
+      next: () => {
+        this.toastrService.success('Product removed from the cart', 'Success');
+        this.getCartDetailsPaginated(this.currentPage, this.pageSize);
+      }, error: (err) => {
+        this.toastrService.error('An unexpected error occurred: ' + err.error, 'Error')
+      }
+    });
   }
   
 }

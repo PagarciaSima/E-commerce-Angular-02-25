@@ -22,6 +22,7 @@
                 <th><div class="th"><span>Description</span></div></th>
                 <th><div class="th">Price</div></th>
                 <th><div class="th">Discounted Price</div></th>
+                <th><div class="th">Action</div></th>
               </tr>
             </thead>
             <tbody>
@@ -37,6 +38,9 @@
                         <ng-template #noDiscount>
                           <span class="badge bg-warning text-dark">This product has no discount</span>
                         </ng-template>
+                    </td>
+                    <td>
+                      <a (click)="delete(cartItem.cartId!)"><i class="ms-2 fa-solid fa-trash me-2 text-danger cursor-pointer"></i></a>
                     </td>
             </tbody>
           </table>        
