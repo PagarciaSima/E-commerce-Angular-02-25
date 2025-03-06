@@ -24,6 +24,7 @@ import { OrderConfirmationComponent } from './components/order-confirmation/orde
 import { CartComponent } from './components/cart/cart.component';
 import { SearchBarComponent } from './components/shared/search-bar/search-bar.component';
 import { FooterComponent } from './components/shared/footer/footer.component';
+import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { FooterComponent } from './components/shared/footer/footer.component';
     BuyProductComponent,
     OrderConfirmationComponent,
     CartComponent,
-    SearchBarComponent
+    SearchBarComponent,
+    MyOrdersComponent
   ],
   imports: [
     BrowserModule,

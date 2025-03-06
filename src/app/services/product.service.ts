@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment.development';
 import { Product } from '../interfaces/product';
 import { OrderDetailsModel } from '../interfaces/order-details-model';
 import { Cart } from '../interfaces/cart';
+import { MyOrderDetails } from '../interfaces/my-order-details';
 
 @Injectable({
   providedIn: 'root'
@@ -57,7 +58,11 @@ export class ProductService {
   }
 
   public placeOrder(orderDetails: OrderDetailsModel): Observable<void> {
-    return this.httpClient.post<void>(`${this.apiURL}/placeOrder`, orderDetails);
+    return this.httpClient.post<void>(`${this.apiURL}/order/placeOrder`, orderDetails);
+  }
+
+  public getMyOrders(): Observable<MyOrderDetails []> {
+    return this.httpClient.get<MyOrderDetails []>(`${this.apiURL}/order/getOrderDetails`);
   }
 
   // Método para buscar productos
