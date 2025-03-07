@@ -65,6 +65,23 @@ export class ProductService {
     return this.httpClient.get<MyOrderDetails []>(`${this.apiURL}/order/getOrderDetails`);
   }
 
+  public getMyOrdersPaginated(page: number, size: number): Observable<any> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+    
+    return this.httpClient.get<any>(`${this.apiURL}/order/getOrderDetailsPaginated`, { params });
+  }
+
+  public searchMyOrders(searchTerm: string, page: number, size: number): Observable<any> {
+    const params = new HttpParams()
+      .set('searchKey', searchTerm)  
+      .set('page', page.toString())
+      .set('size', size.toString());
+    
+    return this.httpClient.get<any>(`${this.apiURL}/order/getOrderDetailsPaginated`, { params });
+  }
+
   // Método para buscar productos
   public searchProducts(searchTerm: string, page: number, size: number): Observable<any> {
     const params = new HttpParams()
