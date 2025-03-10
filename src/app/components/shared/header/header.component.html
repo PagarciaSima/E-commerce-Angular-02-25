@@ -20,6 +20,10 @@
             <a class="nav-link active" aria-current="page" routerLink="/myOrders"><i class="fa-solid fa-rectangle-list me-2"></i>My Orders</a>
           </li>
 
+          <li *ngIf="isAdmin() && isLoggedIn()" class="nav-item ms-3">
+            <a class="nav-link active" aria-current="page" routerLink="/orders"><i class="fa-solid fa-rectangle-list me-2"></i>Orders</a>
+          </li>
+
           <li *ngIf="isAdmin()" class="nav-item ms-3">
             <a class="nav-link active" aria-current="page" routerLink="/addNewProduct">
               <i class="fa-solid fa-plus me-2"></i>Add New Product

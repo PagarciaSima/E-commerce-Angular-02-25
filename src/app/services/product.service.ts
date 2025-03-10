@@ -70,7 +70,7 @@ export class ProductService {
       .set('page', page.toString())
       .set('size', size.toString());
     
-    return this.httpClient.get<any>(`${this.apiURL}/order/getOrderDetailsPaginated`, { params });
+    return this.httpClient.get<any>(`${this.apiURL}/order/getMyOrderDetailsPaginated`, { params });
   }
 
   public searchMyOrders(searchTerm: string, page: number, size: number): Observable<any> {
@@ -79,7 +79,24 @@ export class ProductService {
       .set('page', page.toString())
       .set('size', size.toString());
     
-    return this.httpClient.get<any>(`${this.apiURL}/order/getOrderDetailsPaginated`, { params });
+    return this.httpClient.get<any>(`${this.apiURL}/order/getMyOrderDetailsPaginated`, { params });
+  }
+
+  public getAllOrdersPaginated(page: number, size: number): Observable<any> {
+    const params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString());
+    
+    return this.httpClient.get<any>(`${this.apiURL}/order/getAllOrderDetailsPaginated`, { params });
+  }
+
+  public searchAllOrders(searchTerm: string, page: number, size: number): Observable<any> {
+    const params = new HttpParams()
+      .set('searchKey', searchTerm)  
+      .set('page', page.toString())
+      .set('size', size.toString());
+    
+    return this.httpClient.get<any>(`${this.apiURL}/order/getAllOrderDetailsPaginated`, { params });
   }
 
   // Método para buscar productos
