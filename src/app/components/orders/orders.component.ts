@@ -26,7 +26,7 @@ export class OrdersComponent {
   }
 
   ngOnInit(): void {
-    this.getAllOrdersPaginated(this.currentPage, this.pageSize)
+    this.getAllOrdersPaginated(this.currentPage, this.pageSize);
   }
 
   getAllOrdersPaginated(page: number, size: number) {
@@ -86,5 +86,18 @@ export class OrdersComponent {
           }
         });
     }
+  }
+
+  markAsDelivered(id: number) {
+    const newStatus = "Delivered";
+    this.productService.markOrderAsDelivered(id, newStatus).subscribe({
+        next: (response) => {
+          this.toastrService.success(response.message, 'Success');
+          this.getAllOrdersPaginated(this.currentPage, this.pageSize);
+        },
+        error: (err) => {
+            this.toastrService.error('An unexpected error occurred: ' + err.error?.message || err.message, 'Error');
+        }
+    });
   }
 }

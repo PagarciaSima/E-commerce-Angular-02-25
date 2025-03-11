@@ -20,7 +20,9 @@
                             <th><div><i class="fa-solid fa-map-location-dot me-2"></i><span>Address</span></div></th>
                             <th><div><i class="fa-solid fa-phone me-2"></i><span>Contact No</span></div></th>
                             <th><div><i class="fa-solid fa-arrow-up-1-9 me-2"></i><span>Amount</span></div></th>
-                            <th><div><i class="fa-solid fa-check me-2"></i><span>Status</span></div></th>
+                            <th><div><i class="fa-brands fa-files-pinwheel me-2"></i><span>Status</span></div></th>
+                            <th><div><i class="fa-solid fa-gear me-2"></i><span>Actions</span></div></th>
+
                         </tr>
                     </thead>
                     <tbody>
@@ -30,7 +32,22 @@
                             <td>{{ orderDetail.orderFullOrder }}</td>
                             <td>{{ orderDetail.orderContactNumber }}</td>
                             <td>{{ orderDetail.orderAmount }}</td>
-                            <td>{{ orderDetail.orderStatus }}</td>
+                            <td>
+                                <span class="badge text-black" [ngClass]="{'bg-warning': orderDetail.orderStatus === 'Placed',
+                                  'bg-success text-white': orderDetail.orderStatus === 'Delivered'}"
+                                >
+                                  {{ orderDetail.orderStatus }}
+                                </span>
+                              
+                                <i *ngIf="orderDetail.orderStatus === 'Delivered'" class="fa-solid fa-circle-check ms-2 fa-lg text-success"></i>
+                            </td>
+                            <td>
+                                <a (click)="markAsDelivered(orderDetail.orderId!)" class="btn btn-success">
+                                    <i class="fa-solid fa-truck me-2"></i>
+                                    Mark as delivered
+                                </a>
+                            </td>
+
                         </tr>
                     </tbody>
                 </table>

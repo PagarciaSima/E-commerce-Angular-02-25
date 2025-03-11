@@ -99,6 +99,11 @@ export class ProductService {
     return this.httpClient.get<any>(`${this.apiURL}/order/getAllOrderDetailsPaginated`, { params });
   }
 
+  public markOrderAsDelivered(orderId: number, newStatus: string): Observable<any> {
+    const body = { status: newStatus };
+    return this.httpClient.patch<any>(`${this.apiURL}/order/markOrderAsDelivered/${orderId}`, body);
+  }
+  
   // Método para buscar productos
   public searchProducts(searchTerm: string, page: number, size: number): Observable<any> {
     const params = new HttpParams()
@@ -141,4 +146,6 @@ export class ProductService {
   public deleteCartById(cartId: number): Observable<void> {
     return this.httpClient.delete<void>(`${this.apiURL}/cart/deleteCartItem/${cartId}`);
   }
+
+  
 }
