@@ -1,15 +1,27 @@
 <div class="container-fluid content px-5">
     <div class="content mt-5 px-5 py-3 text-success bg-white rounded fade-in">
         <div class="text-center">
-            <h2><i class="fa-solid fa-rectangle-list me-2 my-3 me-3 text-secondary"></i>Orders</h2>
+            <h2>
+                <i class="fa-solid fa-rectangle-list me-2 my-3 me-3 text-secondary"></i>
+                {{ orderStatus === 'all' ? 'Orders' : orderStatus + ' orders' }}
+            </h2>
         </div>
 
+        <div class="mb-5 d-flex justify-content-center align-content-center" role="group" aria-label="Filter Orders">
+            <button type="button" class="btn btn-outline-secondary me-2" (click)="filterOrders('all')">All orders</button>
+            <button type="button" class="btn btn-outline-warning text-black me-2" (click)="filterOrders('Placed')">Placed orders</button>
+            <button type="button" class="btn btn-outline-success" (click)="filterOrders('Delivered')">Delivered orders</button>
+        </div>
+        
         <div *ngIf="myOrderDetails.length > 0; else noOrders">
             <!-- Buscador -->
             <app-search-bar 
                 [placeholder]="'Search by name...'" 
                 (search)="searchOrderDetails($event)">
             </app-search-bar>
+
+           
+
             <div class="table-responsive">
 
                 <table class="table  table-striped table-hover">
@@ -42,9 +54,13 @@
                                 <i *ngIf="orderDetail.orderStatus === 'Delivered'" class="fa-solid fa-circle-check ms-2 fa-lg text-success"></i>
                             </td>
                             <td>
-                                <a (click)="markAsDelivered(orderDetail.orderId!)" class="btn btn-success">
+                                <a *ngIf="orderDetail.orderStatus === 'Placed'" (click)="changeStatus(orderDetail.orderId!, 'Delivered')" class="btn btn-success">
                                     <i class="fa-solid fa-truck me-2"></i>
                                     Mark as delivered
+                                </a>
+                                <a *ngIf="orderDetail.orderStatus === 'Delivered'" style="min-width: 188.5px" (click)="changeStatus(orderDetail.orderId!, 'Placed')" class="btn btn-warning">
+                                    <i class="fa-solid fa-truck me-2"></i>
+                                    Mark as Placed
                                 </a>
                             </td>
 

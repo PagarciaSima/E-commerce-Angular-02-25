@@ -16,7 +16,8 @@ export class OrdersComponent {
   totalElements: number = 0; 
   pageSize: number = 8;     
   pages: number[] = [];     
-  searchKey: string = ''; 
+  searchKey: string = '';
+  orderStatus: string = 'all';
 
   constructor(
     private productService: ProductService,
@@ -26,11 +27,11 @@ export class OrdersComponent {
   }
 
   ngOnInit(): void {
-    this.getAllOrdersPaginated(this.currentPage, this.pageSize);
+    this.getAllOrdersPaginated(this.currentPage, this.pageSize, this.orderStatus);
   }
 
-  getAllOrdersPaginated(page: number, size: number) {
-    this.productService.getAllOrdersPaginated(this.currentPage, this.pageSize).subscribe({
+  getAllOrdersPaginated(page: number, size: number, orderStatus: string) {
+    this.productService.getAllOrdersPaginated(this.currentPage, this.pageSize, orderStatus).subscribe({
       next: (response) => {
         this.myOrderDetails = response.content;
         this.totalPages = response.totalPages;
@@ -48,7 +49,7 @@ export class OrdersComponent {
   changePage(page: number): void {
     if (page >= 0 && page < this.totalPages) {
       this.currentPage = page;
-      this.getAllOrdersPaginated(page, this.pageSize);
+      this.getAllOrdersPaginated(page, this.pageSize, this.orderStatus);
     }
   }
 
@@ -69,7 +70,7 @@ export class OrdersComponent {
   searchOrderDetails(searchKey: string): void {
     this.searchKey = searchKey;
     if (this.searchKey.trim() === '') {
-      this.getAllOrdersPaginated(this.currentPage, this.pageSize);
+      this.getAllOrdersPaginated(this.currentPage, this.pageSize, this.orderStatus);
     } else {
       this.productService.searchAllOrders(this.searchKey, this.currentPage, this.pageSize)
         .subscribe({
@@ -88,16 +89,21 @@ export class OrdersComponent {
     }
   }
 
-  markAsDelivered(id: number) {
-    const newStatus = "Delivered";
-    this.productService.markOrderAsDelivered(id, newStatus).subscribe({
+  changeStatus(id: number, newStatus: string) {
+    
+    this.productService.changeStatus(id, newStatus).subscribe({
         next: (response) => {
           this.toastrService.success(response.message, 'Success');
-          this.getAllOrdersPaginated(this.currentPage, this.pageSize);
+          this.getAllOrdersPaginated(this.currentPage, this.pageSize, this.orderStatus);
         },
         error: (err) => {
             this.toastrService.error('An unexpected error occurred: ' + err.error?.message || err.message, 'Error');
         }
     });
+  }
+
+  filterOrders(status: string) {
+    this.orderStatus = status;
+    this.getAllOrdersPaginated(this.currentPage, this.pageSize, this.orderStatus);
   }
 }

@@ -82,12 +82,12 @@ export class ProductService {
     return this.httpClient.get<any>(`${this.apiURL}/order/getMyOrderDetailsPaginated`, { params });
   }
 
-  public getAllOrdersPaginated(page: number, size: number): Observable<any> {
+  public getAllOrdersPaginated(page: number, size: number , status: string): Observable<any> {
     const params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString());
     
-    return this.httpClient.get<any>(`${this.apiURL}/order/getAllOrderDetailsPaginated`, { params });
+    return this.httpClient.get<any>(`${this.apiURL}/order/getAllOrderDetailsPaginated/${status}`, { params });
   }
 
   public searchAllOrders(searchTerm: string, page: number, size: number): Observable<any> {
@@ -99,7 +99,7 @@ export class ProductService {
     return this.httpClient.get<any>(`${this.apiURL}/order/getAllOrderDetailsPaginated`, { params });
   }
 
-  public markOrderAsDelivered(orderId: number, newStatus: string): Observable<any> {
+  public changeStatus(orderId: number, newStatus: string): Observable<any> {
     const body = { status: newStatus };
     return this.httpClient.patch<any>(`${this.apiURL}/order/markOrderAsDelivered/${orderId}`, body);
   }
