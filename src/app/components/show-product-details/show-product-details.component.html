@@ -10,10 +10,8 @@
       (search)="searchProducts($event)">
     </app-search-bar>
 
-    <!-- Spinner de carga -->
-    <div *ngIf="isGeneratingFile" class="text-center mb-3 mt-5">
-      <i class="fas fa-spinner fa-spin fa-2x me-3"></i><span class="h4">Procesing file</span>
-    </div>
+    <app-spinner [show]="isGeneratingFile" text="Proccessing file..."></app-spinner>
+
 
     <div class="d-flex flex-wrap justify-content-center mb-3 mt-5">
       <a (click)="generatePdf()" 

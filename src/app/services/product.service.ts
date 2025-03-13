@@ -57,8 +57,8 @@ export class ProductService {
     return this.httpClient.get<Product[]>(url);
   }
 
-  public placeOrder(orderDetails: OrderDetailsModel): Observable<void> {
-    return this.httpClient.post<void>(`${this.apiURL}/order/placeOrder`, orderDetails);
+  public placeOrder(orderDetails: OrderDetailsModel): Observable<MyOrderDetails[]> {
+    return this.httpClient.post<MyOrderDetails[]>(`${this.apiURL}/order/placeOrder`, orderDetails);
   }
 
   public getMyOrders(): Observable<MyOrderDetails []> {

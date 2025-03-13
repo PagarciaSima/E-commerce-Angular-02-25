@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { switchMap } from 'rxjs';
+import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
 import { OrderDetailsModel } from 'src/app/interfaces/order-details-model';
 import { Product } from 'src/app/interfaces/product';  // Importar el modelo de producto
+import { PaymentService } from 'src/app/services/payment.service';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -22,13 +23,14 @@ export class BuyProductComponent implements OnInit {
     orderProductQuantityList: []
   };
 
+  isGeneratingFile: boolean = false;
+
   productDetails: Product[] = [];  // Lista de productos obtenidos del resolver
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private productService: ProductService,
     private toastrService: ToastrService,
-    private router: Router
+    private paymentService: PaymentService
   
   ) { }
 
@@ -51,24 +53,48 @@ export class BuyProductComponent implements OnInit {
   }
 
   placeOrder(orderForm: NgForm) {
-    this.productService.placeOrder(this.orderDetails).pipe(
-      switchMap(() => {
-        console.log('Order placed successfully, now clearing the cart.');
-        
-        // Vaciar el carrito después de crear el pedido
-        return this.productService.clearCart();
-      })
-    ).subscribe({
-      next: () => {
-        console.log('Cart cleared successfully.');
-        orderForm.reset();
-        this.router.navigate(['/orderConfirm']);
+    this.isGeneratingFile = true;
+    localStorage.setItem('pendingOrder', JSON.stringify(this.orderDetails));
+    this.processPayment().subscribe({
+      next: (paymentUrl: string) => {
+        this.isGeneratingFile = false;
+
+        if (paymentUrl) {
+          orderForm.reset();
+          console.log('Cart cleared successfully.');
+          window.location.href = paymentUrl; // Redirigir al usuario a PayPal
+        } else {
+          this.toastrService.error('Error while processing the payment', 'Error');
+        }
       },
       error: (err) => {
+        this.isGeneratingFile = false;
         console.error('Error occurred:', err);
-        this.toastrService.error('Error while creating the order', 'Error');
+        this.toastrService.error('Error while processing the payment', 'Error');
       }
     });
+  }
+  
+  private processPayment(): Observable<string> {
+    const dataPayment = {
+      method: 'PAYPAL',
+      amount: this.getCalculatedGrandTotal().toString(),
+      currency: 'EUR',
+      description: `Payment processed`
+    };
+  
+    return this.paymentService.getURLPaypalPayment(dataPayment).pipe(
+      switchMap(paymentResponse => {
+        if (paymentResponse?.url) {
+          return of(paymentResponse.url.toString());
+        }
+        return throwError(() => new Error('Invalid payment response'));
+      }),
+      catchError(() => {
+        this.toastrService.error('The payment could not be processed.', 'Payment Error');
+        return of('');
+      })
+    );
   }
 
   getQuantityForProduct(productId: number): number {

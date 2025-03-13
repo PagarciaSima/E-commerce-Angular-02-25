@@ -26,6 +26,7 @@ import { SearchBarComponent } from './components/shared/search-bar/search-bar.co
 import { FooterComponent } from './components/shared/footer/footer.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { SpinnerComponent } from './components/shared/spinner/spinner.component';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { OrdersComponent } from './components/orders/orders.component';
     CartComponent,
     SearchBarComponent,
     MyOrdersComponent,
-    OrdersComponent
+    OrdersComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,

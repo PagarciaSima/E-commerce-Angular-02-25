@@ -1,5 +1,7 @@
 <div class="container mt-5">
     <div class="card pe-4 fade-in">
+      <app-spinner [show]="isGeneratingFile" text="Proccessing payment"></app-spinner>
+
       <div class="row">
         <div class="col-lg-6">
           <form class="row p-4" #orderForm="ngForm" (ngSubmit)="placeOrder(orderForm)">

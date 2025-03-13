@@ -50,7 +50,7 @@ const routes: Routes = [
     data: { roles: ['UserRole'] },
   },
   {
-    path: 'orderConfirm',
+    path: 'payment/success',
     component: OrderConfirmationComponent,
     canActivate: [authGuard],
     data: { roles: ['UserRole'] }
