@@ -27,6 +27,7 @@ import { FooterComponent } from './components/shared/footer/footer.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { SpinnerComponent } from './components/shared/spinner/spinner.component';
+import { OrderErrorComponent } from './components/order-error/order-error.component';
 
 
 @NgModule({
@@ -49,7 +50,8 @@ import { SpinnerComponent } from './components/shared/spinner/spinner.component'
     SearchBarComponent,
     MyOrdersComponent,
     OrdersComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    OrderErrorComponent
   ],
   imports: [
     BrowserModule,
