@@ -1,6 +1,37 @@
 <div class="container-fluid content px-5">
-    <div class="content mt-5 px-5 py-3 text-success bg-white rounded fade-in">
-        <div class="text-center"><h2><i class="fa-solid fa-user-tie me-3 text-secondary"></i>Admin Dashboard</h2></div>
-    </div>
+    <div class="content mt-5 px-5 py-3 rounded fade-in">
+        <div class="text-md-center top-div mb-5">
+            <h2 class="text-success">
+                Admin Dashboard
+            </h2>
+        </div>
+        
+        <div class="row mb-5">
+            <div *ngIf="salesData" class="col-6">
+                <h2 class="text-center">Sales per month (€)</h2>
+                <canvas baseChart [data]="chartDataSalesPerMonth" chartType="bar" [options]="chartOptions"></canvas>
+            </div>
 
+            <div *ngIf="ordersData"class="col-6" id="ordersChart">
+                <h2 class="text-center">Orders by status</h2>
+                <canvas baseChart
+                    [data]="chartDataOrdersByStatus"
+                    [options]="chartOptions"
+                    [type]="'doughnut'">
+                </canvas>
+            </div>
+           
+        </div>
+
+        <div class="row mt-5">
+            <div *ngIf="topSelling"class="col-8 px-5" id="ordersChart">
+                <h2 class="text-center">Top Selling Products</h2>
+                <canvas baseChart 
+                    [data]="chartDataTopSelling" 
+                    [options]="chartOptions" 
+                    chartType="bar">
+                </canvas>
+            </div>
+        </div>
+    </div>
 </div>

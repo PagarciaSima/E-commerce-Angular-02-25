@@ -17,11 +17,13 @@ import { RegisterComponent } from './components/register/register.component';
 import { CartComponent } from './components/cart/cart.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { OrdersComponent } from './components/orders/orders.component';
+import { dashboardUserResolver } from './resolvers/dashboard-user.resolver';
+import { dashboardAdminResolver } from './resolvers/dashboard-admin.resolver';
 
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [authGuard] },
-  { path: 'admin', component: AdminComponent, canActivate: [authGuard], data: {roles: ['AdminRole']} },
-  { path: 'user', component: UserComponent, canActivate: [authGuard], data: {roles: ['UserRole']} },
+  { path: 'admin', component: AdminComponent, canActivate: [authGuard], data: {roles: ['AdminRole']}, resolve: { dashboardData: dashboardAdminResolver } },
+  { path: 'user', component: UserComponent, canActivate: [authGuard], data: {roles: ['UserRole']}, resolve: { dashboardData: dashboardUserResolver } },
   { path: 'login', component: LoginComponent },
   { path: 'forbidden', component: ForbiddenComponent },
   { path: 'addNewProduct', component: SaveProductComponent, canActivate: [authGuard], data: { roles: ['AdminRole'] } },
@@ -59,7 +61,8 @@ const routes: Routes = [
     path: 'myOrders',
     component: MyOrdersComponent,
     canActivate: [authGuard],
-    data: { roles: ['UserRole'] }
+    data: { roles: ['UserRole'] },
+    
   },
   {
     path: 'orders',

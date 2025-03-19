@@ -13,7 +13,6 @@ export const buyProductResolver: ResolveFn<Product[] | null> = (route, state) =>
   // Obtener parámetros de los query params
   const isSingleProductCheckout = route.queryParamMap.get('isSingleProductCheckout') === 'true';
   const productId = Number(route.queryParamMap.get('id'));
-  console.log("resolver")
 
   // Llamar al servicio para obtener los detalles del producto
   return productService.getProductDetails(isSingleProductCheckout, productId).pipe(

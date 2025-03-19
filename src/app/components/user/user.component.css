@@ -1,0 +1,7 @@
+#ordersChart {
+    padding: 0 300px;
+}
+
+#ordersChart canvas{
+    padding-top: 0.7em;
+}

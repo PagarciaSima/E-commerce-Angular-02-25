@@ -28,6 +28,7 @@ import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { SpinnerComponent } from './components/shared/spinner/spinner.component';
 import { OrderErrorComponent } from './components/order-error/order-error.component';
+import { NgChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -61,6 +62,7 @@ import { OrderErrorComponent } from './components/order-error/order-error.compon
     ToastrModule.forRoot(), 
     BrowserAnimationsModule,
     RouterModule,
+    NgChartsModule
     
   ],
   providers: [
