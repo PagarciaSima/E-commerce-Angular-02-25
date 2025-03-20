@@ -5,12 +5,15 @@ import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/interfaces/user';
 import { UserService } from 'src/app/services/user.service';
 
+/**
+ * Component for user registration.
+ */
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent {
 
   user: User = {
     userName: '',
@@ -27,9 +30,10 @@ export class RegisterComponent implements OnInit{
 
   }
 
-  ngOnInit(): void {
-  }
-
+  /**
+   * Handles user registration by submitting the registration form.
+   * @param registerForm The registration form data.
+   */
   register(registerForm: NgForm) {
     if (registerForm.valid) {
       this.userService.register(this.user).subscribe({

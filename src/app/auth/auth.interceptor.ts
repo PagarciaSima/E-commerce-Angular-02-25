@@ -6,6 +6,17 @@ import { Injectable } from "@angular/core";
 import { ToastrService } from "ngx-toastr";
 import {jwtDecode} from "jwt-decode";
 
+/**
+ * HTTP interceptor for handling authentication tokens and error responses.
+ * 
+ * - Attaches the JWT token to outgoing requests unless the "No-Auth" header is set.
+ * - Checks if the token is expired and redirects to the login page if necessary.
+ * - Handles HTTP errors, including 401 (Unauthorized) and 403 (Forbidden).
+ * 
+ * @export
+ * @class AuthInterceptor
+ * @implements {HttpInterceptor}
+ */
 @Injectable({
     providedIn: 'root', 
 })
@@ -17,6 +28,13 @@ export class AuthInterceptor implements HttpInterceptor {
         private toastrService: ToastrService
     ) { }
 
+    /**
+     * Intercepts HTTP requests to attach authentication tokens and handle errors.
+     * 
+     * @param {HttpRequest<any>} req The outgoing HTTP request.
+     * @param {HttpHandler} next The next handler in the request pipeline.
+     * @returns {Observable<HttpEvent<any>>} The modified request with authentication headers.
+     */
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         
         // No añadir token si la cabecera No-Auth está presente
@@ -61,6 +79,14 @@ export class AuthInterceptor implements HttpInterceptor {
         );
     }
 
+    /**
+     * Clones the HTTP request and adds the authorization token.
+     * 
+     * @private
+     * @param {HttpRequest<any>} request The original HTTP request.
+     * @param {string} token The JWT token.
+     * @returns {HttpRequest<any>} The cloned request with the Authorization header.
+     */
     private addToken(request: HttpRequest<any>, token: string) {
         return request.clone({
             setHeaders: {
@@ -69,7 +95,13 @@ export class AuthInterceptor implements HttpInterceptor {
         });
     }
 
-    // Función para comprobar si el token ha expirado
+    /**
+     * Checks if a given JWT token has expired.
+     * 
+     * @private
+     * @param {string} token The JWT token to check.
+     * @returns {boolean} `true` if the token has expired, otherwise `false`.
+     */
     private isTokenExpired(token: string): boolean {
         try {
             const decoded: any = jwtDecode(token);

@@ -5,15 +5,22 @@ import { ToastrService } from 'ngx-toastr';
 import { UserAuthService } from 'src/app/services/user-auth.service';
 import { UserService } from 'src/app/services/user.service';
 
+/**
+ * Component responsible for handling user login.
+ * It communicates with the authentication service and navigates users based on their roles.
+ */
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
   providers: []
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent {
 
+  /** Stores the user's password entered in the login form */
   userPassword: string = '';
+
+  /** Stores the username entered in the login form */
   userName: string = '';
   
   constructor(
@@ -25,10 +32,12 @@ export class LoginComponent implements OnInit{
 
   }
 
-  ngOnInit(): void {
-  }
   
-  
+  /**
+   * Handles user login by sending credentials to the backend and storing the authentication token.
+   * Redirects users based on their roles.
+   * @param loginForm Form containing user credentials.
+   */
   login(loginForm: NgForm) {
     this.userService.login(loginForm.value).subscribe({
       next: (response) => {

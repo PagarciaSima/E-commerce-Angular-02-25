@@ -6,8 +6,11 @@ import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
 import { OrderDetailsModel } from 'src/app/interfaces/order-details-model';
 import { Product } from 'src/app/interfaces/product';  // Importar el modelo de producto
 import { PaymentService } from 'src/app/services/payment.service';
-import { ProductService } from 'src/app/services/product.service';
 
+/**
+ * Component responsible for handling product purchases.
+ * Allows users to enter order details, modify quantities, and process payments via PayPal.
+ */
 @Component({
   selector: 'app-buy-product',
   templateUrl: './buy-product.component.html',
@@ -15,6 +18,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class BuyProductComponent implements OnInit {
 
+  /** Order details including user information and product quantities */
   orderDetails: OrderDetailsModel = {
     fullName: '',
     fullAddress: '',
@@ -23,10 +27,18 @@ export class BuyProductComponent implements OnInit {
     orderProductQuantityList: []
   };
 
+  /** Indicates whether the payment process is in progress */
   isGeneratingFile: boolean = false;
 
-  productDetails: Product[] = [];  // Lista de productos obtenidos del resolver
+  /** List of products obtained from the resolver */
+  productDetails: Product[] = [];  
 
+  /**
+   * Creates an instance of BuyProductComponent.
+   * @param {ActivatedRoute} activatedRoute - Provides access to route data.
+   * @param {ToastrService} toastrService - Service for displaying notifications.
+   * @param {PaymentService} paymentService - Handles payment processing.
+   */
   constructor(
     private activatedRoute: ActivatedRoute,
     private toastrService: ToastrService,
@@ -34,6 +46,10 @@ export class BuyProductComponent implements OnInit {
   
   ) { }
 
+  /**
+   * Lifecycle hook that runs on component initialization.
+   * Retrieves product data from the resolver and initializes order details.
+   */
   ngOnInit(): void {
     // Obtener los datos del resolver
     this.activatedRoute.data.subscribe((data) => {
@@ -52,6 +68,10 @@ export class BuyProductComponent implements OnInit {
     );
   }
 
+  /**
+   * Initiates the order placement process and redirects to PayPal if successful.
+   * @param {NgForm} orderForm - The form containing order details.
+   */
   placeOrder(orderForm: NgForm) {
     this.isGeneratingFile = true;
     localStorage.setItem('pendingOrder', JSON.stringify(this.orderDetails));
@@ -75,6 +95,11 @@ export class BuyProductComponent implements OnInit {
     });
   }
   
+  /**
+   * Handles payment processing and returns a PayPal URL.
+   * @private
+   * @returns {Observable<string>} The PayPal payment URL or an empty string in case of error.
+   */
   private processPayment(): Observable<string> {
     const dataPayment = {
       method: 'PAYPAL',
@@ -97,6 +122,11 @@ export class BuyProductComponent implements OnInit {
     );
   }
 
+  /**
+   * Retrieves the quantity for a specific product.
+   * @param {number} productId - The product ID.
+   * @returns {number} The selected quantity.
+   */
   getQuantityForProduct(productId: number): number {
     const filteredProduct = this.orderDetails.orderProductQuantityList.filter(
       (productQuantity) => productQuantity.productId === productId
@@ -104,6 +134,12 @@ export class BuyProductComponent implements OnInit {
     return filteredProduct[0].quantity;
   }
 
+   /**
+   * Calculates the total price for a specific product.
+   * @param {number} productId - The product ID.
+   * @param {number} productPrice - The price per unit.
+   * @returns {number} The calculated total.
+   */
   getCalculatedTotal(productId: number, productPrice: number): number {
     const filteredProduct = this.orderDetails.orderProductQuantityList.filter(
       (productQuantity) => productQuantity.productId === productId
@@ -111,12 +147,21 @@ export class BuyProductComponent implements OnInit {
     return filteredProduct[0].quantity * productPrice;
   }
 
+  /**
+   * Updates the selected quantity of a product.
+   * @param {number} quantity - The new quantity.
+   * @param {number} productId - The product ID.
+   */
   onQuantityChanged(quantity: number, productId: number) {
     this.orderDetails.orderProductQuantityList.filter(
       (orderProduct) => orderProduct.productId === productId
     )[0].quantity = quantity;
   }
 
+  /**
+   * Calculates the grand total for all selected products.
+   * @returns {number} The total order amount.
+   */
   getCalculatedGrandTotal(): number {
     let grandTotal = 0;
   

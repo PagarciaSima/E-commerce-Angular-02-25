@@ -4,6 +4,9 @@ import { ToastrService } from 'ngx-toastr';
 import { Cart } from 'src/app/interfaces/cart';
 import { ProductService } from 'src/app/services/product.service';
 
+/**
+ * Component for managing the shopping cart functionality.
+ */
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -11,14 +14,27 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class CartComponent implements OnInit{
 
+  /** List of cart items */
   cartDetails: Cart[] = [];
-  currentPage: number = 0; 
-  totalPages: number = 0;   
+  /** Current page for pagination */
+  currentPage: number = 0;
+  /** Total number of pages */
+  totalPages: number = 0;
+  /** Total number of elements in the cart */
   totalElements: number = 0;
-  pageSize: number = 8;     
-  pages: number[] = [];      
-  searchKey: string = ''; 
+  /** Number of items per page */
+  pageSize: number = 8;
+  /** List of available pages */
+  pages: number[] = [];
+  /** Search key for filtering cart items */
+  searchKey: string = '';
 
+  /**
+   * Constructor
+   * @param toastrService Toastr service for notifications
+   * @param productService Service for handling product-related API calls
+   * @param router Angular Router for navigation
+   */
   constructor(
     private toastrService: ToastrService,
     private productService: ProductService,
@@ -27,10 +43,17 @@ export class CartComponent implements OnInit{
     
   }
 
+  /**
+   * Initializes the component and loads the cart details.
+   */
   ngOnInit(): void {
     this.getCartDetailsPaginated(this.currentPage, this.pageSize);
   }
 
+  /**
+   * Changes the current page and fetches the corresponding cart details.
+   * @param page Page number to navigate to
+   */
   changePage(page: number): void {
     if (page >= 0 && page < this.totalPages) {
       this.currentPage = page;
@@ -38,6 +61,10 @@ export class CartComponent implements OnInit{
     }
   }
 
+   /**
+   * Retrieves the range of visible pages for pagination.
+   * @returns An array of page numbers to be displayed in the pagination controls
+   */
   getVisiblePages(): number[] {
     const range = 2; // Número de páginas a mostrar antes y después de la página actual
     const start = Math.max(0, this.currentPage - range);
@@ -52,6 +79,11 @@ export class CartComponent implements OnInit{
     return visiblePages;
   }  
 
+  /**
+   * Fetches cart details with pagination.
+   * @param page The current page
+   * @param size Number of items per page
+   */
   getCartDetailsPaginated(page: number, size: number): void {
     this.productService.getCartDetailsPaginated(page, size).subscribe({
       next: (response) => {
@@ -68,6 +100,10 @@ export class CartComponent implements OnInit{
     });
   }
   
+  /**
+   * Searches for cart items based on the given keyword.
+   * @param searchKey The search term used to filter cart items
+   */
   searchCartDetails(searchKey: string): void {
     this.searchKey = searchKey;
   
@@ -90,6 +126,9 @@ export class CartComponent implements OnInit{
     }
   }
 
+  /**
+   * Navigates to the checkout page.
+   */
   checkout() {
     this.router.navigate(['/buyProduct'], {
       queryParams: {
@@ -99,6 +138,10 @@ export class CartComponent implements OnInit{
     });    
   }
 
+   /**
+   * Deletes a product from the cart by its ID.
+   * @param id The ID of the cart item to be removed
+   */
   delete(id: number) {
     this.productService.deleteCartById(id).subscribe({
       next: () => {

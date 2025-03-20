@@ -8,6 +8,9 @@ import { Image } from 'src/app/interfaces/image';
 import { ImageServiceService } from 'src/app/services/image.service';
 import { ProductService } from 'src/app/services/product.service';
 
+/**
+ * Component for adding and editing products.
+ */
 @Component({
   selector: 'app-add-new-product',
   templateUrl: './save-product.component.html',
@@ -15,18 +18,36 @@ import { ProductService } from 'src/app/services/product.service';
   
 export class SaveProductComponent implements OnInit {
 
+  /**
+   * Reference to the image preview section in the template.
+   */
   @ViewChild('imagePreviewSection') imagePreviewSection!: ElementRef;
 
+  /**
+   * List of selected files for upload.
+   */
   selectedFiles: File[] = [];
-  imagePreviews: Image [] = []; // Inicialización correcta como array de objetos
+
+  /**
+   * List of image previews.
+   */
+  imagePreviews: Image [] = [];
+
+  /**
+   * Indicates whether the component is in edit mode.
+   */
   isEditMode: boolean = false;
 
+  /**
+   * Product object containing details for creation or update.
+   */
   product: Product = {
     productName: '',
     productDescription: '',
     productDiscountedPrice: 0,
     productActualPrice: 0,
   };
+
 
   constructor(
     private productService: ProductService,
@@ -44,6 +65,10 @@ export class SaveProductComponent implements OnInit {
     }
   }
 
+   /**
+   * Retrieves product details by ID.
+   * @param productId The ID of the product to fetch.
+   */
   getProduct(productId: number): void {
     this.productService.getProductById(productId).subscribe({
       next: (productData) => {
@@ -67,6 +92,10 @@ export class SaveProductComponent implements OnInit {
     });
   }
 
+  /**
+   * Handles the form submission for adding or updating a product.
+   * @param productForm The product form data.
+   */
   addProduct(productForm: NgForm) {
     if (this.product.productActualPrice < this.product.productDiscountedPrice) {
       this.toastrService.warning('Discounted price cannot be greater than actual price.', 'Warning');
@@ -82,6 +111,10 @@ export class SaveProductComponent implements OnInit {
     }
   }
 
+  /**
+   * Updates an existing product.
+   * @param formData The form data containing product details.
+   */
   private editProduct(formData: FormData) {
     this.productService.updateProduct(this.product.productId!, formData).subscribe({
       next: () => {
@@ -101,6 +134,11 @@ export class SaveProductComponent implements OnInit {
     });
   }
 
+  /**
+   * Creates a new product.
+   * @param formData The form data containing product details.
+   * @param productForm The product form data.
+   */
   private createProduct(formData: FormData, productForm: NgForm) {
     this.productService.addProduct(formData).subscribe({
       next: () => {
@@ -117,6 +155,10 @@ export class SaveProductComponent implements OnInit {
     });
   }
 
+  /**
+   * Prepares form data for submission.
+   * @returns FormData containing product details and images.
+   */
   private loadFormData() {
     const formData = new FormData();
     const productBlob = new Blob([JSON.stringify(this.product)], { type: 'application/json' });
@@ -135,10 +177,25 @@ export class SaveProductComponent implements OnInit {
     return formData;
   }
 
+  /**
+   * Handles the dragover event to allow file drop.
+   * 
+   * @param event - The DragEvent triggered when a file is dragged over the drop area.
+   * 
+   * This method prevents the default behavior to allow custom handling of the file drop.
+   */
   onDragOver(event: DragEvent): void {
     event.preventDefault();  // Previene el comportamiento por defecto de la acción de arrastrar
   }
 
+  /**
+   * Handles the drop event when a file is dropped.
+   * 
+   * @param event - The DragEvent triggered when a file is dropped.
+   * 
+   * This method prevents the default behavior (e.g., opening the file in the browser)
+   * and processes the dropped file by passing it to the `onFileSelected` method.
+   */
   onDrop(event: DragEvent): void {
     event.preventDefault();  // Previene el comportamiento por defecto (como abrir el archivo)
 
@@ -149,6 +206,10 @@ export class SaveProductComponent implements OnInit {
   }
 
  
+  /**
+   * Handles file selection and previews images.
+   * @param event The file input event.
+   */
   onFileSelected(event: Event) {
     const input = event.target as HTMLInputElement;
     if (!input.files) return;
@@ -186,7 +247,15 @@ export class SaveProductComponent implements OnInit {
     });
   }
   
-  
+  /**
+   * Removes an image from the preview list and, if in edit mode, deletes it from the server.
+   * 
+   * @param index - The index of the image to be removed.
+   * 
+   * If the application is in edit mode and the image has a valid ID (not 0), 
+   * it sends a request to delete the image from the server. 
+   * Regardless of edit mode, the image is also removed from `selectedFiles` and `imagePreviews`.
+   */
   removeFile(index: number) {
     if (this.isEditMode && this.imagePreviews[index].id !== 0) {
       this.imageService.deleteImage(this.imagePreviews[index].id).subscribe({
@@ -207,7 +276,10 @@ export class SaveProductComponent implements OnInit {
     this.imagePreviews.splice(index, 1);
   }
   
-  
+   /**
+   * Clears the product form.
+   * @param productForm The product form data.
+   */
   clearForm(productForm: NgForm) {
     productForm.resetForm();
     this.product = {

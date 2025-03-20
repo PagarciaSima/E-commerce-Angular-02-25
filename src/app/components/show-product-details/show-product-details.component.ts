@@ -10,6 +10,10 @@ import { saveAs } from 'file-saver'; // Importa file-saver
 import Swal from 'sweetalert2';
 import { finalize } from 'rxjs';
 
+/**
+ * Component for displaying a paginated list of products, allowing actions such as 
+ * deletion, editing, image preview, and exporting product data in different formats.
+ */
 @Component({
   selector: 'app-show-product-details',
   templateUrl: './show-product-details.component.html',
@@ -17,18 +21,35 @@ import { finalize } from 'rxjs';
 })
 export class ShowProductDetailsComponent implements OnInit{
 
-  public products: Product[] = [];
-  public showImageModal: boolean = false;
-  public selectedImages: string[] = [];
-  
-  currentPage: number = 0;  // Página actual
-  totalPages: number = 0;   // Total de páginas
-  totalElements: number = 0; // Total de elementos (productos)
-  pageSize: number = 10;     // Tamaño de página
-  pages: number[] = [];      // Array de números de página para el paginador
-  searchKey: string = ''; 
+   /** List of products displayed in the component. */
+   public products: Product[] = [];
 
-  public isGeneratingFile: boolean = false;
+   /** Controls the visibility of the image modal. */
+   public showImageModal: boolean = false;
+ 
+   /** Stores the selected product images for preview. */
+   public selectedImages: string[] = [];
+ 
+   /** Current page index for pagination. */
+   currentPage: number = 0;
+ 
+   /** Total number of pages available. */
+   totalPages: number = 0;
+ 
+   /** Total number of products available. */
+   totalElements: number = 0;
+ 
+   /** Number of products per page. */
+   pageSize: number = 10;
+ 
+   /** Array of page numbers used for pagination controls. */
+   pages: number[] = [];
+ 
+   /** Search query entered by the user. */
+   searchKey: string = ''; 
+ 
+   /** Flag indicating whether a file is being generated. */
+   public isGeneratingFile: boolean = false;
 
   constructor(
     private productService: ProductService,
@@ -42,6 +63,11 @@ export class ShowProductDetailsComponent implements OnInit{
     this.getAllProductsPaginated(this.currentPage, this.pageSize);
   }
 
+  /**
+   * Fetches paginated products from the backend.
+   * @param page The current page index.
+   * @param size The number of products per page.
+   */
   getAllProductsPaginated(page: number, size: number): void {
     this.productService.getAllProductsPaginated(page, size).subscribe({
       next: (response) => {
@@ -58,7 +84,10 @@ export class ShowProductDetailsComponent implements OnInit{
     });
   }
 
-  // Cambiar la página
+  /**
+   * Changes the current page.
+   * @param page The target page index.
+   */
   changePage(page: number): void {
     if (page >= 0 && page < this.totalPages) {
       this.currentPage = page;
@@ -66,6 +95,10 @@ export class ShowProductDetailsComponent implements OnInit{
     }
   }
 
+  /**
+   * Retrieves the range of visible pages for pagination.
+   * @returns An array of visible page numbers.
+   */
   getVisiblePages(): number[] {
     const range = 2; // Número de páginas a mostrar antes y después de la página actual
     const start = Math.max(0, this.currentPage - range);
@@ -81,6 +114,10 @@ export class ShowProductDetailsComponent implements OnInit{
   }
   
 
+  /**
+   * Deletes a product after confirming with the user.
+   * @param productId The ID of the product to be deleted.
+   */
   public delete(productId: number) {
     Swal.fire({
       title: 'Do you really want to delete this product?',
@@ -105,10 +142,18 @@ export class ShowProductDetailsComponent implements OnInit{
     });
   }
 
+  /**
+   * Navigates to the product edit page.
+   * @param productId The ID of the product to edit.
+   */
   editProductDetails(productId: number) {
     this.router.navigate(['/editProduct', productId]);
   }
 
+  /**
+   * Displays images of a selected product.
+   * @param product The product whose images will be displayed.
+   */
   public viewImages(product: Product) {
     if (!product.productImages || product.productImages.length === 0) {
       this.toastrService.warning('No images available for this product', 'Warning');
@@ -120,6 +165,7 @@ export class ShowProductDetailsComponent implements OnInit{
     this.showImageModal = true;
   }
   
+  /** Generates and downloads a PDF file of the product list. */
   public generatePdf(): void {
     this.isGeneratingFile = true;
     this.fileService.getPdf().pipe(
@@ -140,7 +186,7 @@ export class ShowProductDetailsComponent implements OnInit{
     });
   }
 
-  // Función para descargar el CSV
+ /** Generates and downloads a CSV file of the product list. */
   public generateCsv(): void {
     this.isGeneratingFile = true;
     this.fileService.getCsv().pipe(
@@ -164,7 +210,7 @@ export class ShowProductDetailsComponent implements OnInit{
     });
   }
 
-  // Function to download the Excel file
+   /** Generates and downloads an Excel file of the product list. */
   public generateExcel(): void {
     this.isGeneratingFile = true;
     this.fileService.getExcel().pipe(
@@ -189,6 +235,10 @@ export class ShowProductDetailsComponent implements OnInit{
     });
   }
 
+  /**
+   * Searches for products based on the user's input.
+   * @param searchKey The search keyword.
+   */
   searchProducts(searchKey: string): void {
     this.searchKey = searchKey;
     if (this.searchKey.trim() === '') {

@@ -3,6 +3,10 @@ import { ToastrService } from 'ngx-toastr';
 import { OrderDetailsModel } from 'src/app/interfaces/order-details-model';
 import { ProductService } from 'src/app/services/product.service';
 
+/**
+ * Component responsible for confirming and placing an order.
+ * It retrieves order details from local storage and submits the order upon initialization.
+ */
 @Component({
   selector: 'app-order-confirmation',
   templateUrl: './order-confirmation.component.html',
@@ -10,6 +14,7 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class OrderConfirmationComponent implements OnInit{
 
+  /** Model containing the order details */
    orderDetails: OrderDetailsModel = {
       fullName: '',
       fullAddress: '',
@@ -33,6 +38,10 @@ export class OrderConfirmationComponent implements OnInit{
     }
   }
   
+   /**
+   * Sends the order details to the backend to place an order.
+   * If successful, it removes the stored order from local storage.
+   */
   private createOrder() {
     this.productService.placeOrder(this.orderDetails).subscribe({
       next: () => {

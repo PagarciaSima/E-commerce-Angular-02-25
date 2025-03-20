@@ -6,6 +6,10 @@ import { Product } from '../interfaces/product';
 import { of } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
 
+/**
+ * Resolver for fetching product details before navigating to the buy page.
+ * It retrieves product data based on query parameters.
+ */
 export const buyProductResolver: ResolveFn<Product[] | null> = (route, state) => {
   const productService = inject(ProductService);
   const toastrService = inject(ToastrService);
@@ -14,7 +18,10 @@ export const buyProductResolver: ResolveFn<Product[] | null> = (route, state) =>
   const isSingleProductCheckout = route.queryParamMap.get('isSingleProductCheckout') === 'true';
   const productId = Number(route.queryParamMap.get('id'));
 
-  // Llamar al servicio para obtener los detalles del producto
+  /**
+   * Calls the product service to fetch product details.
+   * Logs the retrieved data and handles errors with a toast notification.
+   */
   return productService.getProductDetails(isSingleProductCheckout, productId).pipe(
     tap((data) => console.log('Datos obtenidos en el resolver:', data)),
 

@@ -3,6 +3,10 @@ import { ToastrService } from 'ngx-toastr';
 import { MyOrderDetails } from 'src/app/interfaces/my-order-details';
 import { ProductService } from 'src/app/services/product.service';
 
+/**
+ * Component responsible for displaying and managing user orders.
+ * It supports pagination and search functionality.
+ */
 @Component({
   selector: 'app-my-orders',
   templateUrl: './my-orders.component.html',
@@ -10,13 +14,26 @@ import { ProductService } from 'src/app/services/product.service';
 })
 export class MyOrdersComponent implements OnInit{
 
+  /** List of user orders retrieved from the backend */
   myOrderDetails: MyOrderDetails[] = [];
-  currentPage: number = 0;  
-  totalPages: number = 0;   
-  totalElements: number = 0; 
-  pageSize: number = 8;     
-  pages: number[] = [];     
-  searchKey: string = ''; 
+
+  /** Current page index for pagination */
+  currentPage: number = 0;
+
+  /** Total number of pages available */
+  totalPages: number = 0;
+
+  /** Total number of orders */
+  totalElements: number = 0;
+
+  /** Number of orders per page */
+  pageSize: number = 8;
+
+  /** Array representing available page numbers */
+  pages: number[] = [];
+
+  /** Search key used for filtering orders */
+  searchKey: string = '';
 
   constructor(
     private productService: ProductService,
@@ -29,6 +46,11 @@ export class MyOrdersComponent implements OnInit{
     this.getMyOrdersPaginated(this.currentPage, this.pageSize)
   }
 
+  /**
+   * Retrieves paginated orders from the backend.
+   * @param page The current page index.
+   * @param size The number of orders per page.
+   */
   getMyOrdersPaginated(page: number, size: number) {
     this.productService.getMyOrdersPaginated(this.currentPage, this.pageSize).subscribe({
       next: (response) => {
@@ -45,6 +67,10 @@ export class MyOrdersComponent implements OnInit{
     }); 
   }
 
+  /**
+   * Changes the current page and fetches the corresponding orders.
+   * @param page The page number to navigate to.
+   */
   changePage(page: number): void {
     if (page >= 0 && page < this.totalPages) {
       this.currentPage = page;
@@ -52,6 +78,10 @@ export class MyOrdersComponent implements OnInit{
     }
   }
 
+  /**
+   * Gets the visible page numbers for pagination controls.
+   * @returns An array of page numbers surrounding the current page.
+   */
   getVisiblePages(): number[] {
     const range = 2; // Número de páginas a mostrar antes y después de la página actual
     const start = Math.max(0, this.currentPage - range);
@@ -66,6 +96,11 @@ export class MyOrdersComponent implements OnInit{
     return visiblePages;
   } 
 
+  /**
+   * Searches for orders based on the provided search key.
+   * If the search key is empty, fetches the full paginated order list.
+   * @param searchKey The keyword used for searching orders.
+   */
   searchOrderDetails(searchKey: string): void {
     this.searchKey = searchKey;
     if (this.searchKey.trim() === '') {

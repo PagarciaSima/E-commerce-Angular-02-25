@@ -4,17 +4,32 @@ import { ChartData, ChartOptions } from 'chart.js';
 import { OrderAndProductDto } from 'src/app/interfaces/order-and-product-dto';
 import { SalesData } from 'src/app/interfaces/sales-data';
 
+/**
+ * Component that displays user-related information and charts for sales and orders.
+ */
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css'],
 })
 export class UserComponent implements OnInit {
+
+  /** Last 4 user orders */
   last4Orders: OrderAndProductDto[] = [];
+
+  /** Sales data per month */
   salesData: SalesData | null = null;
+
+  /** Order data by status */
   ordersData: SalesData | null = null;
+
+  /** Chart data for sales per month */
   chartDataSalesPerMonth: ChartData<'bar'> = { labels: [], datasets: [] };
+
+  /** Chart data for orders by status */
   chartDataOrdersByStatus: ChartData<'bar'> = { labels: [], datasets: [] };
+
+  /** Chart configuration options */
   chartOptions: ChartOptions = {
     responsive: true,
     plugins: {
@@ -36,6 +51,9 @@ export class UserComponent implements OnInit {
     this.setupCharts();
   }
 
+  /**
+   * Configures the data for sales and orders charts.
+   */
   private setupCharts(): void {
     if (this.salesData) {
       this.chartDataSalesPerMonth = {

@@ -13,8 +13,13 @@ import { UserAuthService } from 'src/app/services/user-auth.service';
 })
 export class ProductViewDetailsComponent implements OnInit {
 
+  /** Indicates whether the user is on a desktop device */
   isDesktop: boolean = true;
+  
+  /** Holds the details of the product being viewed */
   product: Product | null = null;
+  
+  /** Stores the currently selected product image */
   selectedImage: Image = {
     shortName: '',
     id: 0,
@@ -22,7 +27,10 @@ export class ProductViewDetailsComponent implements OnInit {
     type: '',
     picByte: ''
   }
+  
+  /** Tracks if the selected image has been changed */
   imageChanged: boolean = false;
+
 
   constructor(
     private route: ActivatedRoute,
@@ -46,16 +54,28 @@ export class ProductViewDetailsComponent implements OnInit {
 
   }
 
+  /**
+   * Detects window resizing and updates the `isDesktop` flag accordingly.
+   * @param event The resize event
+   */
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
     this.isDesktop = window.innerWidth > 768;
   }
 
+   /**
+   * Updates the selected image when a new image is chosen.
+   * @param image The selected image
+   */
   selectImage(image: Image) {
     this.selectedImage = image;
     this.imageChanged = true;
   }
 
+   /**
+   * Navigates to the product checkout page for purchasing a single product.
+   * @param productId The ID of the product to buy
+   */
   buyProduct(productId: number) {
     this.router.navigate(['/buyProduct'], {
       queryParams: {
@@ -65,6 +85,10 @@ export class ProductViewDetailsComponent implements OnInit {
     });    
   }
 
+   /**
+   * Adds a product to the shopping cart.
+   * @param productId The ID of the product to add to the cart
+   */
   addToCart(productId: number) {
     this.productService.addToCart(productId).subscribe({
       next: (data) => {
@@ -75,6 +99,10 @@ export class ProductViewDetailsComponent implements OnInit {
     });
   }
 
+   /**
+   * Checks if the current user has a standard user role.
+   * @returns `true` if the user is a standard user, otherwise `false`
+   */
   public isUser(): boolean {
     return this.userAuthService.isUser();
   }

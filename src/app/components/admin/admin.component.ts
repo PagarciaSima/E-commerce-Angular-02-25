@@ -3,8 +3,15 @@ import { ActivatedRoute } from '@angular/router';
 import { ChartData, ChartOptions } from 'chart.js';
 import { SalesData } from 'src/app/interfaces/sales-data';
 import { TopSelling } from 'src/app/interfaces/top-selling';
-import { UserService } from 'src/app/services/user.service';
 
+/**
+ * Component responsible for displaying the admin dashboard.
+ * It visualizes sales data, order statistics, and top-selling products using charts.
+ *
+ * @export
+ * @class AdminComponent
+ * @implements {OnInit}
+ */
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -12,35 +19,61 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class AdminComponent implements OnInit {
 
+  /** Data for orders grouped by status */
   ordersData: SalesData | null = null;
-  salesData: SalesData | null = null;
-  topSelling: TopSelling[] = [];
-  chartDataSalesPerMonth: ChartData<'bar'> = { labels: [], datasets: [] };
-  chartDataOrdersByStatus: ChartData<'bar'> = { labels: [], datasets: [] };
-  chartDataTopSelling: ChartData<'bar'> = { labels: [], datasets: [] };  
 
+  /** Data for sales grouped by month */
+  salesData: SalesData | null = null;
+
+  /** List of top-selling products */
+  topSelling: TopSelling[] = [];
+
+  /** Chart data for sales per month */
+  chartDataSalesPerMonth: ChartData<'bar'> = { labels: [], datasets: [] };
+
+  /** Chart data for orders categorized by status */
+  chartDataOrdersByStatus: ChartData<'bar'> = { labels: [], datasets: [] };
+
+  /** Chart data for top-selling products */
+  chartDataTopSelling: ChartData<'bar'> = { labels: [], datasets: [] };
+
+  /** Chart options for all graphs */
   chartOptions: ChartOptions = {
     responsive: true,
     plugins: {
       legend: { display: false },
     },
   };
-  
+
+  /**
+   * Creates an instance of AdminComponent.
+   * @param {ActivatedRoute} route - Provides access to route data, including resolved dashboard data.
+   */
   constructor(private route: ActivatedRoute) {}
 
+  /**
+   * Lifecycle hook that runs on component initialization.
+   * Retrieves and processes dashboard data from the route resolver.
+   */
   ngOnInit(): void {
-    // Obtén los datos del resolver
+    // Retrieve data from the resolver
     const resolvedData = this.route.snapshot.data['dashboardData'];
 
     this.ordersData = resolvedData.ordersData;
     this.salesData = resolvedData.salesData;
     this.topSelling = resolvedData.topSelling;
 
-    // Configura los gráficos
+    // Initialize chart configurations
     this.setupCharts();
-    this.setupTopSellingChart(); 
+    this.setupTopSellingChart();
   }
-  
+
+  /**
+   * Configures the charts for sales per month and orders by status.
+   * Populates the `chartDataSalesPerMonth` and `chartDataOrdersByStatus` properties.
+   * 
+   * @private
+   */
   private setupCharts(): void {
       if (this.salesData) {
         this.chartDataSalesPerMonth = {
@@ -56,13 +89,13 @@ export class AdminComponent implements OnInit {
           ],
         };
       }
-  
+
       if (this.ordersData) {
         this.chartDataOrdersByStatus = {
           labels: this.ordersData.labels,
           datasets: [
             {
-              label: 'Orders by status',
+              label: 'Orders by Status',
               data: this.ordersData.values,
               backgroundColor: ['#36A2EB', '#FF6384'],
               borderColor: ['#36A2EB', '#FF6384'],
@@ -72,7 +105,13 @@ export class AdminComponent implements OnInit {
         };
       }
   }
-  
+
+  /**
+   * Configures the chart for top-selling products.
+   * Populates the `chartDataTopSelling` property.
+   *
+   * @private
+   */
   private setupTopSellingChart(): void {
     if (this.topSelling.length > 0) {
       this.chartDataTopSelling = {
@@ -89,6 +128,5 @@ export class AdminComponent implements OnInit {
       };
     }
   }
-
 
 }
