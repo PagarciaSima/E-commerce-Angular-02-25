@@ -1,0 +1,1438 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ecommerce documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">ecommerce documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  CartComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/cart/cart.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component for managing the shopping cart functionality.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-cart</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./cart.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./cart.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#cartDetails" >cartDetails</a>
+                            </li>
+                            <li>
+                                <a href="#currentPage" >currentPage</a>
+                            </li>
+                            <li>
+                                <a href="#pages" >pages</a>
+                            </li>
+                            <li>
+                                <a href="#pageSize" >pageSize</a>
+                            </li>
+                            <li>
+                                <a href="#searchKey" >searchKey</a>
+                            </li>
+                            <li>
+                                <a href="#totalElements" >totalElements</a>
+                            </li>
+                            <li>
+                                <a href="#totalPages" >totalPages</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#changePage" >changePage</a>
+                            </li>
+                            <li>
+                                <a href="#checkout" >checkout</a>
+                            </li>
+                            <li>
+                                <a href="#delete" >delete</a>
+                            </li>
+                            <li>
+                                <a href="#getCartDetailsPaginated" >getCartDetailsPaginated</a>
+                            </li>
+                            <li>
+                                <a href="#getVisiblePages" >getVisiblePages</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#searchCartDetails" >searchCartDetails</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(toastrService: ToastrService, productService: <a href="../injectables/ProductService.html" target="_self">ProductService</a>, router: Router)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/cart/cart.component.ts:30</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>toastrService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ToastrService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Toastr service for notifications</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>productService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ProductService.html" target="_self" >ProductService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Service for handling product-related API calls</p>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <p>Angular Router for navigation</p>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="changePage"></a>
+                    <span class="name">
+                        <span ><b>changePage</b></span>
+                        <a href="#changePage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>changePage(page: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="57"
+                                    class="link-to-prism">src/app/components/cart/cart.component.ts:57</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Changes the current page and fetches the corresponding cart details.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>page</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Page number to navigate to</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkout"></a>
+                    <span class="name">
+                        <span ><b>checkout</b></span>
+                        <a href="#checkout"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>checkout()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="132"
+                                    class="link-to-prism">src/app/components/cart/cart.component.ts:132</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Navigates to the checkout page.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="delete"></a>
+                    <span class="name">
+                        <span ><b>delete</b></span>
+                        <a href="#delete"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>delete(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="145"
+                                    class="link-to-prism">src/app/components/cart/cart.component.ts:145</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Deletes a product from the cart by its ID.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>id</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The ID of the cart item to be removed</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCartDetailsPaginated"></a>
+                    <span class="name">
+                        <span ><b>getCartDetailsPaginated</b></span>
+                        <a href="#getCartDetailsPaginated"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCartDetailsPaginated(page: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, size: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="87"
+                                    class="link-to-prism">src/app/components/cart/cart.component.ts:87</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Fetches cart details with pagination.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>page</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The current page</p>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>size</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>Number of items per page</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getVisiblePages"></a>
+                    <span class="name">
+                        <span ><b>getVisiblePages</b></span>
+                        <a href="#getVisiblePages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getVisiblePages()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="68"
+                                    class="link-to-prism">src/app/components/cart/cart.component.ts:68</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves the range of visible pages for pagination.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>number[]</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>An array of page numbers to be displayed in the pagination controls</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="49"
+                                    class="link-to-prism">src/app/components/cart/cart.component.ts:49</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Initializes the component and loads the cart details.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchCartDetails"></a>
+                    <span class="name">
+                        <span ><b>searchCartDetails</b></span>
+                        <a href="#searchCartDetails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>searchCartDetails(searchKey: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="107"
+                                    class="link-to-prism">src/app/components/cart/cart.component.ts:107</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Searches for cart items based on the given keyword.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>searchKey</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <p>The search term used to filter cart items</p>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cartDetails"></a>
+                    <span class="name">
+                        <span ><b>cartDetails</b></span>
+                        <a href="#cartDetails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Cart.html" target="_self" >Cart[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/components/cart/cart.component.ts:18</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>List of cart items</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentPage"></a>
+                    <span class="name">
+                        <span ><b>currentPage</b></span>
+                        <a href="#currentPage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="20" class="link-to-prism">src/app/components/cart/cart.component.ts:20</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Current page for pagination</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pages"></a>
+                    <span class="name">
+                        <span ><b>pages</b></span>
+                        <a href="#pages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>number[]</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/components/cart/cart.component.ts:28</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>List of available pages</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageSize"></a>
+                    <span class="name">
+                        <span ><b>pageSize</b></span>
+                        <a href="#pageSize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>8</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/components/cart/cart.component.ts:26</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Number of items per page</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchKey"></a>
+                    <span class="name">
+                        <span ><b>searchKey</b></span>
+                        <a href="#searchKey"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="30" class="link-to-prism">src/app/components/cart/cart.component.ts:30</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Search key for filtering cart items</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="totalElements"></a>
+                    <span class="name">
+                        <span ><b>totalElements</b></span>
+                        <a href="#totalElements"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/components/cart/cart.component.ts:24</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Total number of elements in the cart</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="totalPages"></a>
+                    <span class="name">
+                        <span ><b>totalPages</b></span>
+                        <a href="#totalPages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>0</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/cart/cart.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Total number of pages</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+import { ToastrService } from &#x27;ngx-toastr&#x27;;
+import { Cart } from &#x27;src/app/interfaces/cart&#x27;;
+import { ProductService } from &#x27;src/app/services/product.service&#x27;;
+
+/**
+ * Component for managing the shopping cart functionality.
+ */
+@Component({
+  selector: &#x27;app-cart&#x27;,
+  templateUrl: &#x27;./cart.component.html&#x27;,
+  styleUrls: [&#x27;./cart.component.css&#x27;]
+})
+export class CartComponent implements OnInit{
+
+  /** List of cart items */
+  cartDetails: Cart[] &#x3D; [];
+  /** Current page for pagination */
+  currentPage: number &#x3D; 0;
+  /** Total number of pages */
+  totalPages: number &#x3D; 0;
+  /** Total number of elements in the cart */
+  totalElements: number &#x3D; 0;
+  /** Number of items per page */
+  pageSize: number &#x3D; 8;
+  /** List of available pages */
+  pages: number[] &#x3D; [];
+  /** Search key for filtering cart items */
+  searchKey: string &#x3D; &#x27;&#x27;;
+
+  /**
+   * Constructor
+   * @param toastrService Toastr service for notifications
+   * @param productService Service for handling product-related API calls
+   * @param router Angular Router for navigation
+   */
+  constructor(
+    private toastrService: ToastrService,
+    private productService: ProductService,
+    private router: Router
+  ) {
+    
+  }
+
+  /**
+   * Initializes the component and loads the cart details.
+   */
+  ngOnInit(): void {
+    this.getCartDetailsPaginated(this.currentPage, this.pageSize);
+  }
+
+  /**
+   * Changes the current page and fetches the corresponding cart details.
+   * @param page Page number to navigate to
+   */
+  changePage(page: number): void {
+    if (page &gt;&#x3D; 0 &amp;&amp; page &lt; this.totalPages) {
+      this.currentPage &#x3D; page;
+      this.getCartDetailsPaginated(page, this.pageSize);
+    }
+  }
+
+   /**
+   * Retrieves the range of visible pages for pagination.
+   * @returns An array of page numbers to be displayed in the pagination controls
+   */
+  getVisiblePages(): number[] {
+    const range &#x3D; 2; // Número de páginas a mostrar antes y después de la página actual
+    const start &#x3D; Math.max(0, this.currentPage - range);
+    const end &#x3D; Math.min(this.totalPages - 1, this.currentPage + range);
+    
+    const visiblePages &#x3D; [];
+    
+    for (let i &#x3D; start; i &lt;&#x3D; end; i++) {
+      visiblePages.push(i);
+    }
+    
+    return visiblePages;
+  }  
+
+  /**
+   * Fetches cart details with pagination.
+   * @param page The current page
+   * @param size Number of items per page
+   */
+  getCartDetailsPaginated(page: number, size: number): void {
+    this.productService.getCartDetailsPaginated(page, size).subscribe({
+      next: (response) &#x3D;&gt; {
+        this.cartDetails &#x3D; response.content;
+        this.totalPages &#x3D; response.totalPages;
+        this.totalElements &#x3D; response.totalElements;
+        this.pageSize &#x3D; response.pageSize;
+
+        // Crear el array de páginas a mostrar
+        this.pages &#x3D; Array.from({ length: this.totalPages }, (_, index) &#x3D;&gt; index);
+      }, error: (err) &#x3D;&gt; {
+        this.toastrService.error(&#x27;Error, could not retrieve your cart details &#x27; + err.error, &#x27;Error&#x27;)
+      }
+    });
+  }
+  
+  /**
+   * Searches for cart items based on the given keyword.
+   * @param searchKey The search term used to filter cart items
+   */
+  searchCartDetails(searchKey: string): void {
+    this.searchKey &#x3D; searchKey;
+  
+    if (searchKey.trim() &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
+      this.getCartDetailsPaginated(this.currentPage, this.pageSize);
+    } else {
+      this.productService.searchCartDetails(searchKey, this.currentPage, this.pageSize).subscribe({
+        next: (response) &#x3D;&gt; {
+          this.cartDetails &#x3D; response.content;
+          this.totalPages &#x3D; response.totalPages;
+          this.totalElements &#x3D; response.totalElements;
+          this.pageSize &#x3D; response.pageSize;
+  
+          // Crear el array de páginas a mostrar
+          this.pages &#x3D; Array.from({ length: this.totalPages }, (_, index) &#x3D;&gt; index);
+        }, error: (err) &#x3D;&gt; {
+          this.toastrService.error(&#x27;An unexpected error occurred: &#x27; + err.error, &#x27;Error&#x27;)
+        }
+      });
+    }
+  }
+
+  /**
+   * Navigates to the checkout page.
+   */
+  checkout() {
+    this.router.navigate([&#x27;/buyProduct&#x27;], {
+      queryParams: {
+        isSingleProductCheckout: false,
+        id: 0
+      }
+    });    
+  }
+
+   /**
+   * Deletes a product from the cart by its ID.
+   * @param id The ID of the cart item to be removed
+   */
+  delete(id: number) {
+    this.productService.deleteCartById(id).subscribe({
+      next: () &#x3D;&gt; {
+        this.toastrService.success(&#x27;Product removed from the cart&#x27;, &#x27;Success&#x27;);
+        this.getCartDetailsPaginated(this.currentPage, this.pageSize);
+      }, error: (err) &#x3D;&gt; {
+        this.toastrService.error(&#x27;An unexpected error occurred: &#x27; + err.error, &#x27;Error&#x27;)
+      }
+    });
+  }
+  
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container-fluid content&quot;&gt;
+    &lt;div class&#x3D;&quot;content mt-5 px-0 px-lg-5 py-3 text-success bg-white rounded fade-in&quot;&gt;
+    &lt;div class&#x3D;&quot;text-center&quot;&gt;
+        &lt;h2&gt;&lt;i class&#x3D;&quot;fa-solid fa-cart-shopping me-2 my-3 me-3 text-secondary&quot;&gt;&lt;/i&gt;Cart&lt;/h2&gt;      
+    &lt;/div&gt;
+
+    &lt;app-search-bar 
+      [placeholder]&#x3D;&quot;&#x27;Search by product name...&#x27;&quot; 
+      (search)&#x3D;&quot;searchCartDetails($event)&quot;&gt;
+    &lt;/app-search-bar&gt;
+
+    &lt;div class&#x3D;&quot;d-flex flex-wrap justify-content-center mb-3 mt-5&quot;&gt;
+      &lt;button class&#x3D;&quot;btn btn-success&quot; (click)&#x3D;&quot;checkout()&quot;&gt;&lt;i class&#x3D;&quot;fa-regular fa-credit-card me-2&quot;&gt;&lt;/i&gt;Check out&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div *ngIf&#x3D;&quot;cartDetails.length &gt; 0; else emptyCart&quot;&gt;
+        &lt;div class&#x3D;&quot;table-responsive&quot;&gt;
+          &lt;table class&#x3D;&quot;table  table-striped table-hover&quot;&gt;
+            &lt;thead class&#x3D;&quot;table-dark&quot;&gt;
+              &lt;tr&gt;
+                &lt;th&gt;&lt;div class&#x3D;&quot;th&quot;&gt;&lt;i class&#x3D;&quot;fa-solid fa-bars me-2&quot;&gt;&lt;/i&gt;&lt;span&gt;Name&lt;/span&gt;&lt;/div&gt;&lt;/th&gt;
+                &lt;th&gt;&lt;div class&#x3D;&quot;th&quot;&gt;&lt;i class&#x3D;&quot;fa-solid fa-bars me-2&quot;&gt;&lt;/i&gt;&lt;span&gt;Description&lt;/span&gt;&lt;/div&gt;&lt;/th&gt;
+                &lt;th&gt;&lt;div class&#x3D;&quot;th&quot;&gt;&lt;i class&#x3D;&quot;fa-solid fa-euro-sign me-2&quot;&gt;&lt;/i&gt;&lt;span&gt;Price&lt;/span&gt;&lt;/div&gt;&lt;/th&gt;
+                &lt;th&gt;&lt;div class&#x3D;&quot;th&quot;&gt;&lt;i class&#x3D;&quot;fa-solid fa-euro-sign me-2&quot;&gt;&lt;/i&gt;&lt;span&gt;Discounted Price&lt;/span&gt;&lt;/div&gt;&lt;/th&gt;
+                &lt;th&gt;&lt;div class&#x3D;&quot;th&quot;&gt;&lt;i class&#x3D;&quot;fa-solid fa-gear me-2&quot;&gt;&lt;/i&gt;&lt;span&gt;Action&lt;/span&gt;&lt;/div&gt;&lt;/th&gt;
+              &lt;/tr&gt;
+            &lt;/thead&gt;
+            &lt;tbody&gt;
+                &lt;tr *ngFor&#x3D;&quot;let cartItem of cartDetails; let i &#x3D; index&quot;&gt;
+                    &lt;td&gt;{{ cartItem.productEntity.productName }}&lt;/td&gt;
+                    &lt;td&gt;{{ cartItem.productEntity.productDescription }}&lt;/td&gt;
+                    &lt;td&gt;{{ cartItem.productEntity.productActualPrice | currency: &#x27;EUR&#x27; }}&lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;span *ngIf&#x3D;&quot;cartItem.productEntity.productDiscountedPrice &gt; 0; else noDiscount&quot; 
+                              class&#x3D;&quot;badge bg-success&quot;&gt;
+                          {{ cartItem.productEntity.productDiscountedPrice | currency: &#x27;EUR&#x27; }}
+                        &lt;/span&gt;
+                        &lt;ng-template #noDiscount&gt;
+                          &lt;span class&#x3D;&quot;badge bg-warning text-dark&quot;&gt;This product has no discount&lt;/span&gt;
+                        &lt;/ng-template&gt;
+                    &lt;/td&gt;
+                    &lt;td&gt;
+                      &lt;a (click)&#x3D;&quot;delete(cartItem.cartId!)&quot;&gt;&lt;i class&#x3D;&quot;ms-2 fa-solid fa-trash me-2 text-danger cursor-pointer&quot;&gt;&lt;/i&gt;&lt;/a&gt;
+                    &lt;/td&gt;
+            &lt;/tbody&gt;
+          &lt;/table&gt;        
+        &lt;/div&gt;
+        &lt;!-- Pagination --&gt;
+        &lt;div class&#x3D;&quot;d-flex justify-content-center mt-4&quot;&gt;
+          &lt;nav aria-label&#x3D;&quot;Page navigation&quot;&gt;
+            &lt;ul class&#x3D;&quot;pagination&quot;&gt;
+              &lt;!-- Previous --&gt;
+              &lt;li class&#x3D;&quot;page-item&quot; [class.disabled]&#x3D;&quot;currentPage &#x3D;&#x3D;&#x3D; 0&quot;&gt;
+                &lt;a class&#x3D;&quot;page-link bg-success text-white&quot; (click)&#x3D;&quot;changePage(currentPage - 1)&quot;&gt;
+                  Previous
+                &lt;/a&gt;
+              &lt;/li&gt;
+
+              &lt;!-- Páginas (con límite de rango) --&gt;
+              &lt;li *ngFor&#x3D;&quot;let page of getVisiblePages()&quot; class&#x3D;&quot;page-item&quot; [class.active]&#x3D;&quot;currentPage &#x3D;&#x3D;&#x3D; page&quot;&gt;
+                &lt;a class&#x3D;&quot;page-link bg-success text-white mx-1&quot; href&#x3D;&quot;javascript:void(0)&quot; (click)&#x3D;&quot;changePage(page)&quot;&gt;
+                  {{ page + 1 }}
+                &lt;/a&gt;
+              &lt;/li&gt;
+
+              &lt;!-- Next --&gt;
+              &lt;li class&#x3D;&quot;page-item&quot; [class.disabled]&#x3D;&quot;currentPage &#x3D;&#x3D;&#x3D; totalPages - 1&quot;&gt;
+                &lt;a class&#x3D;&quot;page-link bg-success text-white&quot; href&#x3D;&quot;javascript:void(0)&quot; (click)&#x3D;&quot;changePage(currentPage + 1)&quot;&gt;
+                  Next
+                &lt;/a&gt;
+              &lt;/li&gt;
+            &lt;/ul&gt;
+          &lt;/nav&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- Empty cart message --&gt;
+    &lt;ng-template #emptyCart&gt;
+        &lt;p class&#x3D;&quot;text-center alert alert-warning&quot;&gt;&lt;i class&#x3D;&quot;fa-solid fa-triangle-exclamation me-2&quot;&gt;&lt;/i&gt;The cart is empty&lt;/p&gt;
+    &lt;/ng-template&gt;
+&lt;/div&gt;</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./cart.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">.th {
+    min-width: max-content;
+}</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container-fluid content">    <div class="content mt-5 px-0 px-lg-5 py-3 text-success bg-white rounded fade-in">    <div class="text-center">        <h2><i class="fa-solid fa-cart-shopping me-2 my-3 me-3 text-secondary"></i>Cart</h2>          </div>    <app-search-bar       [placeholder]="\'Search by product name...\'"       (search)="searchCartDetails($event)">    </app-search-bar>    <div class="d-flex flex-wrap justify-content-center mb-3 mt-5">      <button class="btn btn-success" (click)="checkout()"><i class="fa-regular fa-credit-card me-2"></i>Check out</button>    </div>    <div *ngIf="cartDetails.length > 0; else emptyCart">        <div class="table-responsive">          <table class="table  table-striped table-hover">            <thead class="table-dark">              <tr>                <th><div class="th"><i class="fa-solid fa-bars me-2"></i><span>Name</span></div></th>                <th><div class="th"><i class="fa-solid fa-bars me-2"></i><span>Description</span></div></th>                <th><div class="th"><i class="fa-solid fa-euro-sign me-2"></i><span>Price</span></div></th>                <th><div class="th"><i class="fa-solid fa-euro-sign me-2"></i><span>Discounted Price</span></div></th>                <th><div class="th"><i class="fa-solid fa-gear me-2"></i><span>Action</span></div></th>              </tr>            </thead>            <tbody>                <tr *ngFor="let cartItem of cartDetails; let i = index">                    <td>{{ cartItem.productEntity.productName }}</td>                    <td>{{ cartItem.productEntity.productDescription }}</td>                    <td>{{ cartItem.productEntity.productActualPrice | currency: \'EUR\' }}</td>                    <td>                        <span *ngIf="cartItem.productEntity.productDiscountedPrice > 0; else noDiscount"                               class="badge bg-success">                          {{ cartItem.productEntity.productDiscountedPrice | currency: \'EUR\' }}                        </span>                        <ng-template #noDiscount>                          <span class="badge bg-warning text-dark">This product has no discount</span>                        </ng-template>                    </td>                    <td>                      <a (click)="delete(cartItem.cartId!)"><i class="ms-2 fa-solid fa-trash me-2 text-danger cursor-pointer"></i></a>                    </td>            </tbody>          </table>                </div>        <!-- Pagination -->        <div class="d-flex justify-content-center mt-4">          <nav aria-label="Page navigation">            <ul class="pagination">              <!-- Previous -->              <li class="page-item" [class.disabled]="currentPage === 0">                <a class="page-link bg-success text-white" (click)="changePage(currentPage - 1)">                  Previous                </a>              </li>              <!-- Páginas (con límite de rango) -->              <li *ngFor="let page of getVisiblePages()" class="page-item" [class.active]="currentPage === page">                <a class="page-link bg-success text-white mx-1" href="javascript:void(0)" (click)="changePage(page)">                  {{ page + 1 }}                </a>              </li>              <!-- Next -->              <li class="page-item" [class.disabled]="currentPage === totalPages - 1">                <a class="page-link bg-success text-white" href="javascript:void(0)" (click)="changePage(currentPage + 1)">                  Next                </a>              </li>            </ul>          </nav>        </div>    </div>    <!-- Empty cart message -->    <ng-template #emptyCart>        <p class="text-center alert alert-warning"><i class="fa-solid fa-triangle-exclamation me-2"></i>The cart is empty</p>    </ng-template></div></div>'
+    var COMPONENTS = [{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BuyProductComponent', 'selector': 'app-buy-product'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForbiddenComponent', 'selector': 'app-forbidden'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MyOrdersComponent', 'selector': 'app-my-orders'},{'name': 'OrderConfirmationComponent', 'selector': 'app-order-confirmation'},{'name': 'OrderErrorComponent', 'selector': 'app-order-error'},{'name': 'OrdersComponent', 'selector': 'app-orders'},{'name': 'ProductViewDetailsComponent', 'selector': 'app-product-view-details'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'SaveProductComponent', 'selector': 'app-add-new-product'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'ShowProductDetailsComponent', 'selector': 'app-show-product-details'},{'name': 'SpinnerComponent', 'selector': 'app-spinner'},{'name': 'UserComponent', 'selector': 'app-user'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'CartComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'CartComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

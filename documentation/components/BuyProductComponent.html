@@ -1,0 +1,1374 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>ecommerce documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css">
+    </head>
+    <body>
+          <script>
+               // Blocking script to avoid flickering dark mode
+               // Dark mode toggle button
+               var useDark = window.matchMedia('(prefers-color-scheme: dark)');
+               var darkModeState = useDark.matches;
+               var $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               var $darkModeToggles = document.querySelectorAll('.dark-mode-switch');
+               var darkModeStateLocal = localStorage.getItem('compodoc_darkmode-state');
+
+               function checkToggle(check) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].checked = check;
+                    }
+               }
+
+               function toggleDarkMode(state) {
+                    if (window.localStorage) {
+                         localStorage.setItem('compodoc_darkmode-state', state);
+                    }
+
+                    checkToggle(state);
+
+                    const hasClass = document.body.classList.contains('dark');
+
+                    if (state) {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.add('dark');
+                         }
+                         if (!hasClass) {
+                              document.body.classList.add('dark');
+                         }
+                    } else {
+                         for (var i = 0; i < $darkModeToggles.length; i++) {
+                              $darkModeToggles[i].classList.remove('dark');
+                         }
+                         if (hasClass) {
+                              document.body.classList.remove('dark');
+                         }
+                    }
+               }
+
+               useDark.addEventListener('change', function (evt) {
+                    toggleDarkMode(evt.matches);
+               });
+               if (darkModeStateLocal) {
+                    darkModeState = darkModeStateLocal === 'true';
+               }
+               toggleDarkMode(darkModeState);
+          </script>
+
+        <div class="navbar navbar-default navbar-fixed-top d-md-none p-0">
+               <div class="d-flex">
+                    <a href="../" class="navbar-brand">ecommerce documentation</a>
+                    <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+               </div>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="d-none d-md-block menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li class="breadcrumb-item">Components</li>
+  <li class="breadcrumb-item"
+  >
+  BuyProductComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="nav-item">
+            <a href="#info" class="nav-link active"
+                role="tab" id="info-tab" data-bs-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li class="nav-item">
+            <a href="#source" class="nav-link"
+                role="tab" id="source-tab" data-bs-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li class="nav-item">
+            <a href="#templateData" class="nav-link"
+                role="tab" id="templateData-tab" data-bs-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li class="nav-item">
+            <a href="#styleData" class="nav-link"
+                role="tab" id="styleData-tab" data-bs-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li class="nav-item">
+            <a href="#tree" class="nav-link"
+                role="tab" id="tree-tab" data-bs-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/components/buy-product/buy-product.component.ts</code>
+</p>
+
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>Component responsible for handling product purchases.
+Allows users to enter order details, modify quantities, and process payments via PayPal.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                <code>OnInit</code>
+    </p>
+
+
+<section data-compodoc="block-metadata">
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover metadata">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>app-buy-product</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./buy-product.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./buy-product.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#isGeneratingFile" >isGeneratingFile</a>
+                            </li>
+                            <li>
+                                <a href="#orderDetails" >orderDetails</a>
+                            </li>
+                            <li>
+                                <a href="#productDetails" >productDetails</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getCalculatedGrandTotal" >getCalculatedGrandTotal</a>
+                            </li>
+                            <li>
+                                <a href="#getCalculatedTotal" >getCalculatedTotal</a>
+                            </li>
+                            <li>
+                                <a href="#getQuantityForProduct" >getQuantityForProduct</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit" >ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onQuantityChanged" >onQuantityChanged</a>
+                            </li>
+                            <li>
+                                <a href="#placeOrder" >placeOrder</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#processPayment" >processPayment</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(activatedRoute: ActivatedRoute, toastrService: ToastrService, paymentService: <a href="../injectables/PaymentService.html" target="_self">PaymentService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/buy-product/buy-product.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Creates an instance of BuyProductComponent.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>activatedRoute</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Provides access to route data.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>toastrService</td>
+                                                  
+                                                        <td>
+                                                                    <code>ToastrService</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Service for displaying notifications.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>paymentService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/PaymentService.html" target="_self" >PaymentService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <ul>
+<li>Handles payment processing.</li>
+</ul>
+
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCalculatedGrandTotal"></a>
+                    <span class="name">
+                        <span ><b>getCalculatedGrandTotal</b></span>
+                        <a href="#getCalculatedGrandTotal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCalculatedGrandTotal()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="165"
+                                    class="link-to-prism">src/app/components/buy-product/buy-product.component.ts:165</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Calculates the grand total for all selected products.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The total order amount.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getCalculatedTotal"></a>
+                    <span class="name">
+                        <span ><b>getCalculatedTotal</b></span>
+                        <a href="#getCalculatedTotal"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getCalculatedTotal(productId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, productPrice: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="143"
+                                    class="link-to-prism">src/app/components/buy-product/buy-product.component.ts:143</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Calculates the total price for a specific product.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>productId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The product ID.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>productPrice</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The price per unit.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The calculated total.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getQuantityForProduct"></a>
+                    <span class="name">
+                        <span ><b>getQuantityForProduct</b></span>
+                        <a href="#getQuantityForProduct"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getQuantityForProduct(productId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="130"
+                                    class="link-to-prism">src/app/components/buy-product/buy-product.component.ts:130</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Retrieves the quantity for a specific product.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>productId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The product ID.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The selected quantity.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <span ><b>ngOnInit</b></span>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="53"
+                                    class="link-to-prism">src/app/components/buy-product/buy-product.component.ts:53</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Lifecycle hook that runs on component initialization.
+Retrieves product data from the resolver and initializes order details.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onQuantityChanged"></a>
+                    <span class="name">
+                        <span ><b>onQuantityChanged</b></span>
+                        <a href="#onQuantityChanged"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onQuantityChanged(quantity: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>, productId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="155"
+                                    class="link-to-prism">src/app/components/buy-product/buy-product.component.ts:155</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Updates the selected quantity of a product.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>quantity</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The new quantity.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                                <td>productId</td>
+                                            <td>
+                                                            <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The product ID.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="placeOrder"></a>
+                    <span class="name">
+                        <span ><b>placeOrder</b></span>
+                        <a href="#placeOrder"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>placeOrder(orderForm: NgForm)</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="75"
+                                    class="link-to-prism">src/app/components/buy-product/buy-product.component.ts:75</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Initiates the order placement process and redirects to PayPal if successful.</p>
+</div>
+
+                            <div class="io-description">
+                                <b>Parameters :</b>
+                                
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Type</td>
+                                            <td>Optional</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                                <td>orderForm</td>
+                                            <td>
+                                                        <code>NgForm</code>
+                                            </td>
+
+                                            <td>
+                                                    No
+                                            </td>
+
+
+                                            <td>
+                                                    <ul>
+<li>The form containing order details.</li>
+</ul>
+
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        <div class="io-description">
+                            <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                        </div>
+                            <div class="io-description">
+                                
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="processPayment"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>processPayment</b></span>
+                        <a href="#processPayment"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>processPayment()</code>
+                </td>
+            </tr>
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <div class="io-line">Defined in <a href="" data-line="103"
+                                    class="link-to-prism">src/app/components/buy-product/buy-product.component.ts:103</a></div>
+                        </td>
+                    </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-description"><p>Handles payment processing and returns a PayPal URL.</p>
+</div>
+
+                        <div class="io-description">
+                            <b>Returns : </b>    <code>Observable&lt;string&gt;</code>
+
+                        </div>
+                            <div class="io-description">
+                                <p>The PayPal payment URL or an empty string in case of error.</p>
+
+                            </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section data-compodoc="block-properties">
+    
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isGeneratingFile"></a>
+                    <span class="name">
+                        <span ><b>isGeneratingFile</b></span>
+                        <a href="#isGeneratingFile"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/components/buy-product/buy-product.component.ts:31</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Indicates whether the payment process is in progress</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="orderDetails"></a>
+                    <span class="name">
+                        <span ><b>orderDetails</b></span>
+                        <a href="#orderDetails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/OrderDetailsModel.html" target="_self" >OrderDetailsModel</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+    fullName: &#x27;&#x27;,
+    fullAddress: &#x27;&#x27;,
+    contactNumber: &#x27;&#x27;,
+    alternateContactNumber: &#x27;&#x27;,
+    orderProductQuantityList: []
+  }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/components/buy-product/buy-product.component.ts:22</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Order details including user information and product quantities</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="productDetails"></a>
+                    <span class="name">
+                        <span ><b>productDetails</b></span>
+                        <a href="#productDetails"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Product.html" target="_self" >Product[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[]</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/components/buy-product/buy-product.component.ts:34</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>List of products obtained from the resolver</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { NgForm } from &#x27;@angular/forms&#x27;;
+import { ActivatedRoute, Router } from &#x27;@angular/router&#x27;;
+import { ToastrService } from &#x27;ngx-toastr&#x27;;
+import { catchError, Observable, of, switchMap, throwError } from &#x27;rxjs&#x27;;
+import { OrderDetailsModel } from &#x27;src/app/interfaces/order-details-model&#x27;;
+import { Product } from &#x27;src/app/interfaces/product&#x27;;  // Importar el modelo de producto
+import { PaymentService } from &#x27;src/app/services/payment.service&#x27;;
+
+/**
+ * Component responsible for handling product purchases.
+ * Allows users to enter order details, modify quantities, and process payments via PayPal.
+ */
+@Component({
+  selector: &#x27;app-buy-product&#x27;,
+  templateUrl: &#x27;./buy-product.component.html&#x27;,
+  styleUrls: [&#x27;./buy-product.component.css&#x27;]
+})
+export class BuyProductComponent implements OnInit {
+
+  /** Order details including user information and product quantities */
+  orderDetails: OrderDetailsModel &#x3D; {
+    fullName: &#x27;&#x27;,
+    fullAddress: &#x27;&#x27;,
+    contactNumber: &#x27;&#x27;,
+    alternateContactNumber: &#x27;&#x27;,
+    orderProductQuantityList: []
+  };
+
+  /** Indicates whether the payment process is in progress */
+  isGeneratingFile: boolean &#x3D; false;
+
+  /** List of products obtained from the resolver */
+  productDetails: Product[] &#x3D; [];  
+
+  /**
+   * Creates an instance of BuyProductComponent.
+   * @param {ActivatedRoute} activatedRoute - Provides access to route data.
+   * @param {ToastrService} toastrService - Service for displaying notifications.
+   * @param {PaymentService} paymentService - Handles payment processing.
+   */
+  constructor(
+    private activatedRoute: ActivatedRoute,
+    private toastrService: ToastrService,
+    private paymentService: PaymentService
+  
+  ) { }
+
+  /**
+   * Lifecycle hook that runs on component initialization.
+   * Retrieves product data from the resolver and initializes order details.
+   */
+  ngOnInit(): void {
+    // Obtener los datos del resolver
+    this.activatedRoute.data.subscribe((data) &#x3D;&gt; {
+      if (data[&#x27;productDetails&#x27;]) {
+        this.productDetails &#x3D; data[&#x27;productDetails&#x27;]; 
+      }
+    });
+
+    this.productDetails.forEach(
+      product &#x3D;&gt; this.orderDetails.orderProductQuantityList.push(
+        {
+          productId: product.productId!,
+          quantity: 1
+        }
+      )
+    );
+  }
+
+  /**
+   * Initiates the order placement process and redirects to PayPal if successful.
+   * @param {NgForm} orderForm - The form containing order details.
+   */
+  placeOrder(orderForm: NgForm) {
+    this.isGeneratingFile &#x3D; true;
+    localStorage.setItem(&#x27;pendingOrder&#x27;, JSON.stringify(this.orderDetails));
+    this.processPayment().subscribe({
+      next: (paymentUrl: string) &#x3D;&gt; {
+        this.isGeneratingFile &#x3D; false;
+
+        if (paymentUrl) {
+          orderForm.reset();
+          console.log(&#x27;Cart cleared successfully.&#x27;);
+          window.location.href &#x3D; paymentUrl; // Redirigir al usuario a PayPal
+        } else {
+          this.toastrService.error(&#x27;Error while processing the payment&#x27;, &#x27;Error&#x27;);
+        }
+      },
+      error: (err) &#x3D;&gt; {
+        this.isGeneratingFile &#x3D; false;
+        console.error(&#x27;Error occurred:&#x27;, err);
+        this.toastrService.error(&#x27;Error while processing the payment&#x27;, &#x27;Error&#x27;);
+      }
+    });
+  }
+  
+  /**
+   * Handles payment processing and returns a PayPal URL.
+   * @private
+   * @returns {Observable&lt;string&gt;} The PayPal payment URL or an empty string in case of error.
+   */
+  private processPayment(): Observable&lt;string&gt; {
+    const dataPayment &#x3D; {
+      method: &#x27;PAYPAL&#x27;,
+      amount: this.getCalculatedGrandTotal().toString(),
+      currency: &#x27;EUR&#x27;,
+      description: &#x60;Payment processed&#x60;
+    };
+  
+    return this.paymentService.getURLPaypalPayment(dataPayment).pipe(
+      switchMap(paymentResponse &#x3D;&gt; {
+        if (paymentResponse?.url) {
+          return of(paymentResponse.url.toString());
+        }
+        return throwError(() &#x3D;&gt; new Error(&#x27;Invalid payment response&#x27;));
+      }),
+      catchError(() &#x3D;&gt; {
+        this.toastrService.error(&#x27;The payment could not be processed.&#x27;, &#x27;Payment Error&#x27;);
+        return of(&#x27;&#x27;);
+      })
+    );
+  }
+
+  /**
+   * Retrieves the quantity for a specific product.
+   * @param {number} productId - The product ID.
+   * @returns {number} The selected quantity.
+   */
+  getQuantityForProduct(productId: number): number {
+    const filteredProduct &#x3D; this.orderDetails.orderProductQuantityList.filter(
+      (productQuantity) &#x3D;&gt; productQuantity.productId &#x3D;&#x3D;&#x3D; productId
+    );
+    return filteredProduct[0].quantity;
+  }
+
+   /**
+   * Calculates the total price for a specific product.
+   * @param {number} productId - The product ID.
+   * @param {number} productPrice - The price per unit.
+   * @returns {number} The calculated total.
+   */
+  getCalculatedTotal(productId: number, productPrice: number): number {
+    const filteredProduct &#x3D; this.orderDetails.orderProductQuantityList.filter(
+      (productQuantity) &#x3D;&gt; productQuantity.productId &#x3D;&#x3D;&#x3D; productId
+    );
+    return filteredProduct[0].quantity * productPrice;
+  }
+
+  /**
+   * Updates the selected quantity of a product.
+   * @param {number} quantity - The new quantity.
+   * @param {number} productId - The product ID.
+   */
+  onQuantityChanged(quantity: number, productId: number) {
+    this.orderDetails.orderProductQuantityList.filter(
+      (orderProduct) &#x3D;&gt; orderProduct.productId &#x3D;&#x3D;&#x3D; productId
+    )[0].quantity &#x3D; quantity;
+  }
+
+  /**
+   * Calculates the grand total for all selected products.
+   * @returns {number} The total order amount.
+   */
+  getCalculatedGrandTotal(): number {
+    let grandTotal &#x3D; 0;
+  
+    this.orderDetails.orderProductQuantityList.forEach((productQuantity) &#x3D;&gt; {
+      const product &#x3D; this.productDetails.find(product &#x3D;&gt; product.productId &#x3D;&#x3D;&#x3D; productQuantity.productId);
+  
+      if (product) {
+        const price &#x3D; product.productDiscountedPrice &gt; 0 ? product.productDiscountedPrice : product.productActualPrice;
+        grandTotal +&#x3D; price * productQuantity.quantity; // Multiplicamos por la cantidad seleccionada
+      }
+    });
+  
+    return grandTotal;
+  }
+  
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container mt-5&quot;&gt;
+    &lt;div class&#x3D;&quot;card pe-4 fade-in&quot;&gt;
+      &lt;app-spinner [show]&#x3D;&quot;isGeneratingFile&quot; text&#x3D;&quot;Processing payment&quot;&gt;&lt;/app-spinner&gt;
+
+      &lt;div class&#x3D;&quot;row&quot;&gt;
+        &lt;div class&#x3D;&quot;col-lg-6&quot;&gt;
+          &lt;form class&#x3D;&quot;row p-4&quot; #orderForm&#x3D;&quot;ngForm&quot; (ngSubmit)&#x3D;&quot;placeOrder(orderForm)&quot;&gt;
+            &lt;!-- Full Name --&gt;
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+              &lt;label for&#x3D;&quot;fullName&quot; class&#x3D;&quot;form-label required&quot;&gt;Full Name&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;fullName&quot; name&#x3D;&quot;fullName&quot;
+                [(ngModel)]&#x3D;&quot;orderDetails.fullName&quot; #fullName&#x3D;&quot;ngModel&quot;
+                required minlength&#x3D;&quot;3&quot; maxlength&#x3D;&quot;100&quot; placeholder&#x3D;&quot;Full name&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;fullName.invalid &amp;&amp; fullName.touched&quot; class&#x3D;&quot;alert alert-danger mt-2 py-2&quot;&gt;
+                Full Name is required and must be between 3 and 100 characters.
+              &lt;/div&gt;
+            &lt;/div&gt;
+  
+            &lt;!-- Full Address --&gt;
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+              &lt;label for&#x3D;&quot;fullAddress&quot; class&#x3D;&quot;form-label required&quot;&gt;Full Address&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;fullAddress&quot; name&#x3D;&quot;fullAddress&quot;
+                [(ngModel)]&#x3D;&quot;orderDetails.fullAddress&quot; #fullAddress&#x3D;&quot;ngModel&quot;
+                required minlength&#x3D;&quot;3&quot; maxlength&#x3D;&quot;100&quot; placeholder&#x3D;&quot;Full address&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;fullAddress.invalid &amp;&amp; fullAddress.touched&quot; class&#x3D;&quot;alert alert-danger mt-2 py-2&quot;&gt;
+                Full Address is required and must be between 3 and 100 characters.
+              &lt;/div&gt;
+            &lt;/div&gt;
+  
+            &lt;!-- Contact Number --&gt;
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+              &lt;label for&#x3D;&quot;contactNumber&quot; class&#x3D;&quot;form-label required&quot;&gt;Contact Number&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;contactNumber&quot; name&#x3D;&quot;contactNumber&quot;
+                [(ngModel)]&#x3D;&quot;orderDetails.contactNumber&quot; #contactNumber&#x3D;&quot;ngModel&quot;
+                required pattern&#x3D;&quot;^\+?[0-9]*$&quot; minlength&#x3D;&quot;9&quot; maxlength&#x3D;&quot;15&quot; placeholder&#x3D;&quot;Contact number&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;contactNumber.invalid &amp;&amp; contactNumber.touched&quot; class&#x3D;&quot;alert alert-danger mt-2 py-2&quot;&gt;
+                Contact Number is required and must be numeric. It can optionally start with a &quot;+&quot; for the prefix.
+              &lt;/div&gt;
+            &lt;/div&gt;
+  
+            &lt;!-- Alternate Contact Number --&gt;
+            &lt;div class&#x3D;&quot;mb-3&quot;&gt;
+              &lt;label for&#x3D;&quot;alternateContactNumber&quot; class&#x3D;&quot;form-label required&quot;&gt;Alternate Contact Number&lt;/label&gt;
+              &lt;input type&#x3D;&quot;text&quot; class&#x3D;&quot;form-control&quot; id&#x3D;&quot;alternateContactNumber&quot; name&#x3D;&quot;alternateContactNumber&quot;
+                [(ngModel)]&#x3D;&quot;orderDetails.alternateContactNumber&quot; #alternateContactNumber&#x3D;&quot;ngModel&quot;
+                required pattern&#x3D;&quot;^\+?[0-9]*$&quot; minlength&#x3D;&quot;9&quot; maxlength&#x3D;&quot;15&quot; placeholder&#x3D;&quot;Alternate contact number&quot;&gt;
+              &lt;div *ngIf&#x3D;&quot;alternateContactNumber.invalid &amp;&amp; alternateContactNumber.touched&quot; class&#x3D;&quot;alert alert-danger mt-2 py-2&quot;&gt;
+                Alternate Contact Number is required and must be numeric. It can optionally start with a &quot;+&quot; for the prefix.
+              &lt;/div&gt;
+            &lt;/div&gt;
+  
+            &lt;!-- Submit Button --&gt;
+            &lt;div class&#x3D;&quot;text-center&quot;&gt;
+              &lt;button class&#x3D;&quot;btn btn-success&quot; type&#x3D;&quot;submit&quot; [disabled]&#x3D;&quot;orderForm.invalid&quot;&gt;Place Order&lt;/button&gt;
+            &lt;/div&gt;
+          &lt;/form&gt;
+        &lt;/div&gt;
+        &lt;div class&#x3D;&quot;col-lg-6&quot;&gt;
+            &lt;table class&#x3D;&quot;table mx-2 mx-lg-0 table-striped table-hover mt-4 pe-4&quot;&gt;
+                &lt;thead class&#x3D;&quot;table-dark&quot;&gt;
+                  &lt;tr&gt;
+                    &lt;th&gt;Name&lt;/th&gt;
+                    &lt;th&gt;Amount (€)&lt;/th&gt;
+                    &lt;th&gt;Quantity&lt;/th&gt;
+                    &lt;th&gt;Total (€)&lt;/th&gt;
+                  &lt;/tr&gt;
+                &lt;/thead&gt;
+                &lt;tbody&gt;
+                  &lt;tr *ngFor&#x3D;&quot;let product of productDetails; let i &#x3D; index&quot;&gt;
+                    &lt;td&gt;{{ product.productName }}&lt;/td&gt;
+                    &lt;td&gt;{{ (product.productDiscountedPrice &gt; 0 ? product.productDiscountedPrice : product.productActualPrice) | currency: &#x27;EUR&#x27; }}&lt;/td&gt;
+                    &lt;td&gt;
+                        &lt;select class&#x3D;&quot;form-select&quot; [ngModel]&#x3D;&quot;getQuantityForProduct(product.productId!)&quot; #quantity
+                            (change)&#x3D;&quot;onQuantityChanged(+quantity.value, product.productId!)&quot;&gt;
+                        &gt;
+                            &lt;option value&#x3D;&quot;1&quot;&gt;1&lt;/option&gt;
+                            &lt;option value&#x3D;&quot;2&quot;&gt;2&lt;/option&gt;
+                            &lt;option value&#x3D;&quot;3&quot;&gt;3&lt;/option&gt;
+                            &lt;option value&#x3D;&quot;4&quot;&gt;4&lt;/option&gt;
+                        &lt;/select&gt;            
+                    &lt;/td&gt;
+                    &lt;td&gt;
+                        {{ (product.productDiscountedPrice &gt; 0 ? 
+                            getCalculatedTotal(product.productId!, product.productDiscountedPrice) : 
+                            getCalculatedTotal(product.productId!, product.productActualPrice)) 
+                            | currency: &#x27;EUR&#x27; 
+                        }}
+                      &lt;/td&gt;
+                      
+                  &lt;/tr&gt;
+                &lt;/tbody&gt;
+                &lt;tfoot&gt;
+                    &lt;tr class&#x3D;&quot;fw-bold&quot;&gt;
+                      &lt;td colspan&#x3D;&quot;3&quot; class&#x3D;&quot;text-end&quot;&gt;Total:&lt;/td&gt;
+                      &lt;td&gt;{{ getCalculatedGrandTotal() | currency: &#x27;EUR&#x27; }}&lt;/td&gt;
+                    &lt;/tr&gt;
+                  &lt;/tfoot&gt;
+              &lt;/table&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  </code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="styleData">
+                <p class="comment">
+                    <code>./buy-product.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div class="container mt-5">    <div class="card pe-4 fade-in">      <app-spinner [show]="isGeneratingFile" text="Processing payment"></app-spinner>      <div class="row">        <div class="col-lg-6">          <form class="row p-4" #orderForm="ngForm" (ngSubmit)="placeOrder(orderForm)">            <!-- Full Name -->            <div class="mb-3">              <label for="fullName" class="form-label required">Full Name</label>              <input type="text" class="form-control" id="fullName" name="fullName"                [(ngModel)]="orderDetails.fullName" #fullName="ngModel"                required minlength="3" maxlength="100" placeholder="Full name">              <div *ngIf="fullName.invalid && fullName.touched" class="alert alert-danger mt-2 py-2">                Full Name is required and must be between 3 and 100 characters.              </div>            </div>              <!-- Full Address -->            <div class="mb-3">              <label for="fullAddress" class="form-label required">Full Address</label>              <input type="text" class="form-control" id="fullAddress" name="fullAddress"                [(ngModel)]="orderDetails.fullAddress" #fullAddress="ngModel"                required minlength="3" maxlength="100" placeholder="Full address">              <div *ngIf="fullAddress.invalid && fullAddress.touched" class="alert alert-danger mt-2 py-2">                Full Address is required and must be between 3 and 100 characters.              </div>            </div>              <!-- Contact Number -->            <div class="mb-3">              <label for="contactNumber" class="form-label required">Contact Number</label>              <input type="text" class="form-control" id="contactNumber" name="contactNumber"                [(ngModel)]="orderDetails.contactNumber" #contactNumber="ngModel"                required pattern="^\+?[0-9]*$" minlength="9" maxlength="15" placeholder="Contact number">              <div *ngIf="contactNumber.invalid && contactNumber.touched" class="alert alert-danger mt-2 py-2">                Contact Number is required and must be numeric. It can optionally start with a "+" for the prefix.              </div>            </div>              <!-- Alternate Contact Number -->            <div class="mb-3">              <label for="alternateContactNumber" class="form-label required">Alternate Contact Number</label>              <input type="text" class="form-control" id="alternateContactNumber" name="alternateContactNumber"                [(ngModel)]="orderDetails.alternateContactNumber" #alternateContactNumber="ngModel"                required pattern="^\+?[0-9]*$" minlength="9" maxlength="15" placeholder="Alternate contact number">              <div *ngIf="alternateContactNumber.invalid && alternateContactNumber.touched" class="alert alert-danger mt-2 py-2">                Alternate Contact Number is required and must be numeric. It can optionally start with a "+" for the prefix.              </div>            </div>              <!-- Submit Button -->            <div class="text-center">              <button class="btn btn-success" type="submit" [disabled]="orderForm.invalid">Place Order</button>            </div>          </form>        </div>        <div class="col-lg-6">            <table class="table mx-2 mx-lg-0 table-striped table-hover mt-4 pe-4">                <thead class="table-dark">                  <tr>                    <th>Name</th>                    <th>Amount (€)</th>                    <th>Quantity</th>                    <th>Total (€)</th>                  </tr>                </thead>                <tbody>                  <tr *ngFor="let product of productDetails; let i = index">                    <td>{{ product.productName }}</td>                    <td>{{ (product.productDiscountedPrice > 0 ? product.productDiscountedPrice : product.productActualPrice) | currency: \'EUR\' }}</td>                    <td>                        <select class="form-select" [ngModel]="getQuantityForProduct(product.productId!)" #quantity                            (change)="onQuantityChanged(+quantity.value, product.productId!)">                        >                            <option value="1">1</option>                            <option value="2">2</option>                            <option value="3">3</option>                            <option value="4">4</option>                        </select>                                </td>                    <td>                        {{ (product.productDiscountedPrice > 0 ?                             getCalculatedTotal(product.productId!, product.productDiscountedPrice) :                             getCalculatedTotal(product.productId!, product.productActualPrice))                             | currency: \'EUR\'                         }}                      </td>                                        </tr>                </tbody>                <tfoot>                    <tr class="fw-bold">                      <td colspan="3" class="text-end">Total:</td>                      <td>{{ getCalculatedGrandTotal() | currency: \'EUR\' }}</td>                    </tr>                  </tfoot>              </table>        </div>      </div>    </div>  </div>  </div>'
+    var COMPONENTS = [{'name': 'AdminComponent', 'selector': 'app-admin'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'BuyProductComponent', 'selector': 'app-buy-product'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'FooterComponent', 'selector': 'app-footer'},{'name': 'ForbiddenComponent', 'selector': 'app-forbidden'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'LoginComponent', 'selector': 'app-login'},{'name': 'MyOrdersComponent', 'selector': 'app-my-orders'},{'name': 'OrderConfirmationComponent', 'selector': 'app-order-confirmation'},{'name': 'OrderErrorComponent', 'selector': 'app-order-error'},{'name': 'OrdersComponent', 'selector': 'app-orders'},{'name': 'ProductViewDetailsComponent', 'selector': 'app-product-view-details'},{'name': 'RegisterComponent', 'selector': 'app-register'},{'name': 'SaveProductComponent', 'selector': 'app-add-new-product'},{'name': 'SearchBarComponent', 'selector': 'app-search-bar'},{'name': 'ShowProductDetailsComponent', 'selector': 'app-show-product-details'},{'name': 'SpinnerComponent', 'selector': 'app-spinner'},{'name': 'UserComponent', 'selector': 'app-user'}];
+    var DIRECTIVES = [];
+    var ACTUAL_COMPONENT = {'name': 'BuyProductComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'BuyProductComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script>
+               $darkModeToggleSwitchers = document.querySelectorAll('.dark-mode-switch input');
+               checkToggle(darkModeState);
+               if ($darkModeToggleSwitchers.length > 0) {
+                    for (var i = 0; i < $darkModeToggleSwitchers.length; i++) {
+                         $darkModeToggleSwitchers[i].addEventListener('change', function (event) {
+                              darkModeState = !darkModeState;
+                              toggleDarkMode(darkModeState);
+                         });
+                    }
+               }
+          </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+
+       <script src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

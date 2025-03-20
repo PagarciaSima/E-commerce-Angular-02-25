@@ -4,6 +4,11 @@ import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product.service';
 
+// npm install -g @compodoc/compodoc
+// npm install --save-dev @compodoc/compodoc
+// Documentación npx compodoc -p tsconfig.json
+
+
 /**
  * Component responsible for displaying the home page with a list of products.
  * Supports pagination, search functionality, and navigation to product details.
