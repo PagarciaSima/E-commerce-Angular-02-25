@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { catchError, Observable, of, switchMap, throwError } from 'rxjs';
 import { OrderDetailsModel } from 'src/app/interfaces/order-details-model';
@@ -42,7 +43,8 @@ export class BuyProductComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private toastrService: ToastrService,
-    private paymentService: PaymentService
+    private paymentService: PaymentService,
+    private translate: TranslateService
   
   ) { }
 
@@ -84,13 +86,13 @@ export class BuyProductComponent implements OnInit {
           console.log('Cart cleared successfully.');
           window.location.href = paymentUrl; // Redirigir al usuario a PayPal
         } else {
-          this.toastrService.error('Error while processing the payment', 'Error');
+          
+          this.toastrService.error(this.translate.instant('Toast.ErrorPayment'), 'Error');
         }
       },
       error: (err) => {
         this.isGeneratingFile = false;
-        console.error('Error occurred:', err);
-        this.toastrService.error('Error while processing the payment', 'Error');
+        this.toastrService.error(this.translate.instant('Toast.ErrorPayment'), 'Error');
       }
     });
   }
@@ -116,7 +118,7 @@ export class BuyProductComponent implements OnInit {
         return throwError(() => new Error('Invalid payment response'));
       }),
       catchError(() => {
-        this.toastrService.error('The payment could not be processed.', 'Payment Error');
+        this.toastrService.error(this.translate.instant('Toast.ErrorPaymentProcessed'), 'Error');
         return of('');
       })
     );

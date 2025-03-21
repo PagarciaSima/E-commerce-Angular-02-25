@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { MyOrderDetails } from 'src/app/interfaces/my-order-details';
 import { ProductService } from 'src/app/services/product.service';
@@ -37,7 +38,9 @@ export class MyOrdersComponent implements OnInit{
 
   constructor(
     private productService: ProductService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private translate: TranslateService
+    
   ) {
 
   }
@@ -62,7 +65,7 @@ export class MyOrdersComponent implements OnInit{
         // Crear el array de páginas a mostrar
         this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
       }, error: (error) => {
-        this.toastrService.error('Error while retrieving order details ' + error.error, 'Error');
+        this.toastrService.error(this.translate.instant('Toast.ErrorOrderDetails') + error.error , 'Error');
       }
     }); 
   }
@@ -117,7 +120,7 @@ export class MyOrdersComponent implements OnInit{
             // Crear el array de páginas a mostrar
             this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
           }, error: (err) => {
-            this.toastrService.error('An unexpected error occurred: ' + err.error, 'Error')
+            this.toastrService.error(this.translate.instant('Toast.ErrorUnexpected ') + err.error , 'Error');
           }
         });
     }

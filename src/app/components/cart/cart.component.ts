@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Cart } from 'src/app/interfaces/cart';
 import { ProductService } from 'src/app/services/product.service';
@@ -38,7 +39,8 @@ export class CartComponent implements OnInit{
   constructor(
     private toastrService: ToastrService,
     private productService: ProductService,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
   ) {
     
   }
@@ -95,7 +97,7 @@ export class CartComponent implements OnInit{
         // Crear el array de páginas a mostrar
         this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
       }, error: (err) => {
-        this.toastrService.error('Error, could not retrieve your cart details ' + err.error, 'Error')
+        this.toastrService.error(this.translate.instant('Toast.ErrorCartDetails') + err.error, 'Error');
       }
     });
   }
@@ -120,7 +122,7 @@ export class CartComponent implements OnInit{
           // Crear el array de páginas a mostrar
           this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
         }, error: (err) => {
-          this.toastrService.error('An unexpected error occurred: ' + err.error, 'Error')
+          this.toastrService.error(this.translate.instant('Toast.ErrorUnexpected') + err.error, 'Error');
         }
       });
     }
@@ -145,10 +147,11 @@ export class CartComponent implements OnInit{
   delete(id: number) {
     this.productService.deleteCartById(id).subscribe({
       next: () => {
-        this.toastrService.success('Product removed from the cart', 'Success');
+        this.toastrService.success(this.translate.instant('Toast.DeleteCartId'), 'Success');
+
         this.getCartDetailsPaginated(this.currentPage, this.pageSize);
       }, error: (err) => {
-        this.toastrService.error('An unexpected error occurred: ' + err.error, 'Error')
+        this.toastrService.error(this.translate.instant('Toast.ErrorUnexpected'), 'Error');
       }
     });
   }

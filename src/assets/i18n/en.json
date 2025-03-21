@@ -152,6 +152,36 @@
   },
   "OrderError": {
     "message": "An unexpected error occurred while processing your order."
+  },
+  "Toast": {
+    "ErrorPayment": "Error while processing payment.",
+    "ErrorPaymentProcessed": "The payment could not be processed.",
+    "DeleteCartId": "Product removed from the cart.",
+    "ErrorUnexpected": "An unexpected error occurred.",
+    "ErrorServer": "Server error. Please try later.",
+    "ErrorCartDetails": "Error, could not retrieve your cart details ",
+    "ErrorGetProductList": "Error, could not retrieve the product list  ",
+    "LoginSuccess": "You have logged in successfully.",
+    "LoginErrorCredentials": "Invalid credentials. Please try again.",
+    "ErrorOrderDetails": "Error while retrieving order details ",
+    "OrderPlaced": "Order placed successfully.",
+    "OrderError": "Error placing order.",
+    "StatusChanged": "Order status updated successfully.",
+    "AddedToCart": "Product added to the cart.",
+    "AccountCreated": "Account created successfully.",
+    "ErrorUserExists": "The username is already taken. Please choose another.",
+    "ErrorAccount": "Error while creating the account.",
+    "ErrorGetProduct": "Error retrieving product data.",
+    "ProductPriceWarning": "Discounted price cannot be greater than actual price.",
+    "ProductUpdated": "Product updated successfully.",
+    "ErrorUpdateProduct": "Failed to update product.",
+    "CreateProduct": "Product created successfully.",
+    "ErrorCreateProduct": "Failed to create product.",
+    "ImageLimit3": "You can only upload up to 3 images.",
+    "ErrorDeleteImage": "Failed to remove image.",
+    "ProductDeleted": "Product deleted successfully",
+    "NoImagesAvailable": "No images available for this product",
+    "ErrorFile": "Error generating "
   }
   
 }

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { UserAuthService } from 'src/app/services/user-auth.service';
 import { UserService } from 'src/app/services/user.service';
@@ -27,7 +28,9 @@ export class LoginComponent {
     private userService: UserService,
     private userAuthService: UserAuthService,
     private toastrService: ToastrService, 
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
+    
   ) {
 
   }
@@ -52,15 +55,15 @@ export class LoginComponent {
           this.router.navigate(['/user'])
         }
 
-        this.toastrService.success('You have logged in successfully', 'Success');
+        this.toastrService.success(this.translate.instant('Toast.LoginSuccess') , 'Success');
       },
       error: (error) => {
         if (error.status === 401) {
-          this.toastrService.error('Invalid credentials. Please try again.', 'Error');
+          this.toastrService.error(this.translate.instant('Toast.LoginErrorCredentials') , 'Error');
         } else if (error.status === 500) {
-          this.toastrService.error('Server error. Please try later.', 'Error');
+          this.toastrService.error(this.translate.instant('Toast.ErrorServer') , 'Error');
         } else {
-          this.toastrService.error('An unexpected error occurred.', 'Error');
+          this.toastrService.error(this.translate.instant('Toast.ErrorUnexpected') , 'Error');
         }
       }
     });

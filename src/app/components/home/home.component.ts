@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Product } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product.service';
@@ -45,7 +46,9 @@ export class HomeComponent implements OnInit{
   constructor(
     private productService: ProductService,
     private router: Router,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private translate: TranslateService
+    
   ) {
     
   }
@@ -70,7 +73,7 @@ export class HomeComponent implements OnInit{
         // Crear el array de páginas a mostrar
         this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
       }, error: (err) => {
-        this.toastrService.error('Error, could not retrieve the product list  ' + err.error, 'Error')
+        this.toastrService.error(this.translate.instant('Toast.ErrorGetProductList') + err.error, 'Error');
       }
     });
   }
@@ -133,7 +136,7 @@ export class HomeComponent implements OnInit{
             // Crear el array de páginas a mostrar
             this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
           }, error: (err) => {
-            this.toastrService.error('An unexpected error occurred: ' + err.error, 'Error')
+            this.toastrService.error(this.translate.instant('Toast.ErrorUnexpected') + err.error, 'Error');
           }
         });
     }

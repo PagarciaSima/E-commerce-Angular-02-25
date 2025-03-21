@@ -1,5 +1,6 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { Image } from 'src/app/interfaces/image';
 import { Product } from 'src/app/interfaces/product';
@@ -37,7 +38,9 @@ export class ProductViewDetailsComponent implements OnInit {
     private router: Router,
     private productService: ProductService,
     private toastrService: ToastrService,
-    private userAuthService: UserAuthService
+    private userAuthService: UserAuthService,
+    private translate: TranslateService
+    
   ) {}
 
   ngOnInit(): void {
@@ -92,9 +95,11 @@ export class ProductViewDetailsComponent implements OnInit {
   addToCart(productId: number) {
     this.productService.addToCart(productId).subscribe({
       next: (data) => {
-        this.toastrService.success("Product added to the cart", "Success");
+        this.toastrService.success(this.translate.instant('Toast.AddedToCart ') , 'Success');
+
       }, error: () => {
-        this.toastrService.error("Something went wrong. Could not add the product to the cart", "Error")
+        this.toastrService.error(this.translate.instant('Toast.ErrorUnexpected ') , 'Error');
+
       }
     });
   }

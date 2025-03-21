@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { User } from 'src/app/interfaces/user';
 import { UserService } from 'src/app/services/user.service';
@@ -25,7 +26,9 @@ export class RegisterComponent {
   constructor(
     private userService: UserService,
     private toastrService: ToastrService,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
+    
   ) {
 
   }
@@ -38,14 +41,14 @@ export class RegisterComponent {
     if (registerForm.valid) {
       this.userService.register(this.user).subscribe({
         next: () => {
-          this.toastrService.success('Account created successfully', 'Success');
+          this.toastrService.success(this.translate.instant('Toast.AccountCreated ') , 'Success');
           this.router.navigate(['login']);
         },
         error: (errorResponse) => {
           if (errorResponse.status === 400 && errorResponse.error === 'Username already exists') {
-            this.toastrService.error('The username is already taken. Please choose another.', 'Error');
+            this.toastrService.error(this.translate.instant('Toast.ErrorUserExists ') , 'Error');
           } else {
-            this.toastrService.error('Error while creating the account', 'Error');
+            this.toastrService.error(this.translate.instant('Toast.ErrorAccount ') , 'Error');
           }
         }
       });

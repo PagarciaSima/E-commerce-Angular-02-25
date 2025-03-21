@@ -7,6 +7,7 @@ import { Image } from 'src/app/interfaces/image';
 
 import { ImageServiceService } from 'src/app/services/image.service';
 import { ProductService } from 'src/app/services/product.service';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Component for adding and editing products.
@@ -54,7 +55,9 @@ export class SaveProductComponent implements OnInit {
     private imageService: ImageServiceService,
     private toastrService: ToastrService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private translate: TranslateService
+    
   ) { }
 
   ngOnInit(): void {
@@ -85,9 +88,8 @@ export class SaveProductComponent implements OnInit {
           }));
         }
       },
-      error: (error) => {
-        this.toastrService.error('Error retrieving product data', 'Error');
-        console.error('Error loading product:', error);
+      error: () => {
+        this.toastrService.error(this.translate.instant('Toast.ErrorGetProduct') , 'Error');
       }
     });
   }
@@ -98,7 +100,7 @@ export class SaveProductComponent implements OnInit {
    */
   addProduct(productForm: NgForm) {
     if (this.product.productActualPrice < this.product.productDiscountedPrice) {
-      this.toastrService.warning('Discounted price cannot be greater than actual price.', 'Warning');
+      this.toastrService.warning(this.translate.instant('Toast.ProductPriceWarning') , 'Warning');
       return;
     }
     const formData = this.loadFormData();
@@ -118,18 +120,11 @@ export class SaveProductComponent implements OnInit {
   private editProduct(formData: FormData) {
     this.productService.updateProduct(this.product.productId!, formData).subscribe({
       next: () => {
-        this.toastrService.success('Product updated successfully', 'Success');
+        this.toastrService.success(this.translate.instant('Toast.ProductUpdated') , 'Success');
         this.router.navigate(['/showProductDetails']);
       },
       error: (err) => {
-        console.error('Error al actualizar el producto:', err);
-        if (err.error) {
-          console.error('Error del backend:', err.error);
-        }
-        if (err.status) {
-          console.error('Código de estado:', err.status);
-        }
-        this.toastrService.error('Failed to update product', 'Error');
+        this.toastrService.error(this.translate.instant('Toast.ErrorUpdateProduct') , 'Error');
       }
     });
   }
@@ -142,15 +137,15 @@ export class SaveProductComponent implements OnInit {
   private createProduct(formData: FormData, productForm: NgForm) {
     this.productService.addProduct(formData).subscribe({
       next: () => {
-        this.toastrService.success('Product created successfully', 'Success');
+        this.toastrService.success(this.translate.instant('Toast.CreateProduct') , 'Success');
+
         this.clearForm(productForm);
         this.selectedFiles = [];
         this.imagePreviews = [];
         this.router.navigate(['/showProductDetails']);
       },
-      error: (err) => {
-        this.toastrService.error('Failed to create product', 'Error');
-        console.error(err);
+      error: () => {
+        this.toastrService.error(this.translate.instant('Toast.ErrorCreateProduct') , 'Error');
       }
     });
   }
@@ -218,7 +213,7 @@ export class SaveProductComponent implements OnInit {
   
     // Verificar que el usuario no suba más de 3 imágenes
     if (this.imagePreviews.length + files.length > 3) {
-      this.toastrService.warning('You can only upload up to 3 images.', 'Warning');
+      this.toastrService.warning(this.translate.instant('Toast.ImageLimit3') , 'Warning');
       return;
     }
   
@@ -262,9 +257,8 @@ export class SaveProductComponent implements OnInit {
         next: () => {
           this.toastrService.success('Image removed successfully.', 'Success');
         },
-        error: (err) => {
-          console.error('Error removing image:', err);
-          this.toastrService.error('Failed to remove image.', 'Error');
+        error: () => {
+          this.toastrService.error(this.translate.instant('Toast.ErrorDeleteImage') , 'Error');
         }
       });
     }

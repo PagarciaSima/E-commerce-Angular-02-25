@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { MyOrderDetails } from 'src/app/interfaces/my-order-details';
 import { ProductService } from 'src/app/services/product.service';
@@ -40,7 +41,9 @@ export class OrdersComponent {
 
   constructor(
     private productService: ProductService,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private translate: TranslateService
+    
   ) {
 
   }
@@ -66,7 +69,7 @@ export class OrdersComponent {
         // Crear el array de páginas a mostrar
         this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
       }, error: (error) => {
-        this.toastrService.error('Error while retrieving order details ' + error.error, 'Error');
+        this.toastrService.error(this.translate.instant('Toast.ErrorOrderDetails ') + error.error , 'Error');
       }
     }); 
   }
@@ -121,7 +124,7 @@ export class OrdersComponent {
             // Crear el array de páginas a mostrar
             this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
           }, error: (err) => {
-            this.toastrService.error('An unexpected error occurred: ' + err.error, 'Error')
+            this.toastrService.error(this.translate.instant('Toast.ErrorUnexpected ') + err.error , 'Error');
           }
         });
     }
@@ -135,12 +138,12 @@ export class OrdersComponent {
   changeStatus(id: number, newStatus: string) {
     
     this.productService.changeStatus(id, newStatus).subscribe({
-        next: (response) => {
-          this.toastrService.success(response.message, 'Success');
+        next: () => {
+          this.toastrService.success(this.translate.instant('Toast.StatusChanged ') , 'Success');
           this.getAllOrdersPaginated(this.currentPage, this.pageSize, this.orderStatus);
         },
         error: (err) => {
-            this.toastrService.error('An unexpected error occurred: ' + err.error?.message || err.message, 'Error');
+          this.toastrService.error(this.translate.instant('Toast.ErrorUnexpected ') + err.error?.message || err.message , 'Error');
         }
     });
   }

@@ -9,6 +9,7 @@ import { saveAs } from 'file-saver'; // Importa file-saver
 
 import Swal from 'sweetalert2';
 import { finalize } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 
 /**
  * Component for displaying a paginated list of products, allowing actions such as 
@@ -55,7 +56,9 @@ export class ShowProductDetailsComponent implements OnInit{
     private productService: ProductService,
     private toastrService: ToastrService,
     private router: Router,
-    private fileService: FileService
+    private fileService: FileService,
+    private translate: TranslateService
+    
   ) {
 
   }
@@ -78,8 +81,8 @@ export class ShowProductDetailsComponent implements OnInit{
 
         // Crear el array de páginas a mostrar
         this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
-      }, error: (err) => {
-        this.toastrService.error('Error, could not retrieve the product list  ' + err.error, 'Error')
+      }, error: () => {
+        this.toastrService.error(this.translate.instant('Toast.ErrorGetProductList') , 'Error');
       }
     });
   }
@@ -131,11 +134,10 @@ export class ShowProductDetailsComponent implements OnInit{
       if (result.isConfirmed) {
         this.productService.deleteProduct(productId).subscribe({
           next: () => {
-            this.toastrService.success(`Product deleted successfully`, 'Success');
+            this.toastrService.success(this.translate.instant('Toast.ProductDeleted') , 'Success');
             this.getAllProductsPaginated(this.currentPage, this.pageSize);
-          }, error: (error) => {
-            const errorMessage = error?.error?.message || 'An unexpected error occurred.';
-            this.toastrService.error(`Error while deleting the product: ${errorMessage}`, 'Error');
+          }, error: () => {
+            this.toastrService.error(this.translate.instant('Toast.ErrorUnexpected') , 'Error');
           }
         });
       }
@@ -156,7 +158,7 @@ export class ShowProductDetailsComponent implements OnInit{
    */
   public viewImages(product: Product) {
     if (!product.productImages || product.productImages.length === 0) {
-      this.toastrService.warning('No images available for this product', 'Warning');
+      this.toastrService.warning(this.translate.instant('Toast.NoImagesAvailable') , 'Warning');
       return;
     }
   
@@ -179,9 +181,8 @@ export class ShowProductDetailsComponent implements OnInit{
         const blob = new Blob([data], { type: 'application/pdf' });
         saveAs(blob, 'product-list.pdf'); // Descargar el archivo
       },
-      error: (err) => {
-        console.error('Error generating PDF:', err);
-        this.toastrService.error('Error generating PDF', 'Error');
+      error: () => {
+        this.toastrService.error(this.translate.instant('Toast.ErrorFile ') + "PDF" , 'Error');
       }
     });
   }
@@ -204,8 +205,7 @@ export class ShowProductDetailsComponent implements OnInit{
         link.click();
         URL.revokeObjectURL(link.href);
       }, error: (err) => {
-        console.error('Error generating CSV:', err);
-        this.toastrService.error('Error generating CSV', 'Error');
+        this.toastrService.error(this.translate.instant('Toast.ErrorFile ') + "CSV" , 'Error');
       }
     });
   }
@@ -229,8 +229,7 @@ export class ShowProductDetailsComponent implements OnInit{
         URL.revokeObjectURL(link.href);
       }, 
       error: (err) => {
-        console.error('Error generating Excel:', err);
-        this.toastrService.error('Error generating Excel', 'Error');
+        this.toastrService.error(this.translate.instant('Toast.ErrorFile ') + "Excel" , 'Error');
       }
     });
   }
@@ -254,8 +253,8 @@ export class ShowProductDetailsComponent implements OnInit{
 
             // Crear el array de páginas a mostrar
             this.pages = Array.from({ length: this.totalPages }, (_, index) => index);
-          }, error: (err) => {
-            this.toastrService.error('An unexpected error occurred: ' + err.error, 'Error')
+          }, error: () => {
+            this.toastrService.error(this.translate.instant('Toast.ErrorUnexpected'), 'Error');
           }
         });
     }
