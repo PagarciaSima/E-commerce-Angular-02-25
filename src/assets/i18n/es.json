@@ -1,0 +1,155 @@
+{
+  "Header": {
+    "Language": "Idioma",
+    "Spanish": "Español",
+    "English": "Inglés",
+    "ShowProducts": "Mostrar productos",
+    "Home": "Home",
+    "Cart": "Carro",
+    "Orders": "Órdenes",
+    "AddProduct": "Añadir producto",
+    "MyOrders": "Mis ordenes"
+  },
+  "Admin": {
+    "Dashboard": "Panel de administrador",
+    "SalesPerMonth": "Ventas por mes (€)",
+    "OrdersByStatus": "Órdenes por estado",
+    "TopSellingProducts": "Productos top ventas"
+  },
+  "User": {
+    "Dashboard": "Panel de usuario",
+    "SalesPerMonth": "Ventas por mes (€)",
+    "MyOrders": "Mis órdenes",
+    "LastOrders": "Últimas ordenes",
+    "OrderDate": "Fecha",
+    "Status": "Estado",
+    "ProductName": "Nombre del producto",
+    "Amount": "Cantidad",
+    "ActualPrice": "Precio",
+    "DiscountedPrice": "Precio descuento"
+  },
+  "BuyProduct": {
+    "FullName": "Nombre completo",
+    "FullName.required": "El nombre completo es obligatorio y debe tener entre 3 y 100 caracteres.",
+    "Address.required": "La dirección completa es obligatoria y debe tener entre 3 y 100 caracteres.",
+    "ContactNumber": "Número de contacto",
+    "ContactNumber.required": "El número de contacto es obligatorio y debe ser numérico. Opcionalmente puede comenzar con un \"+\" para el prefijo.",
+    "AlternateContactNumber.required": "El número de contacto alternativo es obligatorio y debe ser numérico. Opcionalmente puede comenzar con un \"+\" para el prefijo.",
+    "PlaceOrder": "Realizar pedido",
+    "Name": "Nombre",
+    "Amount": "Monto (€)",
+    "Quantity": "Cantidad"
+  },
+  "Cart": {
+    "Checkout": "Finalizar compra",
+    "Name": "Nombre",
+    "Description": "Descripción",
+    "Price": "Precio",
+    "DiscountedPrice": "Precio con descuento",
+    "Action": "Acción",
+    "NoDiscount": "Este producto no tiene descuento",
+    "Empty": "El carrito está vacío"
+  },
+  "Forbidden": {
+    "AccessNotAllowed": "No tienes permiso para acceder a esta página"
+  },
+  "Login": {
+    "Username.placeholder": "Introduce tu nombre de usuario",
+    "Password.placeholder":"Introduce tu contraseña",
+    "Username.required": "El nombre de usuario es obligatorio",
+    "Password.required": "La contraseña es obligatoria",
+    "Register.question": "¿No tienes una cuenta?",
+    "Register": "Regístrate"
+  },
+  "MyOrders": {
+    "Name": "Nombre",
+    "Address": "Dirección",
+    "Contact": "Número de contacto",
+    "Amount": "Monto",
+    "Status": "Estado",
+    "NoOrders": "No hay pedidos disponibles."
+  },
+  "Orders": {
+    "AllOrders": "Todos los pedidos",
+    "PlacedOrders": "Pedidos realizados",
+    "DeliveredOrders": "Pedidos entregados",
+    "Name": "Nombre",
+    "Address": "Dirección",
+    "ContactNo": "Número de contacto",
+    "Amount": "Monto",
+    "Status": "Estado",
+    "Actions": "Acciones",
+    "MarkDelivered": "Marcar como entregado",
+    "MarkPlaced": "Marcar como realizado",
+    "NoOrders": "No hay pedidos disponibles"
+  },
+  "ProductView": {
+    "header": "Detalles del producto - ",
+    "Description": "Descripción:",
+    "ProductPrice": "Precio del producto: ",
+    "BuyButton": "Comprar ahora",
+    "CartButton": "Añadir al carrito"
+  },
+  "Register": {
+    "Header": "Registro",
+    "Username.placeholder": "Introduce tu nombre de usuario",
+    "Username.validation": "El nombre de usuario debe tener al menos 4 caracteres y no puede contener espacios.",
+    "FirstName.placeholder": "Introduce tu nombre",
+    "FirstName.required": "El nombre es obligatorio.",
+    "LastName.placeholder": "Introduce tu apellido",
+    "LastName.required": "El apellido es obligatorio",
+    "Password.placeholder": "Introduce tu contraseña",
+    "Password.validation.div": "La contraseña debe contener:",
+    "Password.validation.li1": "Al menos un dígito",
+    "Password.validation.li2": "Al menos una letra minúscula",
+    "Password.validation.li3": "Al menos una letra mayúscula",
+    "Password.validation.li4": "Al menos un carácter especial (&#64; # $ % ^ &amp; + = !)",
+    "Password.validation.li5": "Sin espacios",
+    "RegisterButton": "Registrar",
+    "AccountQuestion": "¿Ya tienes una cuenta?"
+  },
+  "SaveProduct": {
+    "NewProduct.h2": "Nuevo producto",
+    "EditProduct.h2": "Editar producto",
+    "ProductName.label": "Nombre del producto",
+    "ProductName.required": "El nombre del producto es obligatorio",
+    "ProductName.minlength": "Se requieren al menos 3 caracteres",
+    "ProductName.maxlength": "Se permiten como máximo 100 caracteres",
+    "ProductDesc.label": "Descripción del producto",
+    "ProductDesc.maxlength": "Se permiten como máximo 500 caracteres",
+    "ProductActualPrice.label": "Precio original del producto",
+    "ProductActualPrice.required": "El precio original es obligatorio",
+    "ProductActualPrice.min": "El precio debe ser mayor que cero",
+    "ProductDiscountedPrice.label": "Precio con descuento del producto",
+    "ProductDiscountedPrice.required": "El precio con descuento es obligatorio",
+    "ProductDiscountedPrice.min": "El precio debe ser mayor que cero",
+    "ProductDiscountedPrice.saveButton": "Guardar",
+    "ProductDiscountedPrice.clearButton": "Limpiar",
+    "DragDrop.text1": "Arrastra y suelta imágenes aquí o",
+    "DragDrop.text2": "Haz clic",
+    "DragDrop.text3": "para seleccionar"
+  },
+  "ProductDetails": {
+    "h2": "Lista de productos",
+    "Pdf": "Generar PDF",
+    "Csv": "Generar CSV",
+    "Excel": "Generar Excel",
+    "Name": "Nombre",
+    "Description": "Descripción",
+    "DiscountedPrice": "Precio con descuento",
+    "ActualPrice": "Precio original",
+    "Images": "Imágenes",
+    "Actions": "Acciones"
+  },
+  "Pagination" : {
+    "Previous": "Anterior",
+    "Next": "Siguiente"
+  },
+  "OrderConfirmation": {
+    "message": "Tu pedido ha sido realizado con éxito. Se entregará en un plazo de 4-5 días hábiles."
+  },
+  "OrderError": {
+    "message": "Ocurrió un error inesperado al procesar tu pedido."
+  }
+}
+  

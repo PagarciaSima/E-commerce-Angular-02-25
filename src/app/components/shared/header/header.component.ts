@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { I18nService } from 'src/app/services/i18n.service';
 import { UserAuthService } from 'src/app/services/user-auth.service';
 
 /**
@@ -18,6 +19,7 @@ export class HeaderComponent {
   constructor(
     private userAuthService: UserAuthService,
     private router: Router, 
+    private i18nService: I18nService
   ) {
 
   }
@@ -55,5 +57,9 @@ export class HeaderComponent {
    */
   public isUser(): boolean {
     return this.userAuthService.isUser();
+  }
+
+  changeLanguage(lang: string) {
+    this.i18nService.changeLanguage(lang)
   }
 }

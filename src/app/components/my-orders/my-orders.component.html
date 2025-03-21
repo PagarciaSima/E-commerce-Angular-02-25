@@ -16,11 +16,11 @@
                     <thead class="table-dark">
                         <tr>
                             <th><div><i class="fa-regular fa-credit-card me-2"></i><span>ID</span></div></th>
-                            <th><div><i class="fa-solid fa-align-justify me-2"></i><span>Name</span></div></th>
-                            <th><div><i class="fa-solid fa-map-location-dot me-2"></i><span>Address</span></div></th>
-                            <th><div><i class="fa-solid fa-phone me-2"></i><span>Contact No</span></div></th>
-                            <th><div><i class="fa-solid fa-arrow-up-1-9 me-2"></i><span>Amount</span></div></th>
-                            <th><div><i class="fa-brands fa-files-pinwheel me-2"></i><span>Status</span></div></th>
+                            <th><div><i class="fa-solid fa-align-justify me-2"></i><span>{{ 'MyOrders.Name' | translate }}</span></div></th>
+                            <th><div><i class="fa-solid fa-map-location-dot me-2"></i><span>{{ 'MyOrders.Address' | translate }}</span></div></th>
+                            <th><div><i class="fa-solid fa-phone me-2"></i><span>{{ 'MyOrders.Contact' | translate }}</span></div></th>
+                            <th><div><i class="fa-solid fa-arrow-up-1-9 me-2"></i><span>{{ 'MyOrders.Amount' | translate }}</span></div></th>
+                            <th><div><i class="fa-brands fa-files-pinwheel me-2"></i><span>{{ 'MyOrders.Status' | translate }}</span></div></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -43,7 +43,7 @@
                     <!-- Previous -->
                     <li class="page-item" [class.disabled]="currentPage === 0">
                     <a class="page-link bg-success text-white" (click)="changePage(currentPage - 1)">
-                        Previous
+                        {{ 'Pagination.Previous' | translate }}
                     </a>
                     </li>
 
@@ -57,7 +57,7 @@
                     <!-- Next -->
                     <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
                     <a class="page-link bg-success text-white" href="javascript:void(0)" (click)="changePage(currentPage + 1)">
-                        Next
+                        {{ 'Pagination.Next' | translate }}
                     </a>
                     </li>
                 </ul>
@@ -67,7 +67,9 @@
         </div>
 
         <ng-template #noOrders>
-            <p class="text-center alert alert-warning"><i class="fa-solid fa-triangle-exclamation me-2"></i>No orders available.</p>
+            <p class="text-center alert alert-warning">
+                <i class="fa-solid fa-triangle-exclamation me-2"></i>{{ 'MyOrders.NoOrders' | translate }}
+            </p>
         </ng-template>
   </div>
 </div>

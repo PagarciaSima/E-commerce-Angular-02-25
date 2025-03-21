@@ -2,7 +2,9 @@
     <div class="content mt-5 px-5 py-3 rounded fade-in">
         <div class="text-md-center top-div mb-5">
             <h2 class="text-success">
-                <span *ngIf="isDesktop"><i class="fa-solid fa-circle-info text-secondary me-3"></i>Product Details - </span>
+                <span *ngIf="isDesktop">
+                    <i class="fa-solid fa-circle-info text-secondary me-3"></i>{{ 'ProductView.header' | translate }}
+                </span>
                 {{ product?.productName }}
             </h2>
         </div>
@@ -13,8 +15,7 @@
                     [ngClass]="{ 'd-none d-md-block': product!.productImages!.length > 1 }"
                 >
                     <img [src]="'data:' + selectedImage.type + ';base64,' + selectedImage.picByte" 
-                        class="card-img-top py-2 mx-md-auto" alt="Product Image"
-                        [ngClass]="{'fade-in': imageChanged}"
+                        class="card-img-top py-2 mx-md-auto" alt="Product Image" [ngClass]="{'fade-in': imageChanged}"
                         (animationend)="imageChanged = false"
                     >
                 </div>
@@ -35,12 +36,16 @@
                         <h3><strong>{{ product?.productName }}</strong></h3>
                     </div>
                     <div class="mt-3">
-                        <span><u>Description:</u></span><br>
+                        <span>
+                            <u>{{ 'ProductView.Description' | translate }}</u>
+                        </span><br>
                         {{ product?.productDescription }}
                     </div>
                     <!-- Mostrar solo el precio actual si no hay descuento -->
                     <div *ngIf="product?.productDiscountedPrice == 0; else discountPrice" class="mt-3">
-                        <span><u>Product Price:</u></span><br>
+                        <span>
+                            <u>{{ 'ProductView.ProductPrice' | translate }}</u>
+                        </span><br>
                         <span>{{ product?.productActualPrice | currency: 'EUR' }}</span>
                     </div>
 
@@ -54,10 +59,10 @@
                     </ng-template>
 
                     <button *ngIf="isUser()" class="btn btn-success mt-4" (click)="buyProduct(product?.productId!)">
-                        <i class="fa-regular fa-credit-card me-2"></i>Buy now
+                        <i class="fa-regular fa-credit-card me-2"></i>{{ 'ProductView.BuyButton' | translate }}
                     </button>
                     <button *ngIf="isUser()" class="btn btn-success mt-4 ms-2" (click)="addToCart(product?.productId!)">
-                        <i class="fa-solid fa-cart-shopping me-2"></i>Add to Cart
+                        <i class="fa-solid fa-cart-shopping me-2"></i>{{ 'ProductView.CartButton' | translate }}
                     </button>
                 </div>
             </div>

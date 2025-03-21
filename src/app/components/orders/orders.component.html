@@ -8,9 +8,15 @@
         </div>
 
         <div class="mb-5 d-flex justify-content-center align-content-center" role="group" aria-label="Filter Orders">
-            <button type="button" class="btn btn-outline-secondary me-2" (click)="filterOrders('all')">All orders</button>
-            <button type="button" class="btn btn-outline-warning text-black me-2" (click)="filterOrders('Placed')">Placed orders</button>
-            <button type="button" class="btn btn-outline-success" (click)="filterOrders('Delivered')">Delivered orders</button>
+            <button type="button" class="btn btn-outline-secondary me-2" (click)="filterOrders('all')">
+                {{ 'Orders.AllOrders' | translate }}
+            </button>
+            <button type="button" class="btn btn-outline-warning text-black me-2" (click)="filterOrders('Placed')">
+                {{ 'Orders.PlacedOrders' | translate }}
+            </button>
+            <button type="button" class="btn btn-outline-success" (click)="filterOrders('Delivered')">
+                {{ 'Orders.DeliveredOrders' | translate }}
+            </button>
         </div>
         
         <div *ngIf="myOrderDetails.length > 0; else noOrders">
@@ -28,13 +34,12 @@
                     <thead class="table-dark">
                         <tr>
                             <th><div><i class="fa-regular fa-credit-card me-2"></i><span>ID</span></div></th>
-                            <th><div><i class="fa-solid fa-align-justify me-2"></i><span>Name</span></div></th>
-                            <th><div><i class="fa-solid fa-map-location-dot me-2"></i><span>Address</span></div></th>
-                            <th><div><i class="fa-solid fa-phone me-2"></i><span>Contact No</span></div></th>
-                            <th><div><i class="fa-solid fa-arrow-up-1-9 me-2"></i><span>Amount</span></div></th>
-                            <th><div><i class="fa-brands fa-files-pinwheel me-2"></i><span>Status</span></div></th>
-                            <th><div><i class="fa-solid fa-gear me-2"></i><span>Actions</span></div></th>
-
+                            <th><div><i class="fa-solid fa-align-justify me-2"></i><span>{{ 'Orders.Name' | translate }}</span></div></th>
+                            <th><div><i class="fa-solid fa-map-location-dot me-2"></i><span>{{ 'Orders.Address' | translate }}</span></div></th>
+                            <th><div><i class="fa-solid fa-phone me-2"></i><span>{{ 'Orders.ContactNo' | translate }}</span></div></th>
+                            <th><div><i class="fa-solid fa-arrow-up-1-9 me-2"></i><span>{{ 'Orders.Amount' | translate }}</span></div></th>
+                            <th><div><i class="fa-brands fa-files-pinwheel me-2"></i><span>{{ 'Orders.Status' | translate }}</span></div></th>
+                            <th><div><i class="fa-solid fa-gear me-2"></i><span>{{ 'Orders.Actions' | translate }}</span></div></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,11 +61,11 @@
                             <td>
                                 <a *ngIf="orderDetail.orderStatus === 'Placed'" (click)="changeStatus(orderDetail.orderId!, 'Delivered')" class="btn btn-success">
                                     <i class="fa-solid fa-truck me-2"></i>
-                                    Mark as delivered
+                                    {{ 'Orders.MarkDelivered' | translate }}
                                 </a>
                                 <a *ngIf="orderDetail.orderStatus === 'Delivered'" style="min-width: 188.5px" (click)="changeStatus(orderDetail.orderId!, 'Placed')" class="btn btn-warning">
                                     <i class="fa-solid fa-truck me-2"></i>
-                                    Mark as Placed
+                                    {{ 'OrderError.MarkPlaced' | translate }}
                                 </a>
                             </td>
 
@@ -76,7 +81,7 @@
                     <!-- Previous -->
                     <li class="page-item" [class.disabled]="currentPage === 0">
                     <a class="page-link bg-success text-white" (click)="changePage(currentPage - 1)">
-                        Previous
+                        {{ 'Pagination.Previous' | translate }}
                     </a>
                     </li>
 
@@ -90,7 +95,7 @@
                     <!-- Next -->
                     <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
                     <a class="page-link bg-success text-white" href="javascript:void(0)" (click)="changePage(currentPage + 1)">
-                        Next
+                        {{ 'Pagination.Next' | translate }}
                     </a>
                     </li>
                 </ul>
@@ -100,7 +105,9 @@
         </div>
 
         <ng-template #noOrders>
-            <p class="text-center alert alert-warning"><i class="fa-solid fa-triangle-exclamation me-2"></i>No orders available.</p>
+            <p class="text-center alert alert-warning">
+                <i class="fa-solid fa-triangle-exclamation me-2"></i>{{ 'Orders.NoOrders' | translate }}
+            </p>
         </ng-template>
   </div>
 </div>

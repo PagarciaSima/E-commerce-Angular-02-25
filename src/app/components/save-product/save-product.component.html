@@ -1,72 +1,94 @@
 <div class="container-fluid content px-5 d-flex align-items-center">
     <div class="content mt-5 px-5 py-3 text-success bg-white rounded fade-in">
         <div class="text-center">
-            <h2 *ngIf="!isEditMode; else editModeTitle" ><i class="fa-solid fa-plus me-2 my-3 text-secondary me-3"></i>New Product</h2>
+            <h2 *ngIf="!isEditMode; else editModeTitle" >
+                <i class="fa-solid fa-plus me-2 my-3 text-secondary me-3"></i>{{ 'SaveProduct.NewProduct.h2' | translate }}
+            </h2>
             <ng-template #editModeTitle>
-                <h2><i class="fa-solid fa-pencil me-2 my-3 text-secondary me-3"></i>Edit Product</h2>
+                <h2>
+                    <i class="fa-solid fa-pencil me-2 my-3 text-secondary me-3"></i>{{ 'SaveProduct.EditProduct.h2' | translate }}
+                </h2>
             </ng-template>
         </div>
         <form class="row" #productForm="ngForm" (ngSubmit)="addProduct(productForm)"  enctype="multipart/form-data">
             <div class="col-12 col-lg-6 pe-md-5">
                 <!-- Product Name -->
                 <div class="mb-3">
-                    <label for="productName" class="form-label required">Product Name</label>
+                    <label for="productName" class="form-label required">{{ 'SaveProduct.ProductName.label' | translate }}</label>
                     <input type="text" class="form-control" id="productName" name="productName" 
-                        [(ngModel)]="product.productName" #productName="ngModel"
-                        required minlength="3" maxlength="100"
+                        [(ngModel)]="product.productName" #productName="ngModel" required minlength="3" maxlength="100"
                     >
                     <div class="alert alert-danger mt-2 py-2" *ngIf="productName.invalid && productName.touched">
-                        <small *ngIf="productName.errors?.['required']">Product name is required</small>
-                        <small *ngIf="productName.errors?.['minlength']">Minimum 3 characters required</small>
-                        <small *ngIf="productName.errors?.['maxlength']">Maximum 100 characters allowed</small>
+                        <small *ngIf="productName.errors?.['required']">
+                            {{ 'SaveProduct.ProductName.required' | translate }}
+                        </small>
+                        <small *ngIf="productName.errors?.['minlength']">
+                            {{ 'SaveProduct.ProductName.minlength' | translate }}
+                        </small>
+                        <small *ngIf="productName.errors?.['maxlength']">
+                            {{ 'SaveProduct.ProductName.maxlength' | translate }}
+                        </small>
                     </div>
                 </div>
 
                 <!-- Product Description -->
                 <div class="mb-3">
-                    <label for="productDescription" class="form-label">Product Description</label>
+                    <label for="productDescription" class="form-label">{{ 'SaveProduct.ProductDesc.label' | translate }}</label>
                     <textarea type="text" class="form-control" id="productDescription" name="productDescription" 
-                        [(ngModel)]="product.productDescription" #productDescription="ngModel"
-                        maxlength="255" rows="5"
+                        [(ngModel)]="product.productDescription" #productDescription="ngModel" maxlength="255" rows="5"
                     >
                     </textarea>
                     <div class="alert alert-danger mt-2 py-2" *ngIf="productDescription.invalid && productDescription.touched">
-                        <small *ngIf="productDescription.errors?.['maxlength']">Maximum 500 characters allowed</small>
+                        <small *ngIf="productDescription.errors?.['maxlength']">
+                            {{ 'SaveProduct.ProductDesc.maxlength' | translate }}
+                        </small>
                     </div>
                 </div>
 
                  <!-- Product Actual Price -->
                  <div class="mb-3">
-                    <label for="productActualPrice" class="required form-label">Product Actual Price</label>
+                    <label for="productActualPrice" class="required form-label">
+                        {{ 'SaveProduct.ProductActualPrice.label' | translate }}
+                    </label>
                     <input type="number" class="form-control" id="productActualPrice" name="productActualPrice" 
                         [(ngModel)]="product.productActualPrice" #productActualPrice="ngModel"
                         required min="1" step="1"
                     >
                     <div class="alert alert-danger mt-2 py-2" *ngIf="productActualPrice.invalid && productActualPrice.touched">
-                        <small *ngIf="productActualPrice.errors?.['required']">Actual price is required</small>
-                        <small *ngIf="productActualPrice.errors?.['min']">Price must be greater than zero</small>
+                        <small *ngIf="productActualPrice.errors?.['required']">
+                            {{ 'SaveProduct.ProductActualPrice.required' | translate }}
+                        </small>
+                        <small *ngIf="productActualPrice.errors?.['min']">
+                            {{ 'SaveProduct.ProductActualPrice.min' | translate }}
+                        </small>
                     </div>
                 </div>
 
                 <!-- Product Discounted Price -->
                 <div class="mb-3">
-                    <label for="productDiscountedPrice" class="required form-label">Product Discounted Price</label>
+                    <label for="productDiscountedPrice" class="required form-label">
+                        {{ 'SaveProduct.ProductDiscountedPrice.label' | translate }}
+                    </label>
                     <input type="number" class="form-control" id="productDiscountedPrice" name="productDiscountedPrice" 
                         [(ngModel)]="product.productDiscountedPrice" #productDiscountedPrice="ngModel"
                         required min="0" step="1"
                     >
                     <div class="alert alert-danger mt-2 py-2" *ngIf="productDiscountedPrice.invalid && productDiscountedPrice.touched">
-                        <small *ngIf="productDiscountedPrice.errors?.['required']">Discounted price is required</small>
-                        <small *ngIf="productDiscountedPrice.errors?.['min']">Price must be greater than zero</small>
+                        <small *ngIf="productDiscountedPrice.errors?.['required']">
+                            {{ 'SaveProduct.ProductDiscountedPrice.required' | translate }}
+                        </small>
+                        <small *ngIf="productDiscountedPrice.errors?.['min']">
+                            {{ 'SaveProduct.ProductDiscountedPrice.min' | translate }}
+                        </small>
                     </div>
                 </div>
 
                 <!-- Buttons -->
                 <button type="submit" class="btn btn-success me-2" [disabled]="productForm.invalid">
-                    <i class="fa-solid fa-floppy-disk me-2"></i>Save
+                    <i class="fa-solid fa-floppy-disk me-2"></i>{{ 'SaveProduct.ProductDiscountedPrice.saveButton' | translate }}
                 </button>
                 <button type="button" class="btn btn-secondary" (click)="clearForm(productForm)">
-                    <i class="fa-solid fa-eraser me-2"></i>Clear
+                    <i class="fa-solid fa-eraser me-2"></i>{{ 'SaveProduct.ProductDiscountedPrice.clearButton' | translate }}
                 </button>
             </div>
 
@@ -75,15 +97,15 @@
                 <input type="file" multiple #fileInput (change)="onFileSelected($event)" hidden accept="image/*">
                 
                  <!-- Área de arrastrar y soltar -->
-                <div 
-                    class="mt-sm-0 mt-md-4 d-flex justify-content-center align-items-center p-4 text-center"
-                    (dragover)="onDragOver($event)" 
-                    (drop)="onDrop($event)" 
-                    (click)="fileInput.click()" 
-                    style="cursor: pointer; border-style: dashed; min-height: 160px;"
+                <div class="mt-sm-0 mt-md-4 d-flex justify-content-center align-items-center p-4 text-center"
+                    (dragover)="onDragOver($event)" (drop)="onDrop($event)" 
+                    (click)="fileInput.click()" style="cursor: pointer; border-style: dashed; min-height: 160px;"
                 >
                     <i class="fa-solid fa-image me-2"></i>
-                    <span>Drag and drop images here or <a><u>click</u></a> to select</span>
+                    <span>
+                        {{ 'SaveProduct.DragDrop.text1' | translate }} 
+                        <a><u>{{ 'SaveProduct.DragDrop.text2' | translate }}</u></a> {{ 'SaveProduct.DragDrop.text3' | translate }}
+                    </span>
                 </div>
                 
                 <!-- Image preview -->
@@ -108,9 +130,8 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </form>
+        
     </div>
 </div>

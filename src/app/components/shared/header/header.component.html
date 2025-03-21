@@ -9,34 +9,43 @@
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
           <li class="nav-item ms-3">
-            <a class="nav-link active" aria-current="page" routerLink="/"><i class="fa-solid fa-house me-2"></i>Home</a>
+            <a class="nav-link active" aria-current="page" routerLink="/"><i class="fa-solid fa-house me-2"></i>{{ 'Header.Home' | translate }}</a>
           </li>
 
           <li *ngIf="isUser() && isLoggedIn()" class="nav-item ms-3">
-            <a class="nav-link active" aria-current="page" routerLink="/cart"><i class="fa-solid fa-cart-shopping me-2"></i>Cart</a>
+            <a class="nav-link active" aria-current="page" routerLink="/cart"><i class="fa-solid fa-cart-shopping me-2"></i>{{ 'Header.Cart' | translate }}</a>
           </li>
 
           <li *ngIf="isUser() && isLoggedIn()" class="nav-item ms-3">
-            <a class="nav-link active" aria-current="page" routerLink="/myOrders"><i class="fa-solid fa-rectangle-list me-2"></i>My Orders</a>
+            <a class="nav-link active" aria-current="page" routerLink="/myOrders"><i class="fa-solid fa-rectangle-list me-2"></i>{{ 'Header.MyOrders' | translate }}</a>
           </li>
 
           <li *ngIf="isAdmin() && isLoggedIn()" class="nav-item ms-3">
-            <a class="nav-link active" aria-current="page" routerLink="/orders"><i class="fa-solid fa-rectangle-list me-2"></i>Orders</a>
+            <a class="nav-link active" aria-current="page" routerLink="/orders"><i class="fa-solid fa-rectangle-list me-2"></i>{{ 'Header.Orders' | translate }}</a>
           </li>
 
           <li *ngIf="isAdmin()" class="nav-item ms-3">
             <a class="nav-link active" aria-current="page" routerLink="/addNewProduct">
-              <i class="fa-solid fa-plus me-2"></i>Add New Product
+              <i class="fa-solid fa-plus me-2"></i>{{ 'Header.AddProduct' | translate }}
             </a>
           </li>
 
           <li *ngIf="isAdmin()" class="nav-item ms-3">
             <a class="nav-link active" aria-current="page" routerLink="/showProductDetails">
-              <i class="fa-solid fa-table-list me-2"></i>Show products
+              <i class="fa-solid fa-table-list me-2"></i>{{ 'Header.ShowProducts' | translate }}
             </a>
           </li>
-
         </ul>
+
+        <div class="btn-group me-3">
+          <button type="button" class="btn btn-light dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-language fa-xl"></i><span class="ms-2">{{ 'Header.Language' | translate }}</span>
+          </button>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="javascript:void(0);" (click)="changeLanguage('es')"><small>ES</small> {{ 'Header.Spanish' | translate }}</a></li>
+            <li><a class="dropdown-item" href="javascript:void(0);" (click)="changeLanguage('en')"><small>EN</small> {{ 'Header.English' | translate }}</a></li>
+          </ul>
+        </div>
 
         <button *ngIf="!isLoggedIn()" type="button" class="btn btn-light me-2" routerLink="/login">
           <i class="fa-solid fa-right-to-bracket me-2"></i>Login

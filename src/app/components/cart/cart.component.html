@@ -10,7 +10,9 @@
     </app-search-bar>
 
     <div class="d-flex flex-wrap justify-content-center mb-3 mt-5">
-      <button class="btn btn-success" (click)="checkout()"><i class="fa-regular fa-credit-card me-2"></i>Check out</button>
+      <button class="btn btn-success" (click)="checkout()"><i class="fa-regular fa-credit-card me-2"></i>
+        {{ 'Cart.Checkout' | translate }}
+      </button>
     </div>
 
     <div *ngIf="cartDetails.length > 0; else emptyCart">
@@ -18,11 +20,33 @@
           <table class="table  table-striped table-hover">
             <thead class="table-dark">
               <tr>
-                <th><div class="th"><i class="fa-solid fa-bars me-2"></i><span>Name</span></div></th>
-                <th><div class="th"><i class="fa-solid fa-bars me-2"></i><span>Description</span></div></th>
-                <th><div class="th"><i class="fa-solid fa-euro-sign me-2"></i><span>Price</span></div></th>
-                <th><div class="th"><i class="fa-solid fa-euro-sign me-2"></i><span>Discounted Price</span></div></th>
-                <th><div class="th"><i class="fa-solid fa-gear me-2"></i><span>Action</span></div></th>
+                <th>
+                  <div class="th">
+                    <i class="fa-solid fa-bars me-2"></i>
+                    <span>{{ 'Cart.Name' | translate }}</span>
+                  </div>
+                </th>
+                <th>
+                  <div class="th">
+                    <i class="fa-solid fa-bars me-2"></i>
+                    <span>{{ 'Cart.Description' | translate }}</span>
+                  </div>
+                </th>
+                <th>
+                  <div class="th"><i class="fa-solid fa-euro-sign me-2"></i>
+                    <span>{{ 'Cart.Price' | translate }}</span>
+                  </div>
+                </th>
+                <th>
+                  <div class="th"><i class="fa-solid fa-euro-sign me-2"></i>
+                    <span>{{ 'Cart.DiscountedPrice' | translate }}</span>
+                  </div>
+                </th>
+                <th>
+                  <div class="th"><i class="fa-solid fa-gear me-2"></i>
+                    <span>{{ 'Cart.Action' | translate }}</span>
+                  </div>
+                </th>
               </tr>
             </thead>
             <tbody>
@@ -31,12 +55,11 @@
                     <td>{{ cartItem.productEntity.productDescription }}</td>
                     <td>{{ cartItem.productEntity.productActualPrice | currency: 'EUR' }}</td>
                     <td>
-                        <span *ngIf="cartItem.productEntity.productDiscountedPrice > 0; else noDiscount" 
-                              class="badge bg-success">
+                        <span *ngIf="cartItem.productEntity.productDiscountedPrice > 0; else noDiscount"  class="badge bg-success">
                           {{ cartItem.productEntity.productDiscountedPrice | currency: 'EUR' }}
                         </span>
                         <ng-template #noDiscount>
-                          <span class="badge bg-warning text-dark">This product has no discount</span>
+                          <span class="badge bg-warning text-dark">{{ 'Cart.NoDiscount' | translate }}</span>
                         </ng-template>
                     </td>
                     <td>
@@ -52,7 +75,7 @@
               <!-- Previous -->
               <li class="page-item" [class.disabled]="currentPage === 0">
                 <a class="page-link bg-success text-white" (click)="changePage(currentPage - 1)">
-                  Previous
+                  {{ 'Pagination.Previous' | translate }}
                 </a>
               </li>
 
@@ -66,7 +89,7 @@
               <!-- Next -->
               <li class="page-item" [class.disabled]="currentPage === totalPages - 1">
                 <a class="page-link bg-success text-white" href="javascript:void(0)" (click)="changePage(currentPage + 1)">
-                  Next
+                  {{ 'Pagination.Next' | translate }}
                 </a>
               </li>
             </ul>
@@ -75,6 +98,8 @@
     </div>
     <!-- Empty cart message -->
     <ng-template #emptyCart>
-        <p class="text-center alert alert-warning"><i class="fa-solid fa-triangle-exclamation me-2"></i>The cart is empty</p>
+        <p class="text-center alert alert-warning">
+          <i class="fa-solid fa-triangle-exclamation me-2"></i>{{ 'Cart.Empty' | translate }}
+        </p>
     </ng-template>
 </div>

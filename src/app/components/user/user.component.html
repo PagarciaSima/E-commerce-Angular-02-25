@@ -2,18 +2,18 @@
     <div class="content mt-5 px-5 py-3 rounded fade-in">
         <div class="text-md-center top-div mb-5">
             <h2 class="text-success">
-                User Dashboard
+                {{ 'User.Dashboard' | translate }}
             </h2>
         </div>
         
         <div class="row mb-5">
             <div *ngIf="salesData" class="col-6">
-                <h2 class="text-center">Sales per month</h2>
+                <h2 class="text-center">{{ 'User.SalesPerMonth' | translate }}</h2>
                 <canvas baseChart [data]="chartDataSalesPerMonth" chartType="bar" [options]="chartOptions"></canvas>
             </div>
 
             <div *ngIf="ordersData"class="col-6" id="ordersChart">
-                <h2 class="text-center">My Orders</h2>
+                <h2 class="text-center">{{ 'User.MyOrders' | translate }}</h2>
                 <canvas baseChart
                     [data]="chartDataOrdersByStatus"
                     [options]="chartOptions"
@@ -23,17 +23,17 @@
         </div>
 
         <div  *ngIf="last4Orders" class="table-responsive mt-200">
-            <h2 class="text-center">Last orders</h2>
+            <h2 class="text-center">{{ 'User.LastOrders' | translate }}</h2>
             <table class="table  table-striped table-hover">
                 <thead class="table-dark">
                     <tr>
                         <th><div><i class="fa-regular fa-credit-card me-2"></i><span>ID</span></div></th>
-                        <th><div><i class="fa-solid fa-align-justify me-2"></i><span>Order date</span></div></th>
-                        <th><div><i class="fa-solid fa-map-location-dot me-2"></i><span>Status</span></div></th>
-                        <th><div><i class="fa-solid fa-phone me-2"></i><span>Product Name</span></div></th>
-                        <th><div><i class="fa-solid fa-arrow-up-1-9 me-2"></i><span>Amount</span></div></th>
-                        <th><div><i class="fa-brands fa-files-pinwheel me-2"></i><span>Actual price</span></div></th>
-                        <th><div><i class="fa-solid fa-gear me-2"></i><span>Discounted price</span></div></th>
+                        <th><div><i class="fa-solid fa-align-justify me-2"></i><span>{{ 'User.OrderDate' | translate }}</span></div></th>
+                        <th><div><i class="fa-solid fa-map-location-dot me-2"></i><span>{{ 'User.Status' | translate }}</span></div></th>
+                        <th><div><i class="fa-solid fa-phone me-2"></i><span>{{ 'User.ProductName' | translate }}</span></div></th>
+                        <th><div><i class="fa-solid fa-arrow-up-1-9 me-2"></i><span>{{ 'User.Amount' | translate }}</span></div></th>
+                        <th><div><i class="fa-brands fa-files-pinwheel me-2"></i><span>{{ 'User.ActualPrice' | translate }}</span></div></th>
+                        <th><div><i class="fa-solid fa-gear me-2"></i><span>{{ 'User.DiscountedPrice' | translate }}</span></div></th>
                     </tr>
                 </thead>
                 <tbody>

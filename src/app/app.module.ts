@@ -15,7 +15,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
 import { RouterModule } from '@angular/router';
 import { AuthInterceptor } from './auth/auth.interceptor';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { SaveProductComponent } from './components/save-product/save-product.component';
 import { ShowProductDetailsComponent } from './components/show-product-details/show-product-details.component';
 import { ProductViewDetailsComponent } from './components/product-view-details/product-view-details.component';
@@ -29,7 +29,12 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { SpinnerComponent } from './components/shared/spinner/spinner.component';
 import { OrderErrorComponent } from './components/order-error/order-error.component';
 import { NgChartsModule } from 'ng2-charts';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+export function HttpLoaderFactory(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+}
 
 @NgModule({
   declarations: [
@@ -62,7 +67,14 @@ import { NgChartsModule } from 'ng2-charts';
     ToastrModule.forRoot(), 
     BrowserAnimationsModule,
     RouterModule,
-    NgChartsModule
+    NgChartsModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
     
   ],
   providers: [

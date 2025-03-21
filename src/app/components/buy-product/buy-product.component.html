@@ -7,12 +7,12 @@
           <form class="row p-4" #orderForm="ngForm" (ngSubmit)="placeOrder(orderForm)">
             <!-- Full Name -->
             <div class="mb-3">
-              <label for="fullName" class="form-label required">Full Name</label>
+              <label for="fullName" class="form-label required">{{ 'BuyProduct.FullName' | translate }}</label>
               <input type="text" class="form-control" id="fullName" name="fullName"
                 [(ngModel)]="orderDetails.fullName" #fullName="ngModel"
                 required minlength="3" maxlength="100" placeholder="Full name">
               <div *ngIf="fullName.invalid && fullName.touched" class="alert alert-danger mt-2 py-2">
-                Full Name is required and must be between 3 and 100 characters.
+                {{ 'BuyProduct.FullName.required' | translate }}
               </div>
             </div>
   
@@ -23,18 +23,20 @@
                 [(ngModel)]="orderDetails.fullAddress" #fullAddress="ngModel"
                 required minlength="3" maxlength="100" placeholder="Full address">
               <div *ngIf="fullAddress.invalid && fullAddress.touched" class="alert alert-danger mt-2 py-2">
-                Full Address is required and must be between 3 and 100 characters.
+                {{ 'BuyProduct.Address.required' | translate }}
               </div>
             </div>
   
             <!-- Contact Number -->
             <div class="mb-3">
-              <label for="contactNumber" class="form-label required">Contact Number</label>
+              <label for="contactNumber" class="form-label required">
+                {{ 'BuyProduct.Address.ContactNumber' | translate }}
+              </label>
               <input type="text" class="form-control" id="contactNumber" name="contactNumber"
                 [(ngModel)]="orderDetails.contactNumber" #contactNumber="ngModel"
                 required pattern="^\+?[0-9]*$" minlength="9" maxlength="15" placeholder="Contact number">
               <div *ngIf="contactNumber.invalid && contactNumber.touched" class="alert alert-danger mt-2 py-2">
-                Contact Number is required and must be numeric. It can optionally start with a "+" for the prefix.
+                {{ 'BuyProduct.Address.ContactNumber.required' | translate }}
               </div>
             </div>
   
@@ -45,13 +47,16 @@
                 [(ngModel)]="orderDetails.alternateContactNumber" #alternateContactNumber="ngModel"
                 required pattern="^\+?[0-9]*$" minlength="9" maxlength="15" placeholder="Alternate contact number">
               <div *ngIf="alternateContactNumber.invalid && alternateContactNumber.touched" class="alert alert-danger mt-2 py-2">
-                Alternate Contact Number is required and must be numeric. It can optionally start with a "+" for the prefix.
+                {{ 'BuyProduct.Address.AlternateContactNumber.required' | translate }}
               </div>
             </div>
   
             <!-- Submit Button -->
             <div class="text-center">
-              <button class="btn btn-success" type="submit" [disabled]="orderForm.invalid">Place Order</button>
+              <button class="btn btn-success" type="submit" [disabled]="orderForm.invalid">
+                
+
+              </button>
             </div>
           </form>
         </div>
@@ -59,10 +64,18 @@
             <table class="table mx-2 mx-lg-0 table-striped table-hover mt-4 pe-4">
                 <thead class="table-dark">
                   <tr>
-                    <th>Name</th>
-                    <th>Amount (€)</th>
-                    <th>Quantity</th>
-                    <th>Total (€)</th>
+                    <th>
+                      {{ 'BuyProduct.Name' | translate }}
+                    </th>
+                    <th>
+                      {{ 'BuyProduct.Amount' | translate }}
+                    </th>
+                    <th>
+                      {{ 'BuyProduct.Quantity' | translate }}
+                    </th>
+                    <th>
+                        Total (€)
+                    </th>
                   </tr>
                 </thead>
                 <tbody>

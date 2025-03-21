@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { ChartData, ChartOptions } from 'chart.js';
 import { SalesData } from 'src/app/interfaces/sales-data';
 import { TopSelling } from 'src/app/interfaces/top-selling';
+import { I18nService } from 'src/app/services/i18n.service';
+
 
 /**
  * Component responsible for displaying the admin dashboard.
@@ -49,7 +51,11 @@ export class AdminComponent implements OnInit {
    * Creates an instance of AdminComponent.
    * @param {ActivatedRoute} route - Provides access to route data, including resolved dashboard data.
    */
-  constructor(private route: ActivatedRoute) {}
+  constructor(
+    private route: ActivatedRoute,
+  ) { 
+    
+  }
 
   /**
    * Lifecycle hook that runs on component initialization.

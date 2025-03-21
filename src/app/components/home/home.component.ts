@@ -7,6 +7,7 @@ import { ProductService } from 'src/app/services/product.service';
 // npm install -g @compodoc/compodoc
 // npm install --save-dev @compodoc/compodoc
 // Documentación npx compodoc -p tsconfig.json
+// npm install @ngx-translate/core @ngx-translate/http-loader
 
 
 /**

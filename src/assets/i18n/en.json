@@ -1,0 +1,157 @@
+{
+  "Header": {
+    "Language": "Language",
+    "Spanish": "Spanish",
+    "English": "English",
+    "ShowProducts": "Show products",
+    "Home": "Home",
+    "Cart": "Cart",
+    "Orders": "Orders",
+    "AddProduct": "Add product",
+    "MyOrders": "My orders"
+  },
+  "Admin": {
+    "Dashboard": "Admin Dashboard",
+    "SalesPerMonth": "Sales per month (€)",
+    "OrdersByStatus": "Orders by status",
+    "TopSellingProducts": "Top selling products"
+  },
+  "User": {
+    "Dashboard": "User Dashboard",
+    "SalesPerMonth": "Sales per month (€)",
+    "MyOrders": "My orders",
+    "LastOrders": "Last orders",
+    "OrderDate": "Order date",
+    "Status": "Status",
+    "ProductName": "Product name",
+    "Amount": "Amount",
+    "ActualPrice": "Actual price",
+    "DiscountedPrice": "Discounted price"
+  },
+  "BuyProduct": {
+    "FullName": "Full name",
+    "FullName.required": "Full Name is required and must be between 3 and 100 characters.",
+    "Address.required": "Full Address is required and must be between 3 and 100 characters.",
+    "ContactNumber": "Contact number",
+    "ContactNumber.required": "Contact Number is required and must be numeric. It can optionally start with a \"+\" for the prefix.",
+    "AlternateContactNumber.required": "Alternate Contact Number is required and must be numeric. It can optionally start with a \"+\" for the prefix.",
+    "PlaceOrder": "Place order",
+    "Name": "Name",
+    "Amount": "Amount (€)",
+    "Quantity": "Quantity"
+  },
+  "Cart": {
+    "Checkout": "Check out",
+    "Name": "Name",
+    "Description": "Description",
+    "Price": "Price",
+    "DiscountedPrice": "Discounted Price",
+    "Action": "Action",
+    "NoDiscount": "This product has no discount",
+    "Empty": "The cart is empty"
+  },
+  "Forbidden": {
+    "AccessNotAllowed": "You are not allowed to access to this page"
+  },
+  "Login": {
+    "Username.placeholder": "Enter your username",
+    "Password.placeholder":"Enter your password",
+    "Username.required": "Username is required",
+    "Password.required": "Password is required",
+    "Register.question": "Don't have an account?",
+    "Register": "Sign up"
+  },
+  "MyOrders": {
+    "Name": "Name",
+    "Address": "Address",
+    "Contact": "Contact No",
+    "Amount": "Amount",
+    "Status": "Status",
+    "NoOrders": "No orders available."
+  },
+  "Orders": {
+    "AllOrders": "All orders",
+    "PlacedOrders": "Placed orders",
+    "DeliveredOrders": "Delivered orders",
+    "Name": "Name",
+    "Address": "Address",
+    "ContactNo": "Contact No",
+    "Amount": "Amount",
+    "Status": "Status",
+    "Actions": "Actions",
+    "MarkDelivered": "Mark as delivered",
+    "MarkPlaced": "Mark as placed",
+    "NoOrders": "No orders available"
+  },
+  "ProductView": {
+    "header": "Product Details - ",
+    "Description": "Description:",
+    "ProductPrice": "Product price: ",
+    "BuyButton": "Buy now",
+    "CartButton": "Add to Cart"
+  },
+  "Register": {
+    "Header": "Register",
+    "Username.placeholder": "Enter your username",
+    "Username.validation": "Username must be at least 4 characters long and cannot have spaces.",
+    "FirstName.placeholder": "Enter your first name",
+    "FirstName.required": "First name is required.",
+    "LastName.placeholder": "Enter your last name",
+    "LastName.required": "Last name is required",
+    "Password.placeholder": "Enter your password",
+    "Password.validation.div": "Password must contain:",
+    "Password.validation.li1": "At least one digit",
+    "Password.validation.li2": "At least one lowercase letter",
+    "Password.validation.li3": "At least one uppercase letter",
+    "Password.validation.li4": "At least one special character (&#64; # $ % ^ &amp; + = !)",
+    "Password.validation.li5": "No spaces",
+    "RegisterButton": "Register",
+    "AccountQuestion": "Already have an account?"
+  },
+  "SaveProduct": {
+    "NewProduct.h2": "New Product",
+    "EditProduct.h2": "Edit Product",
+    "ProductName.label": "Product Name",
+    "ProductName.required": "Product name is required",
+    "ProductName.minlength": "Minimum 3 characters required",
+    "ProductName.maxlength": "Maximum 100 characters allowed",
+    "ProductDesc.label": "Product Description",
+    "ProductDesc.maxlength": "Maximum 500 characters allowed",
+    "ProductActualPrice.label": "Product actual price",
+    "ProductActualPrice.required": "Actual price is required",
+    "ProductActualPrice.min": "Price must be greater than zero",
+    "ProductDiscountedPrice.label": "Product Discounted Price",
+    "ProductDiscountedPrice.required": "Product discounted price is required",
+    "ProductDiscountedPrice.min": "Price must be greater than zero",
+    "ProductDiscountedPrice.saveButton": "Save",
+    "ProductDiscountedPrice.clearButton": "Clear",
+    "DragDrop.text1": "Drag and drop images here or",
+    "DragDrop.text2": "Click",
+    "DragDrop.text3": "to select"
+
+  },
+  "ProductDetails": {
+    "h2": "Product List",
+    "Pdf": "Generate PDF",
+    "Csv": "Generate CSV",
+    "Excel": "Generate Excel",
+    "Name": "Name",
+    "Description": "Description",
+    "DiscountedPrice": "Discounted price",
+    "ActualPrice": "Actual price",
+    "Images": "Images",
+    "Actions": "Actions"
+
+  },
+  "Pagination" : {
+    "Previous": "Previous",
+    "Next": "Next"
+  },
+  "OrderConfirmation": {
+    "message": "Your order is placed successfully. It will be delivered to you within 4-5 business days."
+  },
+  "OrderError": {
+    "message": "An unexpected error occurred while processing your order."
+  }
+  
+}
