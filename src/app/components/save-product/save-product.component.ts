@@ -282,5 +282,7 @@ export class SaveProductComponent implements OnInit {
       productActualPrice: 0,
       productDiscountedPrice: 0,
     };
+    this.selectedFiles = [];
+    this.imagePreviews = [];
   }
 }

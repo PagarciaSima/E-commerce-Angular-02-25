@@ -45,7 +45,7 @@ export class OrderConfirmationComponent implements OnInit{
    * Sends the order details to the backend to place an order.
    * If successful, it removes the stored order from local storage.
    */
-  private createOrder() {
+  createOrder() {
     this.productService.placeOrder(this.orderDetails).subscribe({
       next: () => {
         this.toastrService.success(this.translate.instant('Toast.OrderPlaced') , 'Success');

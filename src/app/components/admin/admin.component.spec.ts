@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { SalesData } from 'src/app/interfaces/sales-data';
 import { TopSelling } from 'src/app/interfaces/top-selling';
 import { NgChartsModule } from 'ng2-charts'; // Importa el módulo de Chart.js
+import { TranslateModule } from '@ngx-translate/core';
 
 describe('AdminComponent', () => {
   let component: AdminComponent;
@@ -28,7 +29,7 @@ describe('AdminComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [AdminComponent],
-      imports: [NgChartsModule], // Importa el módulo de Chart.js
+      imports: [NgChartsModule, TranslateModule.forRoot()], // AÑADIR TranslateModule
       providers: [
         {
           provide: ActivatedRoute,

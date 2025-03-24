@@ -150,6 +150,37 @@
   },
   "OrderError": {
     "message": "Ocurrió un error inesperado al procesar tu pedido."
-  }
+  },
+  "Toast": {
+    "ErrorPayment": "Error al procesar el pago.",
+    "ErrorPaymentProcessed": "No se pudo procesar el pago.",
+    "DeleteCartId": "Producto eliminado del carrito.",
+    "ErrorUnexpected": "Ocurrió un error inesperado.",
+    "ErrorServer": "Error del servidor. Por favor, inténtelo más tarde.",
+    "ErrorCartDetails": "Error, no se pudieron recuperar los detalles de su carrito.",
+    "ErrorGetProductList": "Error, no se pudo recuperar la lista de productos.",
+    "LoginSuccess": "Has iniciado sesión correctamente.",
+    "LoginErrorCredentials": "Credenciales inválidas. Por favor, inténtelo de nuevo.",
+    "ErrorOrderDetails": "Error al recuperar los detalles del pedido.",
+    "OrderPlaced": "Pedido realizado con éxito.",
+    "OrderError": "Error al realizar el pedido.",
+    "StatusChanged": "Estado del pedido actualizado con éxito.",
+    "AddedToCart": "Producto añadido al carrito.",
+    "AccountCreated": "Cuenta creada con éxito.",
+    "ErrorUserExists": "El nombre de usuario ya está en uso. Por favor, elija otro.",
+    "ErrorAccount": "Error al crear la cuenta.",
+    "ErrorGetProduct": "Error al recuperar los datos del producto.",
+    "ProductPriceWarning": "El precio con descuento no puede ser mayor que el precio real.",
+    "ProductUpdated": "Producto actualizado con éxito.",
+    "ErrorUpdateProduct": "Error al actualizar el producto.",
+    "CreateProduct": "Producto creado con éxito.",
+    "ErrorCreateProduct": "Error al crear el producto.",
+    "ImageLimit3": "Solo puedes subir hasta 3 imágenes.",
+    "ErrorDeleteImage": "Error al eliminar la imagen.",
+    "ProductDeleted": "Producto eliminado con éxito.",
+    "NoImagesAvailable": "No hay imágenes disponibles para este producto.",
+    "ErrorFile": "Error al generar."
+}
+
 }
   
