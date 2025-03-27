@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { DataPayment } from '../interfaces/data-payment';
 import { UrlPaypalResponse } from '../interfaces/url-paypal-response';
 import { Observable } from 'rxjs';

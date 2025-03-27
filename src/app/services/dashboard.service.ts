@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { SalesData } from '../interfaces/sales-data';
-import { environment } from 'src/environments/environment.development';
+import { environment } from 'src/environments/environment';
 import { OrderAndProductDto } from '../interfaces/order-and-product-dto';
 import { TopSelling } from '../interfaces/top-selling';
 
