@@ -38,7 +38,8 @@
     "PlaceOrder": "Place order",
     "Name": "Name",
     "Amount": "Amount (€)",
-    "Quantity": "Quantity"
+    "Quantity": "Quantity",
+    "buy": "Checkout"
   },
   "Cart": {
     "Checkout": "Check out",

@@ -30,13 +30,13 @@
             <!-- Contact Number -->
             <div class="mb-3">
               <label for="contactNumber" class="form-label required">
-                {{ 'BuyProduct.Address.ContactNumber' | translate }}
+                {{ 'BuyProduct.ContactNumber' | translate }}
               </label>
               <input type="text" class="form-control" id="contactNumber" name="contactNumber"
                 [(ngModel)]="orderDetails.contactNumber" #contactNumber="ngModel"
                 required pattern="^\+?[0-9]*$" minlength="9" maxlength="15" placeholder="Contact number">
               <div *ngIf="contactNumber.invalid && contactNumber.touched" class="alert alert-danger mt-2 py-2">
-                {{ 'BuyProduct.Address.ContactNumber.required' | translate }}
+                {{ 'BuyProduct.ContactNumber.required' | translate }}
               </div>
             </div>
   
@@ -54,7 +54,7 @@
             <!-- Submit Button -->
             <div class="text-center">
               <button class="btn btn-success" type="submit" [disabled]="orderForm.invalid">
-                
+                {{ 'BuyProduct.buy' | translate }}
 
               </button>
             </div>

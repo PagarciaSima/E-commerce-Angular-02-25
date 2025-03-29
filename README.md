@@ -1,27 +1,244 @@
-# Ecommerce
+# E-commerce Full Stack Application 🛒💻
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.1.
+This is a full-stack E-commerce application built with Angular (frontend) and Java Spring Boot (backend). The application supports two user roles: **Admin** and **User**.
 
-## Development server
+- **Admin**: Can perform CRUD operations on products.
+- **User**: Can browse products, add them to the cart, and create orders (integrated with PayPal Sandbox for payments).
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+---
 
-## Code scaffolding
+## 📄 Data Export
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+The application supports exporting product and order lists for the Admin role in the following formats:  
+- **CSV**  
+- **Excel**  
+- **PDF**  
 
-## Build
+## Backend Repository 🔗
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+The backend of the application is built with Spring Boot and can be found at:
 
-## Running unit tests
+[Back end Repository - Spring Boot](https://github.com/PagarciaSima/E-commerce-Spring-Boot-02-25)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+---
 
-## Running end-to-end tests
+## 🛠️ Features
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+- **User Authentication**: Secure login with **JWT-based authentication** using **Spring Security**.
+- **Role-Based Access Control**: Different functionalities for Admin and User.
+- **Product Management**: CRUD operations for products (Admin only).
+- **Shopping Cart**: Users can add/remove products to/from the cart.
+- **Order Processing**: Users can place orders and make payments via **PayPal Sandbox**.
+- **Data Export**: Generate and download reports in **CSV, Excel, and PDF** formats.
+- **Pagination & Search Filters**: Efficient data navigation with search and filtering options.
+- **Charts & Analytics**: Visual representation of data using **JChart**.
+- **Multi-language Support**: Supports multiple languages using **@ngx-translate/core**.
+- **API Documentation**: Integrated with **OpenAPI** for API documentation.
+- **Responsive Design**: Fully optimized for **desktop and mobile devices**.
+- **Unit & UI Testing**:  
+  - **Backend**: Unit tests with **Mockito**, test execution reports with **Surefire**.  
+  - **Frontend**: Unit tests with **Jasmine & Karma**.
+- **Security**:  
+  - **Spring Security** for authentication and authorization.  
+  - Protection against common security threats.
 
-## Further help
+---
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## ⚙️ Technologies
+
+### Backend (Spring Boot 3.4.0 / Java 17)
+- **Spring Boot 3.4.0** (Main framework)
+- **Spring Web** (REST API development)
+- **Spring Data JPA** (Database access with Hibernate)
+- **Spring Security & JWT** (Authentication & Authorization)
+- **MySQL** (Relational database)
+- **Lombok** (Boilerplate code reduction)
+- **JavaDotenv** (Environment variables management)
+- **OpenAPI / Swagger** (API documentation)
+- **Mockito & JUnit** (Unit testing)
+- **Surefire Plugin** (Test reporting)
+
+### File Management & Export 📑
+- **Apache POI** (Excel file generation)
+- **OpenCSV** (CSV file export)
+- **iText 7** (PDF generation)
+- **Commons IO** (File utilities)
+
+### Payment Integration 💳
+- **PayPal SDK** (Payment processing via PayPal)
+
+### DevTools & Build Tools 🔧
+- **Spring Boot DevTools** (Hot reload for development)
+- **Maven** (Build automation & dependency management)
+- **Maven Surefire Plugin** (Test execution reports)
+
+---
+
+## Frontend (Angular 16)
+- **Angular 16** (Core framework)
+- **Angular Material** (UI components & styling)
+- **Bootstrap 5.3.3** (CSS framework)
+- **ngx-toastr** (Notifications)
+- **SweetAlert2** (Custom alerts & modals)
+- **FontAwesome** (Icons)
+- **RxJS** (Reactive programming)
+- **Ngx-translate** (Internationalization)
+- **Chart.js & ng2-charts** (Data visualization)
+- **jwt-decode** (JWT handling)
+- **File-saver** (File export utilities)
+- **Zone.js** (Angular change detection)
+
+### DevTools & Testing 🧪
+- **Angular CLI** (Development tools)
+- **TypeScript** (Type-safe JavaScript)
+- **Jasmine & Karma** (Unit testing)
+- **Karma Chrome Launcher** (Testing in Chrome)
+- **Karma Coverage** (Test coverage reporting)
+
+---
+
+## Open API Documentation 📑
+
+The API documentation for the application can be accessed via Swagger UI. You can explore the available endpoints in the following environments:
+
+- **Local Development**:  
+  [Swagger UI Local](http://localhost:8080/swagger-ui/index.html#/)
+
+- **Production**:  
+  [Swagger UI Production](https://pgsecommerce02-25-production.up.railway.app/swagger-ui/index.html#/)
+
+![openapi](img/openapi.png)
+
+---
+
+## Deployment 🚀
+
+The application is deployed across different platforms for both the backend and frontend:
+
+- **Backend**:  
+  The backend, including the application and MySQL database, is deployed on **Railway** using Docker.  
+  - **Docker**: The backend application is containerized with a custom `Dockerfile`.  
+  - **MySQL**: The database is deployed using the official MySQL Docker image.
+
+- **Frontend**:  
+  The frontend is deployed on **Netlify**, ensuring fast and scalable delivery of the application to users.
+
+You can access the application via the following URLs:
+
+- **Production Backend**:  
+  [Production Backend](https://pgsecommerce02-25-production.up.railway.app/)
+
+- **Production Frontend**:  
+  [Production Frontend](https://ecommerce-02-25.netlify.app/login)
+
+### Deployed app
+![Deployed app](img/deployed.png)
+
+### ⚠️ Performance & Availability Notice  
+
+🚀 **Note:** The backend is hosted on **Railway's free tier**, which may cause **longer cold-start times** and **limited uptime**.  
+If the backend seems slow or unresponsive, it might be due to the service going to sleep after periods of inactivity.  
+Additionally, free-tier services may be subject to **downtime or deletion** by the hosting provider at any time.  
+
+---
+
+
+## Interfaces 🖥️
+
+### Login
+![login](img/login.png)
+
+### Register
+![register](img/register.png)
+
+### Home
+![home](img/home.png)
+
+### Product detail
+![Product detail](img/product_detail.png)
+
+### Dashboard
+![dashboard](img/dashboard1.png)
+
+### Dashboard
+![dashboard](img/dashboard2.png)
+
+### Admin / Orders
+![orders](img/admin_orders.png)
+
+### Admin / Product creation - edition
+![Admin add edit product](img/admin_addEditProduct.png)
+
+### Admin / Product list
+![Admin products](img/admin_products.png)
+
+### Admin / Product list delete product sweet alert
+![Admin sweet alert](img/admin_swalDelete.png)
+
+### Admin / Product list image preview
+![Admin products img review](img/admin_productsImgPreview.png)
+
+### Admin / CSV export
+![Admin CSV export](img/admin_csv.png)
+
+### Admin / PDF export
+![Admin PDF export](img/admin_pdf.png)
+
+### Admin / XLSX export
+![Admin EXCEL export](img/admin_excel.png)
+
+### User / Cart
+![User cart](img/user_cart.png)
+
+### User / Payment
+![User payment](img/payment.png)
+
+### User / PayPal sand box
+![User Paypal](img/paypal_sandbox.png)
+
+### User / PayPal sand box
+![User Paypal 2](img/paypal_sandbox2.png)
+
+### User / PayPal success payment
+![User Paypal success](img/successPayment.png)
+
+---
+
+## 📄 Documentation
+
+### Backend (Javadoc)
+The Javadoc for the backend can be found in:
+doc/index.html
+
+#### Javadocs
+![Javadocs](img/javadocs.png)
+
+### Frontend (TSDoc)
+The TSDoc for the frontend can be found in:
+documentation/index.html
+
+#### Tsdocs
+![Tsdocs](img/tsdoc.png)
+
+---
+
+## 🧪 Testing
+
+### Frontend (JUnit)
+
+To check the **JUnit** reports for the frontend, run the following command in the root directory of the project:
+
+ng test --include=**/component.spec.ts
+
+### Backend (JUnit)
+
+To check the **JUnit** reports for the backend, run the following command in the root directory of the project:
+
+```bash
+mvn surefire-report:report
+
+
+
+
+
+

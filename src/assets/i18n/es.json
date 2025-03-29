@@ -38,7 +38,8 @@
     "PlaceOrder": "Realizar pedido",
     "Name": "Nombre",
     "Amount": "Monto (€)",
-    "Quantity": "Cantidad"
+    "Quantity": "Cantidad",
+    "buy": "Finalizar pago"
   },
   "Cart": {
     "Checkout": "Finalizar compra",
